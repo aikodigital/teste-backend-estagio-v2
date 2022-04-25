@@ -1,0 +1,14 @@
+EndPoint - Estado atual do equipamento
+
+GET - /apiprocesso/equipmentstate/history
+POST - /apiprocesso/equipmentposition/new
+PUT - /apiprocesso/equipmentposition/edit
+DELETE - /apiprocesso/equipmentposition/deleteid/{id}
+
+
+EndPoint - Posição atual do equipamento
+
+GET - /apiprocesso/equipmentposition/history
+POST - /apiprocesso/equipmentposition/new
+PUT - /apiprocesso/equipmentposition/edit
+DELETE - /apiprocesso/equipmentposition/deleteid/{id}
