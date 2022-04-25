@@ -2,9 +2,7 @@ package com.equipamentos.service;
 
 import java.util.List;
 
-import com.equipamentos.model.Equipamento;
-
-public interface Servico<T> {
+public interface InterfaceServicoEquipamento<T> {
 
 	T salvar(T equipamento);
 

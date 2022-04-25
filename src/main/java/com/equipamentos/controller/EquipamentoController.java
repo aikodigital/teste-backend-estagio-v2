@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.equipamentos.model.Equipamento;
-import com.equipamentos.service.EquipamentoServicoImpl;
+import com.equipamentos.service.EquipamentoServico;
 
 @RestController
 @RequestMapping("/equipamentos")
 public class EquipamentoController {
 
 	@Autowired
-	private EquipamentoServicoImpl equipamentoServico;
+	private EquipamentoServico equipamentoServico;
 
 	@GetMapping
 	public ResponseEntity<List<Equipamento>> listarTodos() {

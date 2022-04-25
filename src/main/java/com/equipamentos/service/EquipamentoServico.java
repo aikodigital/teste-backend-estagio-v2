@@ -9,7 +9,7 @@ import com.equipamentos.model.Equipamento;
 import com.equipamentos.repository.EquipamentoRepositorio;
 
 @Service
-public class EquipamentoServicoImpl implements ServicoEquipamento {
+public abstract class EquipamentoServico implements InterfaceServicoEquipamento<Equipamento>{
 
 	@Autowired
     private EquipamentoRepositorio repositorioEquipamento;
