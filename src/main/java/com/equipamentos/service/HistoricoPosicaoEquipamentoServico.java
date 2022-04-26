@@ -23,7 +23,7 @@ public abstract class HistoricoPosicaoEquipamentoServico implements InterfaceSer
     }
 
     public HistoricoPosicaoEquipamento buscarPorId(Long id) {
-        return historicoPosicaoEquipamentoRepositorio.getById(id);
+        return historicoPosicaoEquipamentoRepositorio.getOne(id);
     }
 
     public HistoricoPosicaoEquipamento atualizar(HistoricoPosicaoEquipamento estadoEquipamento) {

@@ -23,7 +23,7 @@ public abstract class EquipamentoServico implements InterfaceServicoEquipamento<
     }
 
     public Equipamento buscarPorId(Long id) {
-        return repositorioEquipamento.getById(id);
+        return repositorioEquipamento.getOne(id);
     }
 
     public Equipamento atualizar(Equipamento equipamento) {

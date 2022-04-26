@@ -23,7 +23,7 @@ public abstract class EstadoModeloValorEquipamentoServico implements InterfaceSe
     }
 
     public EstadoModeloValorEquipamento buscarPorId(Long id) {
-        return estadoModeloValorEquipamentoRepositorio.getById(id);
+        return estadoModeloValorEquipamentoRepositorio.getOne(id);
     }
 
     public EstadoModeloValorEquipamento atualizar(EstadoModeloValorEquipamento estadoModeloValorEquipamento) {

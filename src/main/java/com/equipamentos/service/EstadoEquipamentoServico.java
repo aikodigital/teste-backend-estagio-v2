@@ -22,7 +22,7 @@ public abstract class EstadoEquipamentoServico implements InterfaceServicoEquipa
     }
 
     public EstadoEquipamento buscarPorId(Long id) {
-        return estadoEquipamentoRepositorio.getById(id);
+        return estadoEquipamentoRepositorio.getOne(id);
     }
 
     public EstadoEquipamento atualizar(EstadoEquipamento estadoEquipamento) {
