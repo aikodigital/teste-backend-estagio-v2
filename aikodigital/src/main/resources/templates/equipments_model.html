@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipments_model</title>
+</head>
+
+<body>
+    
+    <form th:action="@{/salvar}" method="POST">
+        <input type="text" name="name"/>
+        <input type="submit" value="Salvar"/>
+    </form>
+    <table>
+        <tr th:each="Equipment_model : ${equipment_model}">
+            <td th:text="${equipment_model.id}"></td>
+            <td th:text="${equipment_model.name}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
