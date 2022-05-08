@@ -36,21 +36,19 @@ public class EquipamentoService {
     public Object get(Request request, Response response){
 
         String id = request.params(":id");
-        System.out.println("ID " + id);
         UUID uuid = UUID.fromString(id);
 
         equipamentoDAO.conectar();
         Equipamento equipamento = equipamentoDAO.read(uuid);
+        equipamentoDAO.close();
 
         if(equipamento == null){
-            equipamentoDAO.close();
             response.status(404);
             return "Equipamento: " + id + "não encontrado.";
         }
 
         response.header("Content-Type", "application/json");
         response.header("Content-Encoding", "UTF-8");
-        equipamentoDAO.close();
 
         return "Equipamento: " + equipamento.toJSON();
     }
