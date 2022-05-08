@@ -2,16 +2,29 @@ package model;
 
 import org.json.JSONObject;
 
+import java.util.UUID;
+
 public class EstadoEquipamento {
-    private String uuid;
+
+    private UUID uuid;
     private String nome;
     private String cor;
 
-    public String getUuid() {
+    public EstadoEquipamento(){
+        this("", "", "");
+    }
+
+    public EstadoEquipamento(String uuid, String name, String color){
+        this.uuid = UUID.fromString(uuid);
+        this.nome = name;
+        this.cor = color;
+    }
+
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
