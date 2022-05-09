@@ -4,6 +4,7 @@ import model.ModeloEquipamento;
 import org.json.JSONObject;
 import service.EquipamentoService;
 import service.EstadoEquipamentoService;
+import service.GanhoHoraEstadoService;
 import service.ModeloEquipamentoService;
 
 import static spark.Spark.*;
@@ -13,6 +14,7 @@ public class Aplicacao {
     private static EquipamentoService equipamentoService = new EquipamentoService();
     private static EstadoEquipamentoService estadoEquipamentoService = new EstadoEquipamentoService();
     private static ModeloEquipamentoService modeloEquipamentoService = new ModeloEquipamentoService();
+    private static GanhoHoraEstadoService ganhoHoraEstadoService = new GanhoHoraEstadoService();
 
     public static void main(String[] args) {
 
@@ -37,5 +39,11 @@ public class Aplicacao {
         get("/modelo/equipamento/delete/:id", (request, response) -> modeloEquipamentoService.delete(request, response));
         get("/modelo/equipamentos", (request, response) -> modeloEquipamentoService.getAll(request, response));
 
+
+        post("/ganho", (request, response) -> ganhoHoraEstadoService.add(request, response));
+        get("/ganho/read/:idModel/:idState", (request, response) -> ganhoHoraEstadoService.get(request, response));
+        put("/ganho/update/:idModel/:idState", (request, response) -> ganhoHoraEstadoService.update(request, response));
+        get("/ganho/delete/:idModel/:idState", (request, response) -> ganhoHoraEstadoService.delete(request, response));
+        get("/ganhos", (request, response) -> ganhoHoraEstadoService.getAll(request, response));
     }
 }
