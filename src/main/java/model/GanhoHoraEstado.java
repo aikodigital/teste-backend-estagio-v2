@@ -1,31 +1,58 @@
 package model;
 
-public class GanhoHoraEstado {
-    private String uuidModel;
-    private String uuidState;
-    private double vaalor;
+import org.json.JSONObject;
 
-    public String getUuidModel() {
+import java.util.UUID;
+
+public class GanhoHoraEstado {
+
+    private UUID uuidModel;
+    private UUID uuidState;
+    private double valor;
+
+    public GanhoHoraEstado(){
+        this("", "", 0.0);
+    }
+
+    public GanhoHoraEstado(String uuidModel, String uuidState, double valor){
+
+        this.uuidModel = UUID.fromString(uuidModel);
+        this.uuidState = UUID.fromString(uuidState);
+        this.valor = valor;
+    }
+
+    public UUID getUuidModel() {
         return uuidModel;
     }
 
-    public void setUuidModel(String uuidModel) {
+    public void setUuidModel(UUID uuidModel) {
         this.uuidModel = uuidModel;
     }
 
-    public String getUuidState() {
+    public UUID getUuidState() {
         return uuidState;
     }
 
-    public void setUuidState(String uuidState) {
+    public void setUuidState(UUID uuidState) {
         this.uuidState = uuidState;
     }
 
-    public double getVaalor() {
-        return vaalor;
+    public double getValor() {
+        return valor;
     }
 
-    public void setVaalor(double vaalor) {
-        this.vaalor = vaalor;
+    public void setVaalor(double valor) {
+        this.valor = valor;
+    }
+
+    public JSONObject toJSON(){
+
+        JSONObject objetoJSON = new JSONObject();
+
+        objetoJSON.put("idModel", this.getUuidModel().toString());
+        objetoJSON.put("idStatus", this.getUuidState().toString());
+        objetoJSON.put("value", this.getValor());
+
+        return objetoJSON;
     }
 }
