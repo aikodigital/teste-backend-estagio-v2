@@ -1,13 +1,28 @@
 package model;
 
-public class ModeloEquipamento {
-    private String uuid;
+import org.json.JSONObject;
 
-    public String getUuid() {
+import java.util.UUID;
+
+public class ModeloEquipamento {
+
+    private UUID uuid;
+    private String nome;
+
+    public ModeloEquipamento(){
+        this("", "");
+    }
+
+    public ModeloEquipamento(String uuid, String nome){
+        this.uuid = UUID.fromString(uuid);
+        this.nome = nome;
+    }
+
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -19,5 +34,13 @@ public class ModeloEquipamento {
         this.nome = nome;
     }
 
-    private String nome;
+    public JSONObject toJSON(){
+
+        JSONObject objetoJSON = new JSONObject();
+
+        objetoJSON.put("id", this.getUuid().toString());
+        objetoJSON.put("name", this.getNome());
+
+        return objetoJSON;
+    }
 }
