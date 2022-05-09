@@ -1,6 +1,5 @@
 package dao;
 
-import model.Equipamento;
 import model.EstadoEquipamento;
 
 import java.sql.ResultSet;
@@ -34,7 +33,7 @@ public class EstadoEquipamentoDAO extends DAO{
     }
 
 
-    public EstadoEquipamento read(UUID uuid) {
+    public EstadoEquipamento readEstadoEquipamento(UUID uuid) {
 
         EstadoEquipamento estadoEquipamento = null;
 
@@ -61,7 +60,7 @@ public class EstadoEquipamentoDAO extends DAO{
         return estadoEquipamento;
     }
 
-    public EstadoEquipamento[] readAll(){
+    public EstadoEquipamento[] readAllEstadoEquipamento(){
 
         EstadoEquipamento[] estadoEquipamentos = null;
 
@@ -93,10 +92,10 @@ public class EstadoEquipamentoDAO extends DAO{
     @Override
     public boolean updateDAO(Object objeto){
         EstadoEquipamento estadoEquipamento = (EstadoEquipamento) objeto;
-        return updateEquipamento(estadoEquipamento);
+        return updateEstadoEquipamento(estadoEquipamento);
     }
 
-    private boolean updateEquipamento(EstadoEquipamento estadoEquipamento){
+    private boolean updateEstadoEquipamento(EstadoEquipamento estadoEquipamento){
 
         String set = String.format("name='%s' , color='%s'", estadoEquipamento.getNome(), estadoEquipamento.getCor());
         String where = String.format("id='%s'", estadoEquipamento.getUuid().toString());
@@ -108,12 +107,12 @@ public class EstadoEquipamentoDAO extends DAO{
     @Override
     public boolean deleteDAO(Object objeto){
         EstadoEquipamento estadoEquipamento = (EstadoEquipamento) objeto;
-        return deleteDisciplina(estadoEquipamento);
+        return deleteEstadoEquipamento(estadoEquipamento);
     }
 
-    private boolean deleteDisciplina(EstadoEquipamento estadoEquipamento) {
+    private boolean deleteEstadoEquipamento(EstadoEquipamento estadoEquipamento) {
 
-        String where = String.format("id='%s'",estadoEquipamento.getUuid().toString());
+        String where = String.format("id='%s'", estadoEquipamento.getUuid().toString());
 
         boolean status = deleteDAO(where);
         return status;
