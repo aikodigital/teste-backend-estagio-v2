@@ -40,7 +40,7 @@ public class EstadoEquipamentoService {
         UUID uuid = UUID.fromString(id);
 
         estadoEquipamentoDAO.conectar();
-        EstadoEquipamento estadoEquipamento = estadoEquipamentoDAO.read(uuid);
+        EstadoEquipamento estadoEquipamento = estadoEquipamentoDAO.readEstadoEquipamento(uuid);
         estadoEquipamentoDAO.close();
 
         if(estadoEquipamento == null){
@@ -59,7 +59,7 @@ public class EstadoEquipamentoService {
         StringBuffer buffer = new StringBuffer();
 
         estadoEquipamentoDAO.conectar();
-        EstadoEquipamento[] estadoEquipamentos = estadoEquipamentoDAO.readAll();
+        EstadoEquipamento[] estadoEquipamentos = estadoEquipamentoDAO.readAllEstadoEquipamento();
         estadoEquipamentoDAO.close();
 
         for (int i = 0; i < estadoEquipamentos.length; i++) {
@@ -86,7 +86,7 @@ public class EstadoEquipamentoService {
         String uuid = request.params(":id");
 
         estadoEquipamentoDAO.conectar();
-        EstadoEquipamento estadoEquipamento = (EstadoEquipamento) estadoEquipamentoDAO.read(UUID.fromString(uuid));
+        EstadoEquipamento estadoEquipamento = (EstadoEquipamento) estadoEquipamentoDAO.readEstadoEquipamento(UUID.fromString(uuid));
 
         if (estadoEquipamento == null) {
             estadoEquipamentoDAO.close();
@@ -108,7 +108,7 @@ public class EstadoEquipamentoService {
         String uuid = request.params(":id");
 
         estadoEquipamentoDAO.conectar();
-        EstadoEquipamento estadoEquipamento = (EstadoEquipamento) estadoEquipamentoDAO.read(UUID.fromString(uuid));
+        EstadoEquipamento estadoEquipamento = (EstadoEquipamento) estadoEquipamentoDAO.readEstadoEquipamento(UUID.fromString(uuid));
 
         if (estadoEquipamento == null) {
             estadoEquipamentoDAO.close();
