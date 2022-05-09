@@ -1,18 +1,30 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.Date;
+import java.util.UUID;
 
 public class HistoricoEstadosEquipamento {
-    private String uuidEquipamento;
-    private Date data;
-    private String uuidEstadoEquipamento;
 
-    public String getUuidEquipamento() {
+    private UUID uuidEquipamento;
+    private UUID uuidEstadoEquipamento;
+    private Date data;
+
+    public UUID getUuidEquipamento() {
         return uuidEquipamento;
     }
 
-    public void setUuidEquipamento(String uuidEquipamento) {
+    public void setUuidEquipamento(UUID uuidEquipamento) {
         this.uuidEquipamento = uuidEquipamento;
+    }
+
+    public UUID getUuidEstadoEquipamento() {
+        return uuidEstadoEquipamento;
+    }
+
+    public void setUuidEstadoEquipamento(UUID uuidEstadoEquipamento) {
+        this.uuidEstadoEquipamento = uuidEstadoEquipamento;
     }
 
     public Date getData() {
@@ -23,11 +35,14 @@ public class HistoricoEstadosEquipamento {
         this.data = data;
     }
 
-    public String getUuidEstadoEquipamento() {
-        return uuidEstadoEquipamento;
-    }
+    public JSONObject toJSON(){
 
-    public void setUuidEstadoEquipamento(String uuidEstadoEquipamento) {
-        this.uuidEstadoEquipamento = uuidEstadoEquipamento;
+        JSONObject objetoJSON = new JSONObject();
+
+        objetoJSON.put("idEquipment", this.getUuidEquipamento().toString());
+        objetoJSON.put("idState", this.getUuidEstadoEquipamento().toString());
+        objetoJSON.put("date", this.getData().toString());
+
+        return objetoJSON;
     }
 }
