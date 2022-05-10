@@ -58,7 +58,7 @@ public class GanhoHoraEstadoService {
 
     public Object getAll(Request request, Response response){
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = new StringBuffer("[");
 
         ganhoHoraEstadoDAO.conectar();
         GanhoHoraEstado[] ganhoHoraEstados = ganhoHoraEstadoDAO.readAllGanhoHoraEstado();
