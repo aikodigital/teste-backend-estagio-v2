@@ -2,10 +2,7 @@ package app;
 
 import model.ModeloEquipamento;
 import org.json.JSONObject;
-import service.EquipamentoService;
-import service.EstadoEquipamentoService;
-import service.GanhoHoraEstadoService;
-import service.ModeloEquipamentoService;
+import service.*;
 
 import static spark.Spark.*;
 
@@ -15,6 +12,7 @@ public class Aplicacao {
     private static EstadoEquipamentoService estadoEquipamentoService = new EstadoEquipamentoService();
     private static ModeloEquipamentoService modeloEquipamentoService = new ModeloEquipamentoService();
     private static GanhoHoraEstadoService ganhoHoraEstadoService = new GanhoHoraEstadoService();
+    private static HistoricoEstadosEquipamentoService historicoEstadosEquipamentoService = new HistoricoEstadosEquipamentoService();
 
     public static void main(String[] args) {
 
@@ -45,5 +43,16 @@ public class Aplicacao {
         put("/ganho/update/:idModel/:idState", (request, response) -> ganhoHoraEstadoService.update(request, response));
         get("/ganho/delete/:idModel/:idState", (request, response) -> ganhoHoraEstadoService.delete(request, response));
         get("/ganhos", (request, response) -> ganhoHoraEstadoService.getAll(request, response));
+
+
+        post("/historico/estado", (request, response) -> historicoEstadosEquipamentoService.add(request,response));
+        get("/historico/estados/read/:idEquipment", (request, response) -> historicoEstadosEquipamentoService.getHistoricoPorEquipamento(request,response));
+        get("/historico/estados/read/:idEquipment/:idState", (request, response) -> historicoEstadosEquipamentoService.getHistoricoPorEquipamentoEPorEstado(request,response));
+        get("/historico/estados/read/de/:idEquipment/:date", (request, response) -> historicoEstadosEquipamentoService.getHistoricoPorPorDataEEquipamento(request,response));
+        post("/historico/estados/update", (request, response) -> historicoEstadosEquipamentoService.update(request,response));
+        get("/historico/estados/delete/:idEquipment/:date", (request, response) -> historicoEstadosEquipamentoService.delete(request,response));
+        get("/historico/estados", (request, response) -> historicoEstadosEquipamentoService.getAllHistorico(request,response));
+
+
     }
 }
