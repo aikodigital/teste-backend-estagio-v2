@@ -2,6 +2,9 @@ package model;
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,6 +13,26 @@ public class HistoricoEstadosEquipamento {
     private UUID uuidEquipamento;
     private UUID uuidEstadoEquipamento;
     private Date data;
+
+    public HistoricoEstadosEquipamento(){
+        this("", "", (Date) null);
+    }
+
+    public HistoricoEstadosEquipamento(String uudEqipamento, String uuidEstadoEquipamento, Date date) {
+
+        this.uuidEquipamento = UUID.fromString(uudEqipamento);
+        this.uuidEstadoEquipamento = UUID.fromString(uuidEstadoEquipamento);
+        this.data = date;
+    }
+
+    public HistoricoEstadosEquipamento(String uudEqipamento, String uuidEstadoEquipamento, String date) throws ParseException {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        this.uuidEquipamento = UUID.fromString(uudEqipamento);
+        this.uuidEstadoEquipamento = UUID.fromString(uuidEstadoEquipamento);
+        this.data = df.parse(date);
+    }
 
     public UUID getUuidEquipamento() {
         return uuidEquipamento;
