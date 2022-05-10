@@ -56,7 +56,7 @@ public class EstadoEquipamentoService {
 
     public Object getAll(Request request, Response response){
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = new StringBuffer("[");
 
         estadoEquipamentoDAO.conectar();
         EstadoEquipamento[] estadoEquipamentos = estadoEquipamentoDAO.readAllEstadoEquipamento();
