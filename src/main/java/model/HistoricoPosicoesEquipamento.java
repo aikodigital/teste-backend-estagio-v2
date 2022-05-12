@@ -1,18 +1,21 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.Date;
+import java.util.UUID;
 
 public class HistoricoPosicoesEquipamento {
-    private String uuidEquipamento;
+    private UUID uuidEquipamento;
     private Date data;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
 
-    public String getUuidEquipamento() {
+    public UUID getUuidEquipamento() {
         return uuidEquipamento;
     }
 
-    public void setUuidEquipamento(String uuidEquipamento) {
+    public void setUuidEquipamento(UUID uuidEquipamento) {
         this.uuidEquipamento = uuidEquipamento;
     }
 
@@ -24,19 +27,31 @@ public class HistoricoPosicoesEquipamento {
         this.data = data;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public JSONObject toJSON(){
+
+        JSONObject objetoJSON = new JSONObject();
+
+        objetoJSON.put("idEquipment", this.getUuidEquipamento().toString());
+        objetoJSON.put("data", this.getData().toString());
+        objetoJSON.put("latitude", this.getLatitude());
+        objetoJSON.put("longitude", this.getLongitude());
+
+        return objetoJSON;
     }
 }
