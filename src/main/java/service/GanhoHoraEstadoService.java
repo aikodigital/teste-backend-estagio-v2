@@ -89,7 +89,7 @@ public class GanhoHoraEstadoService {
         String uuidState = request.params(":idState");
 
         ganhoHoraEstadoDAO.conectar();
-        GanhoHoraEstado ganhoHoraEstado = (GanhoHoraEstado) ganhoHoraEstadoDAO.readGanhoHoraEstado(UUID.fromString(uuidModel), UUID.fromString(uuidState));
+        GanhoHoraEstado ganhoHoraEstado = ganhoHoraEstadoDAO.readGanhoHoraEstado(UUID.fromString(uuidModel), UUID.fromString(uuidState));
 
         if (ganhoHoraEstado == null) {
             ganhoHoraEstadoDAO.close();
@@ -111,7 +111,7 @@ public class GanhoHoraEstadoService {
         String uuidState = request.params(":idState");
 
         ganhoHoraEstadoDAO.conectar();
-        GanhoHoraEstado ganhoHoraEstado = (GanhoHoraEstado) ganhoHoraEstadoDAO.readGanhoHoraEstado(UUID.fromString(uuidModel), UUID.fromString(uuidState));
+        GanhoHoraEstado ganhoHoraEstado = ganhoHoraEstadoDAO.readGanhoHoraEstado(UUID.fromString(uuidModel), UUID.fromString(uuidState));
 
         if (ganhoHoraEstado == null) {
             ganhoHoraEstadoDAO.close();

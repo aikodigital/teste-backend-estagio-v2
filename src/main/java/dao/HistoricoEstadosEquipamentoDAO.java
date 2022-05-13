@@ -1,15 +1,14 @@
 package dao;
 
-import model.GanhoHoraEstado;
 import model.HistoricoEstadosEquipamento;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class HistoricoEstadosEquipamentoDAO extends DAO{
+
     public HistoricoEstadosEquipamentoDAO(){
         super("operation.equipment_state_history");
     }
@@ -174,11 +173,8 @@ public class HistoricoEstadosEquipamentoDAO extends DAO{
     }
 
     private boolean deleteHistoricoEstadosEquipamento(HistoricoEstadosEquipamento historicoEstadosEquipamento) {
-
         String where = String.format("equipment_id='%s' AND equipment_state_id='%s' AND date='%s'", historicoEstadosEquipamento.getUuidEquipamento(), historicoEstadosEquipamento.getUuidEstadoEquipamento(), historicoEstadosEquipamento.getData().toString());
-
-        boolean status = deleteDAO(where);
-        return status;
+        return deleteDAO(where);
     }
 
 }

@@ -3,7 +3,6 @@ package dao;
 import model.GanhoHoraEstado;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.DecimalFormat;
 import java.util.UUID;
 
 public class GanhoHoraEstadoDAO extends DAO{

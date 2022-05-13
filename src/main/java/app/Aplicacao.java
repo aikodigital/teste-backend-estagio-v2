@@ -1,5 +1,6 @@
 package app;
 
+import dao.HistoricoPosicoesEquipamentoDAO;
 import model.ModeloEquipamento;
 import org.json.JSONObject;
 import service.*;
@@ -13,9 +14,9 @@ public class Aplicacao {
     private static ModeloEquipamentoService modeloEquipamentoService = new ModeloEquipamentoService();
     private static GanhoHoraEstadoService ganhoHoraEstadoService = new GanhoHoraEstadoService();
     private static HistoricoEstadosEquipamentoService historicoEstadosEquipamentoService = new HistoricoEstadosEquipamentoService();
+    private static HistoricoPosicoesEquipamentoService historicoPosicoesEquipamentoService = new HistoricoPosicoesEquipamentoService();
 
     public static void main(String[] args) {
-
 
         post("/equipamento", (request, response) -> equipamentoService.add(request, response));
         get("/equipamento/read/:id", (request, response) -> equipamentoService.get(request, response));
@@ -54,5 +55,10 @@ public class Aplicacao {
         get("/historico/estados", (request, response) -> historicoEstadosEquipamentoService.getAllHistorico(request,response));
 
 
+        post("/historico/posicao", (request, response) -> historicoPosicoesEquipamentoService.add(request, response));
+        get("/historico/posicao/read/:idEquipment", (request, response) -> historicoPosicoesEquipamentoService.getHistoricoPorIDEquipamento(request, response));
+        put("/historico/posicao/update/:idEquipment/:date", (request, response) -> historicoPosicoesEquipamentoService.update(request, response));
+        get("/historico/posicao/delete/:idEquipment/:date", (request, response) -> historicoPosicoesEquipamentoService.delete(request, response));
+        get("/historico/posicoes", (request, response) -> historicoPosicoesEquipamentoService.getAllHistorico(request, response));
     }
 }

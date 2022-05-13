@@ -1,17 +1,12 @@
 package service;
 
 import dao.HistoricoEstadosEquipamentoDAO;
-import model.EstadoEquipamento;
-import model.GanhoHoraEstado;
 import model.HistoricoEstadosEquipamento;
-import model.ModeloEquipamento;
+
 import spark.Request;
 import spark.Response;
 
-import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class HistoricoEstadosEquipamentoService {
