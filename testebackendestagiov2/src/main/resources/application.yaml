@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: teste-backend-estagio-v2
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 12345
+    initialization-mode: always
+    continue-on-error: true
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    database: POSTGRESQL
+    properties:
+      hibernate.default_schema: operation
+
+server:
+  servlet:
+    context-path: /api
