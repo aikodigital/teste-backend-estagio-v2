@@ -1,6 +1,7 @@
 package com.app.project.controllers;
 
 import com.app.project.domain.EquipmentModel;
+import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.EquipmentModelPostRequest;
 import com.app.project.services.EquipmentModelService;
 import com.app.project.util.EquipmentModelCreator;
@@ -30,12 +31,44 @@ class EquipmentModelControllerTest {
     private EquipmentModelService modelService;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws NotFoundException {
         BDDMockito.when(modelService.save(ArgumentMatchers.any(EquipmentModelPostRequest.class)))
                 .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
 
         BDDMockito.when(modelService.findAll())
                 .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
+
+        BDDMockito.when(modelService.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
+    }
+
+    @Test
+    @DisplayName("listAll returns a list of equipment models")
+    void listAll_ReturnsAListOfEquipmentModels_WhenSuccessful() {
+        String expectedName = EquipmentModelCreator.createEquipmentModelValid().getName();
+
+        List<EquipmentModel> equipModels = modelController.listAll().getBody();
+
+        Assertions.assertThat(equipModels)
+                        .isNotNull()
+                        .isNotEmpty()
+                        .hasSize(1);
+
+        Assertions.assertThat(equipModels.get(0).getName()).isEqualTo(expectedName);
+
+    }
+
+    @Test
+    @DisplayName("findById returns an equipment model when successful")
+    void findById_ReturnsAnEquipmentModel_WhenSuccessful() throws NotFoundException {
+        Long expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
+
+        EquipmentModel equipmentModel = modelController.getById(1L).getBody();
+
+        Assertions.assertThat(equipmentModel).isNotNull();
+
+        Assertions.assertThat(equipmentModel.getId()).isNotNull().
+                isEqualTo(expectedId);
     }
 
     @Test
@@ -48,21 +81,5 @@ class EquipmentModelControllerTest {
         Assertions.assertThat(post)
                 .isNotNull()
                 .isEqualTo(EquipmentModelCreator.createEquipmentModelValid());
-    }
-
-    @Test
-    @DisplayName("listAll returns a list of equipment models")
-    void listAll_ReturnsAListOfEquipmentModels() {
-        String expectedName = EquipmentModelCreator.createEquipmentModelValid().getName();
-
-        List<EquipmentModel> equipModels = modelController.listAll().getBody();
-
-        Assertions.assertThat(equipModels)
-                        .isNotNull()
-                        .isNotEmpty()
-                        .hasSize(1);
-
-        Assertions.assertThat(equipModels.get(0).getName()).isEqualTo(expectedName);
-
     }
 }

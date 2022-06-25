@@ -1,6 +1,7 @@
 package com.app.project.services;
 
 import com.app.project.domain.EquipmentModel;
+import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipmentModelRepository;
 import com.app.project.util.EquipmentModelCreator;
 import com.app.project.util.EquipmentModelPostRequestCreator;
@@ -16,6 +17,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 class EquipmentModelServiceTest {
@@ -33,6 +35,9 @@ class EquipmentModelServiceTest {
 
         BDDMockito.when(modelRepositoryMock.findAll())
                 .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
+
+        BDDMockito.when(modelRepositoryMock.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(Optional.ofNullable(EquipmentModelCreator.createEquipmentModelValid()));
     }
 
     @Test
@@ -59,5 +64,18 @@ class EquipmentModelServiceTest {
 
         Assertions.assertThat(equipModels.get(0).getName())
                 .isEqualTo(expectedName);
+    }
+
+    @Test
+    @DisplayName("findById returns an equipment model when successful")
+    void findById_ReturnsAnEquipmentModel_WhenSuccessful() throws NotFoundException {
+        Long expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
+
+        EquipmentModel equipmentModel = modelService.findById(1L);
+
+        Assertions.assertThat(equipmentModel).isNotNull();
+
+        Assertions.assertThat(equipmentModel.getId()).isNotNull()
+                        .isEqualTo(expectedId);
     }
 }
