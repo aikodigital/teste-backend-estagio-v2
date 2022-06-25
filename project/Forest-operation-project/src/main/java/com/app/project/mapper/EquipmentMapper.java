@@ -5,7 +5,7 @@ import com.app.project.requests.EquipmentModelPostRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public abstract class EquipmentMapper {
 
     public static final EquipmentMapper INSTANCE = Mappers.getMapper(EquipmentMapper.class);

@@ -16,7 +16,6 @@ public class EquipmentModelService {
     private final EquipmentMapper mapper = EquipmentMapper.INSTANCE;
 
     public EquipmentModel save(EquipmentModelPostRequest equipmentModelPostRequest) {
-        EquipmentModel equipmentModel = mapper.toEquipmentModel(equipmentModelPostRequest);
-        return modelRepository.save(equipmentModel);
+        return modelRepository.save(mapper.toEquipmentModel(equipmentModelPostRequest));
     }
 }
