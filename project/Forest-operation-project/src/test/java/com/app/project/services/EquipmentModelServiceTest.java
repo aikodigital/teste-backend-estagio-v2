@@ -15,6 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 @ExtendWith(SpringExtension.class)
 class EquipmentModelServiceTest {
 
@@ -28,6 +30,9 @@ class EquipmentModelServiceTest {
     void setUp() {
         BDDMockito.when(modelRepositoryMock.save(ArgumentMatchers.any(EquipmentModel.class)))
                 .thenReturn(EquipmentModelCreator.createEquipmentModelToBeSaved());
+
+        BDDMockito.when(modelRepositoryMock.findAll())
+                .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
     }
 
     @Test
@@ -38,5 +43,21 @@ class EquipmentModelServiceTest {
 
         Assertions.assertThat(equipmentModel).isNotNull()
                 .isEqualTo(EquipmentModelCreator.createEquipmentModelToBeSaved());
+    }
+
+    @Test
+    @DisplayName("findAll returns a list of equipment models")
+    void findAll_ReturnsAListOfEquipmentModels() {
+        String expectedName = EquipmentModelCreator.createEquipmentModelValid().getName();
+
+        List<EquipmentModel> equipModels = modelService.findAll();
+
+        Assertions.assertThat(equipModels)
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(1);
+
+        Assertions.assertThat(equipModels.get(0).getName())
+                .isEqualTo(expectedName);
     }
 }

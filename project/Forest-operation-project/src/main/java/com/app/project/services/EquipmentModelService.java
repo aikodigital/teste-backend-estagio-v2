@@ -7,6 +7,8 @@ import com.app.project.requests.EquipmentModelPostRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EquipmentModelService {
@@ -17,5 +19,9 @@ public class EquipmentModelService {
 
     public EquipmentModel save(EquipmentModelPostRequest equipmentModelPostRequest) {
         return modelRepository.save(mapper.toEquipmentModel(equipmentModelPostRequest));
+    }
+
+    public List<EquipmentModel> findAll() {
+        return modelRepository.findAll();
     }
 }

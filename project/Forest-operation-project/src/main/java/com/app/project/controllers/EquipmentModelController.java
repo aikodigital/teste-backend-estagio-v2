@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,5 +21,10 @@ public class EquipmentModelController {
     @PostMapping
     public ResponseEntity<EquipmentModel> post(@RequestBody @Valid EquipmentModelPostRequest equipmentModel) {
         return new ResponseEntity<>(service.save(equipmentModel), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EquipmentModel>> listAll() {
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 }

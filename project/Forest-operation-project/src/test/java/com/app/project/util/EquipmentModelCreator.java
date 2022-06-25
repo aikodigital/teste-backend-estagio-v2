@@ -1,6 +1,11 @@
 package com.app.project.util;
 
 import com.app.project.domain.EquipmentModel;
+import com.app.project.requests.EquipmentModelPostRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 public class EquipmentModelCreator {
 
