@@ -3,9 +3,11 @@ package com.app.project.controllers;
 import com.app.project.domain.EquipmentModel;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.EquipmentModelPostRequest;
+import com.app.project.requests.EquipmentModelPutRequest;
 import com.app.project.services.EquipmentModelService;
 import com.app.project.util.EquipmentModelCreator;
 import com.app.project.util.EquipmentModelPostRequestCreator;
+import com.app.project.util.EquipmentModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +17,6 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -38,8 +38,11 @@ class EquipmentModelControllerTest {
         BDDMockito.when(modelService.findAll())
                 .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
 
-        BDDMockito.when(modelService.findById(ArgumentMatchers.anyLong()))
+        BDDMockito.when(modelService.findByIdOrThrowNotFoundException(ArgumentMatchers.anyLong()))
                 .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
+
+        BDDMockito.doNothing().when(modelService).update(ArgumentMatchers.any(EquipmentModelPutRequest.class));
+
     }
 
     @Test
@@ -81,5 +84,14 @@ class EquipmentModelControllerTest {
         Assertions.assertThat(post)
                 .isNotNull()
                 .isEqualTo(EquipmentModelCreator.createEquipmentModelValid());
+    }
+
+    @Test
+    @DisplayName("put updates an equipment model when successul")
+    void put_UpdatesAnEquipmentModel_WhenSuccessful() {
+
+        Assertions.assertThatCode(() -> modelController.put(
+                EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
+                .doesNotThrowAnyException();
     }
 }

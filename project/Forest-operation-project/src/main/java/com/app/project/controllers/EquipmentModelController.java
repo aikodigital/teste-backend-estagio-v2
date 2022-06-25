@@ -3,6 +3,7 @@ package com.app.project.controllers;
 import com.app.project.domain.EquipmentModel;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.EquipmentModelPostRequest;
+import com.app.project.requests.EquipmentModelPutRequest;
 import com.app.project.services.EquipmentModelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,12 +27,18 @@ public class EquipmentModelController {
 
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentModel> getById(@PathVariable Long id) throws NotFoundException {
-        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.findByIdOrThrowNotFoundException(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<EquipmentModel> post(@RequestBody @Valid EquipmentModelPostRequest equipmentModel) {
         return new ResponseEntity<>(service.save(equipmentModel), HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> put(@RequestBody EquipmentModelPutRequest putRequest) throws NotFoundException {
+        service.update(putRequest);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 

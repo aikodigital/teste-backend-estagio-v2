@@ -3,8 +3,10 @@ package com.app.project.services;
 import com.app.project.domain.EquipmentModel;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipmentModelRepository;
+import com.app.project.requests.EquipmentModelPutRequest;
 import com.app.project.util.EquipmentModelCreator;
 import com.app.project.util.EquipmentModelPostRequestCreator;
+import com.app.project.util.EquipmentModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -71,11 +73,19 @@ class EquipmentModelServiceTest {
     void findById_ReturnsAnEquipmentModel_WhenSuccessful() throws NotFoundException {
         Long expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
 
-        EquipmentModel equipmentModel = modelService.findById(1L);
+        EquipmentModel equipmentModel = modelService.findByIdOrThrowNotFoundException(1L);
 
         Assertions.assertThat(equipmentModel).isNotNull();
 
         Assertions.assertThat(equipmentModel.getId()).isNotNull()
                         .isEqualTo(expectedId);
+    }
+
+    @Test
+    @DisplayName("update - updates an equipment model when successul")
+    void update_UpdateAnEquipmentModelWhenSuccessful() {
+        Assertions.assertThatCode(() -> modelService.update(
+                EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
+                .doesNotThrowAnyException();
     }
 }
