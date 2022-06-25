@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using equipment.Data;
 using equipment.Repository;
+using equipment_state.Data;
+using equipment_state.Repository;
+using equipment_model.Data;
+using equipment_model.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +20,18 @@ builder.Services.AddDbContext<EquipmentContext>(options => {
 });
 
 builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
+
+builder.Services.AddDbContext<Equipment_stateContext>(options => {
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+});
+
+builder.Services.AddScoped<IEquipment_stateRepository, Equipment_stateRepository>();
+
+builder.Services.AddDbContext<Equipment_modelContext>(options => {
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+});
+
+builder.Services.AddScoped<IEquipment_modelRepository, Equipment_modelRepository>();
 
 
 var app = builder.Build();
