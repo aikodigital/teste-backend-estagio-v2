@@ -48,7 +48,7 @@ namespace equipment_state.Controllers
             if (equipment_stateBanco == null) return NotFound("Estado de equipamento não encontrado");
         
             equipment_stateBanco.Name = equipment_state.Name ?? equipment_stateBanco.Name;
-            equipment_stateBanco.Name = equipment_state.Color ?? equipment_stateBanco.Color;
+            equipment_stateBanco.Color = equipment_state.Color ?? equipment_stateBanco.Color;
 
             _repository.AtualizaEquipment_state(equipment_stateBanco);
 
