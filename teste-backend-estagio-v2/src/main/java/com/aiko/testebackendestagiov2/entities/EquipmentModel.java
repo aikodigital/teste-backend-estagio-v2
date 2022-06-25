@@ -1,11 +1,10 @@
 package com.aiko.testebackendestagiov2.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -18,4 +17,8 @@ public class EquipmentModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipmentModel", cascade = CascadeType.ALL)
+    List<Equipment> equipments;
 }
