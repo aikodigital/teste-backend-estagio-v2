@@ -6,10 +6,4 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: validate
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
+      ddl-auto: update

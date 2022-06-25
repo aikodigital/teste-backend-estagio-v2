@@ -9,9 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "equipment_model")
 public class EquipmentModel {
@@ -20,6 +20,6 @@ public class EquipmentModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
+    @Column(nullable = false)
     private String name;
 }

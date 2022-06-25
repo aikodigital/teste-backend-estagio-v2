@@ -3,6 +3,7 @@ package com.app.project.services;
 import com.app.project.domain.EquipmentModel;
 import com.app.project.repositories.EquipmentModelRepository;
 import com.app.project.util.EquipmentModelCreator;
+import com.app.project.util.EquipmentModelPostRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,8 +33,10 @@ class EquipmentModelServiceTest {
     @Test
     @DisplayName("save returns an equipmentModel when successful")
     void save() {
-        EquipmentModel equipmentModel = modelService.save(EquipmentModelCreator.createEquipmentModelToBeSaved());
+        EquipmentModel equipmentModel = modelService.save(
+                EquipmentModelPostRequestCreator.createEquipmentModelPostRequestBody());
 
-        Assertions.assertThat(equipmentModel).isNotNull().isEqualTo(EquipmentModelCreator.createEquipmentModelToBeSaved());
+        Assertions.assertThat(equipmentModel).isNotNull()
+                .isEqualTo(EquipmentModelCreator.createEquipmentModelToBeSaved());
     }
 }
