@@ -19,4 +19,8 @@ public class EquipmentState {
     @JsonIgnore
     @OneToMany(mappedBy = "equipmentState", cascade = CascadeType.ALL)
     List<EquipmentStateHistory> equipmentStateHistories;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipmentState", cascade = CascadeType.ALL)
+    List<EquipmentModelStateHourlyEarnings> equipmentModelStateHourlyEarnings;
 }

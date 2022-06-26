@@ -21,4 +21,8 @@ public class EquipmentModel {
     @JsonIgnore
     @OneToMany(mappedBy = "equipmentModel", cascade = CascadeType.ALL)
     List<Equipment> equipments;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipmentModel", cascade = CascadeType.ALL)
+    List<EquipmentModelStateHourlyEarnings> equipmentModelStateHourlyEarnings;
 }
