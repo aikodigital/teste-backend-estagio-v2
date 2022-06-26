@@ -1,0 +1,1 @@
+package com.estagio.aiko.equipments.api.domain.equipment.enums;
