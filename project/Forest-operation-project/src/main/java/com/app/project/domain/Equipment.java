@@ -16,12 +16,12 @@ import javax.persistence.*;
 public class Equipment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "equipment_model_id")
-    private EquipmentModel equipmentModel;
+    private EquipmentModel model;
 }

@@ -3,9 +3,9 @@ package com.app.project.services;
 import com.app.project.domain.EquipmentModel;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.mapper.EquipmentMapper;
-import com.app.project.repositories.EquipmentModelRepository;
-import com.app.project.requests.EquipmentModelPostRequest;
-import com.app.project.requests.EquipmentModelPutRequest;
+import com.app.project.repositories.EquipModelRepository;
+import com.app.project.requests.equipModel.EquipmentModelPostRequest;
+import com.app.project.requests.equipModel.EquipmentModelPutRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EquipmentModelService {
 
-    private final EquipmentModelRepository modelRepository;
+    private final EquipModelRepository modelRepository;
 
     private final EquipmentMapper mapper = EquipmentMapper.INSTANCE;
 
@@ -30,12 +30,12 @@ public class EquipmentModelService {
     }
 
     public EquipmentModel save(EquipmentModelPostRequest equipmentModelPostRequest) {
-        return modelRepository.save(mapper.toEquipmentModel(equipmentModelPostRequest));
+        return modelRepository.save(mapper.toEquipment(equipmentModelPostRequest));
     }
 
     public void update(EquipmentModelPutRequest putRequest) throws NotFoundException {
         EquipmentModel savedEquipModel = findByIdOrThrowNotFoundException(putRequest.getId());
-        EquipmentModel equipModel = mapper.toEquipmentModel(putRequest);
+        EquipmentModel equipModel = mapper.toEquipment(putRequest);
         equipModel.setId(savedEquipModel.getId());
         modelRepository.save(equipModel);
     }

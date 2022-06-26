@@ -1,6 +1,6 @@
-package com.app.project.util;
+package com.app.project.util.equipModel;
 
-import com.app.project.requests.EquipmentModelPutRequest;
+import com.app.project.requests.equipModel.EquipmentModelPutRequest;
 
 public class EquipmentModelPutRequestCreator {
 

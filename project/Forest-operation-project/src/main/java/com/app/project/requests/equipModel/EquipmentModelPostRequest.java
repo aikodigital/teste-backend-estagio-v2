@@ -1,4 +1,4 @@
-package com.app.project.requests;
+package com.app.project.requests.equipModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

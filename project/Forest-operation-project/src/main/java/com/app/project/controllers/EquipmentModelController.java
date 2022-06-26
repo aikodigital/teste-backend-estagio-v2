@@ -2,8 +2,8 @@ package com.app.project.controllers;
 
 import com.app.project.domain.EquipmentModel;
 import com.app.project.exceptions.NotFoundException;
-import com.app.project.requests.EquipmentModelPostRequest;
-import com.app.project.requests.EquipmentModelPutRequest;
+import com.app.project.requests.equipModel.EquipmentModelPostRequest;
+import com.app.project.requests.equipModel.EquipmentModelPutRequest;
 import com.app.project.services.EquipmentModelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/equipment-model")
+@RequestMapping("/equipment-models")
 public class EquipmentModelController {
 
     private final EquipmentModelService service;

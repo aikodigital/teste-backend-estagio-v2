@@ -2,11 +2,10 @@ package com.app.project.services;
 
 import com.app.project.domain.EquipmentModel;
 import com.app.project.exceptions.NotFoundException;
-import com.app.project.repositories.EquipmentModelRepository;
-import com.app.project.requests.EquipmentModelPutRequest;
-import com.app.project.util.EquipmentModelCreator;
-import com.app.project.util.EquipmentModelPostRequestCreator;
-import com.app.project.util.EquipmentModelPutRequestCreator;
+import com.app.project.repositories.EquipModelRepository;
+import com.app.project.util.equipModel.EquipmentModelCreator;
+import com.app.project.util.equipModel.EquipmentModelPostRequestCreator;
+import com.app.project.util.equipModel.EquipmentModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +27,7 @@ class EquipmentModelServiceTest {
     private EquipmentModelService modelService;
 
     @Mock
-    private EquipmentModelRepository modelRepositoryMock;
+    private EquipModelRepository modelRepositoryMock;
 
     @BeforeEach
     void setUp() {

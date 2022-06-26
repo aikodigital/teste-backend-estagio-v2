@@ -1,22 +1,23 @@
-package com.app.project.requests;
+package com.app.project.requests.equip;
 
+import com.app.project.domain.EquipmentModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EquipmentModelPutRequest {
-
-    private Long id;
+public class EquipPostRequest {
 
     @NotBlank
-    @Column(nullable = false)
     private String name;
+
+    @NotNull
+    private EquipmentModel model;
 }
