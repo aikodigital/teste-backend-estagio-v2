@@ -14,7 +14,7 @@ namespace equipment_position_history.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var equipment_position_history = modelBuilder.Entity<Equipment_position_history>();
-            equipment_position_history.ToTable("tb_equipment_position_history");
+            equipment_position_history.ToTable("equipment_position_history");
             equipment_position_history.HasKey(x => x.id);
             equipment_position_history.Property(x => x.Equipment_id).HasColumnName("equipment_id").IsRequired();
             equipment_position_history.Property(x => x.Date).HasColumnName("date");

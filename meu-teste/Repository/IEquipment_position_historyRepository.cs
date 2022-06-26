@@ -5,7 +5,7 @@ namespace equipment_position_history.Repository
     public interface IEquipment_position_historyRepository
     {
         Task<IEnumerable<Equipment_position_history>> BuscaEquipment_position_historys();
-        Task<Equipment_position_history> BuscaEquipment_position_history(int equipment_id);
+        Task<Equipment_position_history> BuscaEquipment_position_history(Guid equipment_id);
 
         void AdicionaEquipment_position_history(Equipment_position_history equipment_position_history);
 

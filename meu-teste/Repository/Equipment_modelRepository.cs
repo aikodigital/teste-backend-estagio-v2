@@ -17,7 +17,7 @@ namespace equipment_model.Repository
         {
             return await _context.Equipment_models.ToListAsync();
         }
-        public async Task<Equipment_model> BuscaEquipment_model(int id)
+        public async Task<Equipment_model> BuscaEquipment_model(Guid id)
         {
             return await _context.Equipment_models.Where(x => x.Id == id).FirstOrDefaultAsync();
         }

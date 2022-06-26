@@ -24,7 +24,7 @@ namespace equipment_position_history.Controllers
                     : NoContent();
         }
         [HttpGet("{equipment_id}")]
-        public async Task<IActionResult> GetById(int equipment_id)
+        public async Task<IActionResult> GetById(Guid equipment_id)
         {
             var equipment_position_history = await _repository.BuscaEquipment_position_history(equipment_id);
             return equipment_position_history != null
@@ -42,7 +42,7 @@ namespace equipment_position_history.Controllers
         }
 
         [HttpPut("{equipment_id}")]
-        public async Task<IActionResult> Put(int equipment_id, Equipment_position_history equipment_position_history)
+        public async Task<IActionResult> Put(Guid equipment_id, Equipment_position_history equipment_position_history)
         {
             var equipment_position_historyBanco = await _repository.BuscaEquipment_position_history(equipment_id);
             if (equipment_position_historyBanco == null) return NotFound("Histórico de posição de equipamento não encontrado");
@@ -62,7 +62,7 @@ namespace equipment_position_history.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int equipment_id)
+        public async Task<IActionResult> Delete(Guid equipment_id)
         {
             var equipment_position_historyBanco = await _repository.BuscaEquipment_position_history(equipment_id);
             if (equipment_position_historyBanco == null) return NotFound("Histórico de posição de quipamento não encontrado");

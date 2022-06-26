@@ -5,7 +5,7 @@ namespace equipment.Repository
     public interface IEquipmentRepository
     {
         Task<IEnumerable<Equipment>> BuscaEquipments();
-        Task<Equipment> BuscaEquipment(int id);
+        Task<Equipment> BuscaEquipment(Guid id);
 
         void AdicionaEquipment(Equipment equipment);
 

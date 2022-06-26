@@ -14,7 +14,7 @@ namespace equipment_state.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var equipment_state = modelBuilder.Entity<Equipment_state>();
-            equipment_state.ToTable("tb_equipment_state");
+            equipment_state.ToTable("equipment_state");
             equipment_state.HasKey(x => x.Id);
             equipment_state.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
             equipment_state.Property(x => x.Name).HasColumnName("name").IsRequired();

@@ -24,7 +24,7 @@ namespace equipment_state.Controllers
                     : NoContent();
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var equipment_state = await _repository.BuscaEquipment_state(id);
             return equipment_state != null
@@ -42,7 +42,7 @@ namespace equipment_state.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Equipment_state equipment_state)
+        public async Task<IActionResult> Put(Guid id, Equipment_state equipment_state)
         {
             var equipment_stateBanco = await _repository.BuscaEquipment_state(id);
             if (equipment_stateBanco == null) return NotFound("Estado de equipamento não encontrado");
@@ -59,7 +59,7 @@ namespace equipment_state.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var equipment_stateBanco = await _repository.BuscaEquipment_state(id);
             if (equipment_stateBanco == null) return NotFound("Estado de quipamento não encontrado");

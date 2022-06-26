@@ -17,7 +17,7 @@ namespace equipment_state_history.Repository
         {
             return await _context.Equipment_state_historys.ToListAsync();
         }
-        public async Task<Equipment_state_history> BuscaEquipment_state_history(int equipment_id, int equipment_state_id)
+        public async Task<Equipment_state_history> BuscaEquipment_state_history(Guid equipment_id, Guid equipment_state_id)
         {
             return await _context.Equipment_state_historys.Where(x => (x.Equipment_id == equipment_id & x.Equipment_state_id == equipment_state_id)).OrderBy(x => x.Date).LastOrDefaultAsync();
         }

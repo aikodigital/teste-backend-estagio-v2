@@ -24,7 +24,7 @@ namespace equipment_model.Controllers
                     : NoContent();
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var equipment_model = await _repository.BuscaEquipment_model(id);
             return equipment_model != null
@@ -42,7 +42,7 @@ namespace equipment_model.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Equipment_model equipment_model)
+        public async Task<IActionResult> Put(Guid id, Equipment_model equipment_model)
         {
             var equipment_modelBanco = await _repository.BuscaEquipment_model(id);
             if (equipment_modelBanco == null) return NotFound("Modelo de equipamento não encontrado");
@@ -58,7 +58,7 @@ namespace equipment_model.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var equipment_modelBanco = await _repository.BuscaEquipment_model(id);
             if (equipment_modelBanco == null) return NotFound("Modelo de quipamento não encontrado");

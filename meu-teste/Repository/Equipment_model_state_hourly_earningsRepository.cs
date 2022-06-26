@@ -17,7 +17,7 @@ namespace equipment_model_state_hourly_earnings.Repository
         {
             return await _context.Equipment_model_state_hourly_earningss.ToListAsync();
         }
-        public async Task<Equipment_model_state_hourly_earnings> BuscaEquipment_model_state_hourly_earnings(int equipment_model_id, int equipment_state_id)
+        public async Task<Equipment_model_state_hourly_earnings> BuscaEquipment_model_state_hourly_earnings(Guid equipment_model_id, Guid equipment_state_id)
         {
             return await _context.Equipment_model_state_hourly_earningss.Where(x => (x.Equipment_model_id == equipment_model_id & x.Equipment_state_id == equipment_state_id)).FirstOrDefaultAsync();
         }

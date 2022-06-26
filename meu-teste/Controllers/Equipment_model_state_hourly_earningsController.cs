@@ -24,7 +24,7 @@ namespace equipment_model_state_hourly_earnings.Controllers
                     : NoContent();
         }
         [HttpGet("{equipment_model_id}&{equipment_state_id}")]
-        public async Task<IActionResult> GetById(int equipment_model_id, int equipment_state_id)
+        public async Task<IActionResult> GetById(Guid equipment_model_id, Guid equipment_state_id)
         {
             var equipment_model_state_hourly_earnings = await _repository.BuscaEquipment_model_state_hourly_earnings(equipment_model_id, equipment_state_id);
             return equipment_model_state_hourly_earnings != null
@@ -42,7 +42,7 @@ namespace equipment_model_state_hourly_earnings.Controllers
         }
 
         [HttpPut("{equipment_model_id}&{equipment_state_id}")]
-        public async Task<IActionResult> Put(int equipment_model_id, int equipment_state_id, Equipment_model_state_hourly_earnings equipment_model_state_hourly_earnings)
+        public async Task<IActionResult> Put(Guid equipment_model_id, Guid equipment_state_id, Equipment_model_state_hourly_earnings equipment_model_state_hourly_earnings)
         {
             var equipment_model_state_hourly_earningsBanco = await _repository.BuscaEquipment_model_state_hourly_earnings(equipment_model_id, equipment_state_id);
             if (equipment_model_state_hourly_earningsBanco == null) return NotFound("Ganhos por hora do modelo de equipamento no estado não encontrado");
@@ -60,7 +60,7 @@ namespace equipment_model_state_hourly_earnings.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int equipment_id, int equipment_state_id)
+        public async Task<IActionResult> Delete(Guid equipment_id, Guid equipment_state_id)
         {
             var equipment_model_state_hourly_earningsBanco = await _repository.BuscaEquipment_model_state_hourly_earnings(equipment_id, equipment_state_id);
             if (equipment_model_state_hourly_earningsBanco == null) return NotFound("Estado de quipamento não encontrado");
