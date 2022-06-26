@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sPDRxjcp9Bct3vWFQqJ7wwcUo8YJWTT++UgIgarv8OEx8PreQmEvA30qbz8BCD0b8nKloV7k1dLvsls5guOwzw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Rafael Evangelista\\Documents\\Estudo\\Codes\\Teste\\teste-backend-estagio-v2\\Equipments.Domain\\Equipments.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Rafael Evangelista\\.nuget\\packages\\flunt\\1.0.4\\flunt.1.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

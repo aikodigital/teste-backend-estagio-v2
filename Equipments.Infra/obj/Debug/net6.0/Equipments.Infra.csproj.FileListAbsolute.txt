@@ -1,0 +1,17 @@
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\bin\Debug\net6.0\Equipments.Infra.deps.json
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\bin\Debug\net6.0\Equipments.Infra.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\bin\Debug\net6.0\Equipments.Infra.pdb
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\bin\Debug\net6.0\Equipments.Domain.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\bin\Debug\net6.0\Equipments.Domain.pdb
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.csproj.AssemblyReference.cache
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.AssemblyInfoInputs.cache
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.AssemblyInfo.cs
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.csproj.CopyComplete
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\refint\Equipments.Infra.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.pdb
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\ref\Equipments.Infra.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\bin\Debug\net6.0\Equipments.Infra.runtimeconfig.json
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Infra\obj\Debug\net6.0\Equipments.Infra.genruntimeconfig.cache

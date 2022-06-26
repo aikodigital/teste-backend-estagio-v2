@@ -1,0 +1,12 @@
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\bin\Debug\net6.0\Equipments.Domain.deps.json
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\bin\Debug\net6.0\Equipments.Domain.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\bin\Debug\net6.0\Equipments.Domain.pdb
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\Equipments.Domain.csproj.AssemblyReference.cache
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\Equipments.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\Equipments.Domain.AssemblyInfoInputs.cache
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\Equipments.Domain.AssemblyInfo.cs
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\Equipments.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\Equipments.Domain.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\refint\Equipments.Domain.dll
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\Equipments.Domain.pdb
+C:\Users\Rafael Evangelista\Documents\Estudo\Codes\TesteEstagio\Equipments.Domain\obj\Debug\net6.0\ref\Equipments.Domain.dll
