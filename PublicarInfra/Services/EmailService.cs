@@ -5,9 +5,15 @@ using System.Reflection.Metadata.Ecma335;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 using TesteEstágioBackendV2.src.Apply.DTOs.Emails;
 using TesteEstágioBackendV2.src.Apply.Exceptions;
 using TesteEstágioBackendV2.src.domain.Settings;
+using TesteEstágioBackendV2.src.Apply.Interfaces;
+using MimeKit;
+using MailKit.Security;
+using MailKit.Net.Smtp;
+
 
 namespace TesteEstágioBackendV2.PublicarInfra.Services
 {

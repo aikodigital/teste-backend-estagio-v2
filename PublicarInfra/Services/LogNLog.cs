@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NLog;
 using TesteEstágioBackendV2.src.Apply.Interfaces.NLog;
 
 namespace TesteEstágioBackendV2.PublicarInfra.Services

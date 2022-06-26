@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\TesteEstágioBackendV2.csproj": {}
+    "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\teste-backend-estagio-v2\\teste-backend-estagio-v2\\TesteEstágioBackendV2.csproj": {}
   },
   "projects": {
-    "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\TesteEstágioBackendV2.csproj": {
+    "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\teste-backend-estagio-v2\\teste-backend-estagio-v2\\TesteEstágioBackendV2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\TesteEstágioBackendV2.csproj",
+        "projectUniqueName": "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\teste-backend-estagio-v2\\teste-backend-estagio-v2\\TesteEstágioBackendV2.csproj",
         "projectName": "TesteEstágioBackendV2",
-        "projectPath": "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\TesteEstágioBackendV2.csproj",
+        "projectPath": "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\teste-backend-estagio-v2\\teste-backend-estagio-v2\\TesteEstágioBackendV2.csproj",
         "packagesPath": "C:\\Users\\DOUGLAS\\.nuget\\packages\\",
-        "outputPath": "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\obj\\",
+        "outputPath": "C:\\projetos\\AIKO\\teste\\TesteEstágioBackendV2\\teste-backend-estagio-v2\\teste-backend-estagio-v2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DOUGLAS\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -46,9 +46,21 @@
               "target": "Package",
               "version": "[11.1.0, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[10.0.1, )"
+            },
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -60,13 +72,33 @@
               "target": "Package",
               "version": "[6.0.6, )"
             },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Options": {
               "target": "Package",
               "version": "[6.0.0, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.6, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",

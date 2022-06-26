@@ -8,7 +8,7 @@ using TesteEstágioBackendV2.src.domain.Settings;
 
 namespace TesteEstágioBackendV2.PublicarInfra
 {
-    public class ServiceRegistration : IDateTimeService
+    public static class ServiceRegistration 
     {
 
         public static void AddSharedInfrastructure(this IServiceCollection services, IConfiguration _config)
