@@ -17,6 +17,8 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -43,10 +45,11 @@ class EquipmentModelControllerTest {
 
         BDDMockito.doNothing().when(modelService).update(ArgumentMatchers.any(EquipmentModelPutRequest.class));
 
+        BDDMockito.doNothing().when(modelService).delete(ArgumentMatchers.anyLong());
     }
 
     @Test
-    @DisplayName("listAll returns a list of equipment models")
+    @DisplayName("listAll returns a list of equipment models when successful")
     void listAll_ReturnsAListOfEquipmentModels_WhenSuccessful() {
         String expectedName = EquipmentModelCreator.createEquipmentModelValid().getName();
 
@@ -87,11 +90,32 @@ class EquipmentModelControllerTest {
     }
 
     @Test
-    @DisplayName("put updates an equipment model when successul")
-    void put_UpdatesAnEquipmentModel_WhenSuccessful() {
+    @DisplayName("put updates an equipment model when successful")
+    void put_UpdatesAnEquipmentModel_WhenSuccessful() throws NotFoundException {
 
         Assertions.assertThatCode(() -> modelController.put(
                 EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
                 .doesNotThrowAnyException();
+
+        ResponseEntity<Void> updatedEquipModel = modelController.put(
+                EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody());
+
+        Assertions.assertThat(updatedEquipModel).isNotNull();
+
+        Assertions.assertThat(updatedEquipModel.getStatusCode())
+                .isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    @DisplayName("delete removes an equipment model when successful")
+    void delete_RemovesAnEquipmentModelWhenSuccessful() throws NotFoundException {
+        Assertions.assertThatCode(() -> modelController.delete(
+                EquipmentModelCreator.createEquipmentModelValid().getId()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> equipModel = modelController.delete(1l);
+
+        Assertions.assertThat(equipModel).isNotNull();
+        Assertions.assertThat(equipModel.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
 }

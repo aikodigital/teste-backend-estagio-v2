@@ -39,4 +39,9 @@ public class EquipmentModelService {
         equipModel.setId(savedEquipModel.getId());
         modelRepository.save(equipModel);
     }
+
+    public void delete(Long id) throws NotFoundException {
+        EquipmentModel equipToDelete = findByIdOrThrowNotFoundException(id);
+        modelRepository.delete(equipToDelete);
+    }
 }

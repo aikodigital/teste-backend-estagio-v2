@@ -40,11 +40,13 @@ class EquipmentModelServiceTest {
 
         BDDMockito.when(modelRepositoryMock.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.ofNullable(EquipmentModelCreator.createEquipmentModelValid()));
+
+        BDDMockito.doNothing().when(modelRepositoryMock).delete(ArgumentMatchers.any(EquipmentModel.class));
     }
 
     @Test
     @DisplayName("save returns an equipmentModel when successful")
-    void save() {
+    void saveReturnsAnEquipmentModel_WhenSuccessful() {
         EquipmentModel equipmentModel = modelService.save(
                 EquipmentModelPostRequestCreator.createEquipmentModelPostRequestBody());
 
@@ -54,7 +56,7 @@ class EquipmentModelServiceTest {
 
     @Test
     @DisplayName("findAll returns a list of equipment models")
-    void findAll_ReturnsAListOfEquipmentModels() {
+    void findAll_ReturnsAListOfEquipmentModels_WhenSuccessful() {
         String expectedName = EquipmentModelCreator.createEquipmentModelValid().getName();
 
         List<EquipmentModel> equipModels = modelService.findAll();
@@ -82,10 +84,17 @@ class EquipmentModelServiceTest {
     }
 
     @Test
-    @DisplayName("update - updates an equipment model when successul")
-    void update_UpdateAnEquipmentModelWhenSuccessful() {
+    @DisplayName("update - updates an equipment model when successful")
+    void update_UpdateAnEquipmentModel_WhenSuccessful() {
         Assertions.assertThatCode(() -> modelService.update(
                 EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("delete removes an equipment model when successful")
+    void delete_RemovesAnEquipmentModel_WhenSuccessful() {
+        Assertions.assertThatCode(() -> modelService.delete(1L))
                 .doesNotThrowAnyException();
     }
 }
