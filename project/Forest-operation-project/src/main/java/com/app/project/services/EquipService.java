@@ -1,6 +1,7 @@
 package com.app.project.services;
 
 import com.app.project.domain.Equipment;
+import com.app.project.exceptions.NotFoundException;
 import com.app.project.mapper.EquipmentMapper;
 import com.app.project.repositories.EquipRepository;
 import com.app.project.requests.equip.EquipPostRequest;
@@ -23,5 +24,9 @@ public class EquipService {
 
     public List<Equipment> findAll() {
         return repository.findAll();
+    }
+
+    public Equipment findById(Long id) throws NotFoundException {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("equipment Not Found"));
     }
 }

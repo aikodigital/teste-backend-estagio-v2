@@ -1,10 +1,12 @@
 package com.app.project.controllers;
 
 import com.app.project.domain.Equipment;
+import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equip.EquipPostRequest;
 import com.app.project.services.EquipService;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equip.EquipPostRequestCreator;
+import org.apache.coyote.Response;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +16,8 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -28,12 +32,15 @@ class EquipmentControllerTest {
     private EquipService service;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws NotFoundException {
         BDDMockito.when(service.save(ArgumentMatchers.any(EquipPostRequest.class)))
                 .thenReturn(EquipCreator.createEquipmentModelValid());
 
         BDDMockito.when(service.findAll())
                 .thenReturn(List.of(EquipCreator.createEquipmentModelValid()));
+
+        BDDMockito.when(service.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(EquipCreator.createEquipmentModelValid());
     }
 
     @Test
@@ -51,6 +58,21 @@ class EquipmentControllerTest {
         Assertions.assertThat(equipModels.get(0).getName()).isEqualTo(expectedName);
     }
 
+    @Test
+    @DisplayName("getById - returns an equipment when successful")
+    void findById_ReturnsAnEquipment_WhenSuccessful() throws NotFoundException {
+        Long expectedId = EquipCreator.createEquipmentModelValid().getId();
+
+        ResponseEntity<Equipment> equipment = controller.getById(1L);
+
+        Assertions.assertThat(equipment).isNotNull();
+
+        Assertions.assertThat(equipment.getBody().getId()).isNotNull()
+                .isEqualTo(expectedId);
+
+        Assertions.assertThat(equipment.getStatusCode())
+                .isEqualTo(HttpStatus.OK);
+    }
 
     @Test
     @DisplayName("save - Returns an equipment when successful")

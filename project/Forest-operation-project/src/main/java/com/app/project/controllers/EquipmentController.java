@@ -1,6 +1,7 @@
 package com.app.project.controllers;
 
 import com.app.project.domain.Equipment;
+import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equip.EquipPostRequest;
 import com.app.project.services.EquipService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,11 @@ public class EquipmentController {
     @GetMapping
     public ResponseEntity<List<Equipment>> listAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Equipment> getById(@PathVariable Long id) throws NotFoundException {
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping

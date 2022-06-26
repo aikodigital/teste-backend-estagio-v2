@@ -15,10 +15,12 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.AssertionErrors;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,6 +40,9 @@ class EquipServiceTest {
 
         BDDMockito.when(repository.findAll())
                 .thenReturn(List.of(EquipCreator.createEquipmentModelValid()));
+
+        BDDMockito.when(repository.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(Optional.ofNullable(EquipCreator.createEquipmentModelValid()));
     }
 
     @Test
@@ -53,6 +58,29 @@ class EquipServiceTest {
 
         Assertions.assertThat(equipments.get(0).getName())
                 .isEqualTo(expectedName);
+    }
+
+    @Test
+    @DisplayName("findById - returns an equipment when successful")
+    void findById_ReturnsAnEquipment_WhenSuccessful() throws NotFoundException {
+        Long expectedId = EquipCreator.createEquipmentModelValid().getId();
+
+        Equipment equipment = service.findById(1L);
+
+        Assertions.assertThat(equipment).isNotNull();
+
+        Assertions.assertThat(equipment.getId()).isNotNull()
+                .isEqualTo(expectedId);
+    }
+
+    @Test
+    @DisplayName("getById - throws an exception when equipment is not found")
+    void findById_ThrowsAnException_WhenEquipmentNotFound() throws NotFoundException {
+        BDDMockito.when(repository.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(Optional.empty());
+
+        Assertions.assertThatExceptionOfType(NotFoundException.class)
+                .isThrownBy(() -> service.findById(1L));
     }
 
     @Test
