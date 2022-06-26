@@ -19,7 +19,7 @@ namespace equipment_state_history.Repository
         }
         public async Task<Equipment_state_history> BuscaEquipment_state_history(int equipment_id, int equipment_state_id)
         {
-            return await _context.Equipment_state_historys.Where(x => (x.Equipment_id == equipment_id & x.Equipment_state_id == equipment_state_id)).FirstOrDefaultAsync();
+            return await _context.Equipment_state_historys.Where(x => (x.Equipment_id == equipment_id & x.Equipment_state_id == equipment_state_id)).OrderBy(x => x.Date).LastOrDefaultAsync();
         }
         
         public void AdicionaEquipment_state_history(Equipment_state_history equipment_state_history)

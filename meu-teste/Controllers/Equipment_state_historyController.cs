@@ -24,9 +24,9 @@ namespace equipment_state_history.Controllers
                     : NoContent();
         }
         [HttpGet("{equipment_model_id}&{equipment_state_id}")]
-        public async Task<IActionResult> GetById(int equipment_id, int equipment_state_id)
+        public async Task<IActionResult> GetById(int equipment_model_id, int equipment_state_id)
         {
-            var equipment_state_history = await _repository.BuscaEquipment_state_history(equipment_id, equipment_state_id);
+            var equipment_state_history = await _repository.BuscaEquipment_state_history(equipment_model_id, equipment_state_id);
             return equipment_state_history != null
                     ? Ok(equipment_state_history)
                     : NotFound("Histórico de estado de equipamento não encontrado");
@@ -42,9 +42,9 @@ namespace equipment_state_history.Controllers
         }
 
         [HttpPut("{equipment_model_id}&{equipment_state_id}")]
-        public async Task<IActionResult> Put(int equipment_id, int equipment_state_id, Equipment_state_history equipment_state_history)
+        public async Task<IActionResult> Put(int equipment_model_id, int equipment_state_id, Equipment_state_history equipment_state_history)
         {
-            var equipment_state_historyBanco = await _repository.BuscaEquipment_state_history(equipment_id, equipment_state_id);
+            var equipment_state_historyBanco = await _repository.BuscaEquipment_state_history(equipment_model_id, equipment_state_id);
             if (equipment_state_historyBanco == null) return NotFound("Histórico de estado de equipamento não encontrado");
         
             equipment_state_historyBanco.Equipment_id = equipment_state_history.Equipment_id;
