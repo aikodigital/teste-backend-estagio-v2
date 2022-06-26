@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TesteEstágioBackendV2.src.Apply.Exceptions;
@@ -33,7 +34,7 @@ namespace TesteEstágioBackendV2.API.Middlewares
                 
                 switch (error)
                 {
-                    case Application.Exceptions.ApiException e:
+                    case src.Apply.Exceptions.ApiException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;

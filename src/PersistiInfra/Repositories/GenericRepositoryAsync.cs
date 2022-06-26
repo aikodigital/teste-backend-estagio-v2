@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TesteEstágioBackendV2.src.Apply.Interfaces;
+using TesteEstágioBackendV2.src.PersistiInfra.Contexts;
 
 namespace TesteEstágioBackendV2.src.PersistiInfra.Repositories
 {

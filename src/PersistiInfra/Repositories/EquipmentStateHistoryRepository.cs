@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TesteEstágioBackendV2.src.Apply.Enum;
 using TesteEstágioBackendV2.src.Apply.Interfaces.Repositories;
 using TesteEstágioBackendV2.src.domain;
+using TesteEstágioBackendV2.src.PersistiInfra.Contexts;
 
 namespace TesteEstágioBackendV2.src.PersistiInfra.Repositories
 {
@@ -12,7 +14,7 @@ namespace TesteEstágioBackendV2.src.PersistiInfra.Repositories
         GenericRepositoryAsync<EquipmentStateHistory>,
         IEquipmentStateHistoryRepository
     {
-        private readonly DbSet<EquipmentStateHistory> _dbContext;
+        private new readonly DbSet<EquipmentStateHistory> _dbContext;
 
         public EquipmentStateHistoryRepository(ApplicationDbContext dbContext) 
             : base(dbContext)
@@ -24,55 +26,55 @@ namespace TesteEstágioBackendV2.src.PersistiInfra.Repositories
         {
             return await _dbContext
                 .AsNoTracking()
-                .Where(x => x.equipment_id == id)
+                .Where(x => x.equipment == id)
                 .OrderByDescending(x => x.date)
                 .FirstAsync();
         }
 
-        public async Task<int> GetQuantHorasOperando(Guid id)
+        public Task<int> GetQuantHorasOperando(Guid id)
         {
-            return _dbContext
+            return Task.FromResult(_dbContext
                 .AsNoTracking()
-                .Where(x => x.equipment_id == id && (Location)x.equipment_state_id == Location.OPERANDO)
+                .Where(x => x.equipment == id && (Location)x.equipmentState == Location.OPERANDO)
                 .OrderByDescending(x => x.date)
-                .Count();
+                .Count());
         }
 
-        public async Task<int> GetQuantHorasManutencao(Guid id)
+        public Task<int> GetQuantHorasManutencao(Guid id)
         {
-            return _dbContext
+            return Task.FromResult(_dbContext
                 .AsNoTracking()
-                .Where(x => x.equipment_id == id && (Location)x.equipment_state_id == Location.OPERANDO)
+                .Where(x => x.equipment == id && (Location)x.equipmentState == Location.OPERANDO)
                 .OrderByDescending(x => x.date)
-                .Count();
+                .Count());
         }
 
-        public async Task<int> GetQuantHorasOperandoHoje(Guid id)
+        public Task<int> GetQuantHorasOperandoHoje(Guid id)
         {
             var hoje = DateTime.Now;
 
-            return _dbContext
+            return Task.FromResult(_dbContext
                 .AsNoTracking()
                 .Where(x => 
-                (x.equipment_id == id)
-                && ((Location)x.equipment_state_id == Location.OPERANDO)
+                (x.equipment == id)
+                && ((Location)x.equipmentState == Location.OPERANDO)
                 && (x.date.Year==hoje.Year && x.date.Month==hoje.Month && x.date.Day==hoje.Day)
                 )
                 .OrderByDescending(x => x.date)
-                .Count();
+                .Count());
         }
 
-        public async Task<int> GetQuantHorasHoje(Guid id)
+        public Task<int> GetQuantHorasHoje(Guid id)
         {
             var hoje = DateTime.Now;
 
-            return _dbContext
+            return Task.FromResult(_dbContext
                 .AsNoTracking()
-                .Where(x => x.equipment_id == id
+                .Where(x => x.equipment == id
                 && (x.date.Year == hoje.Year && x.date.Month == hoje.Month && x.date.Day == hoje.Day)
                 )
                 .OrderByDescending(x => x.date)
-                .Count();
+                .Count());
         }
     }
 }

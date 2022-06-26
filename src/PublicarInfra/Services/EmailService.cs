@@ -13,7 +13,7 @@ using TesteEstágioBackendV2.src.Apply.Interfaces;
 using MimeKit;
 using MailKit.Security;
 using MailKit.Net.Smtp;
-
+using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace TesteEstágioBackendV2.PublicarInfra.Services
 {

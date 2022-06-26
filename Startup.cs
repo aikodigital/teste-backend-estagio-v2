@@ -3,6 +3,13 @@ using TesteEstágioBackendV2.API.Extensions;
 using TesteEstágioBackendV2.PersistiInfra;
 using TesteEstágioBackendV2.PublicarInfra.Services;
 using TesteEstágioBackendV2.src.Apply.Interfaces.NLog;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.IO;
+using TesteEstágioBackendV2.PublicarInfra;
+using TesteEstágioBackendV2.src.Apply;
 
 namespace TesteEstágioBackendV2
 {

@@ -8,17 +8,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http.Extensions;
-using Serilog;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
-using NLog.Fluent;
+using TesteEstágioBackendV2.PublicarInfra.Services;
+using TesteEstágioBackendV2.src.Apply.Interfaces.NLog;
+using Serilog;
 
 namespace TesteEstágioBackendV2
 {
     public class Program
     {
-        public async static Task Main(string[] args)
+        public static Task Main(string[] args)
         {
             //Read Configuration from appSettings
             var config = new ConfigurationBuilder()
@@ -49,7 +50,9 @@ namespace TesteEstágioBackendV2
                 }
             }
             host.Run();
+            return Task.CompletedTask;
         }
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
             .UseSerilog() //Uses Serilog instead of default .NET Logger

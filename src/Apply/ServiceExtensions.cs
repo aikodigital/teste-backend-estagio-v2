@@ -1,13 +1,22 @@
+using MediatR;
+using System.Reflection;
+using TesteEstágioBackendV2.src.Apply.Behaviours;
+using TesteEstágioBackendV2.src.Apply.Features.Services;
+using TesteEstágioBackendV2.src.Apply.Interfaces;
+using TesteEstágioBackendV2.src.Apply.Interfaces.Services;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace TesteEstágioBackendV2.src.Apply
 {
     public static class ServiceExtensions
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        public static void AddApplicationLayer(this IServiceCollection services)
+        {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
@@ -18,5 +27,6 @@ namespace TesteEstágioBackendV2.src.Apply
             services.AddTransient<IEquipmentModelStateHourlyEarningsService, EquipmentModelStateHourlyEarningsService>();
             services.AddTransient<IEquipmentStateHistoryService, EquipmentStateHistoryService>();
             services.AddTransient<IEquipmentPositionHistoryService, EquipmentPositionHistoryService>();
+        }
     }
 }
