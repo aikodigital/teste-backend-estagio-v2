@@ -5,18 +5,18 @@ import com.app.project.util.equipModel.EquipmentModelCreator;
 
 public class EquipCreator {
 
-    public static Equipment createEquipmentModelToBeSaved() {
+    public static Equipment createEquipmentToBeSaved() {
         return Equipment.builder()
                 .name("130G")
                 .model(EquipmentModelCreator.createEquipmentModelValid())
                 .build();
     }
 
-    public static Equipment createEquipmentModelValid() {
+    public static Equipment createEquipmentValid() {
         return Equipment.builder()
                 .id(1L)
-                .model(EquipmentModelCreator.createEquipmentModelValid())
                 .name("130G")
+                .model(EquipmentModelCreator.createEquipmentModelValid())
                 .build();
     }
 }

@@ -79,14 +79,14 @@ class EquipmentModelServiceTest {
         Assertions.assertThat(equipmentModel).isNotNull();
 
         Assertions.assertThat(equipmentModel.getId()).isNotNull()
-                        .isEqualTo(expectedId);
+                .isEqualTo(expectedId);
     }
 
     @Test
     @DisplayName("update - updates an equipment model when successful")
     void update_UpdateAnEquipmentModel_WhenSuccessful() {
         Assertions.assertThatCode(() -> modelService.update(
-                EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
+                        EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
                 .doesNotThrowAnyException();
     }
 

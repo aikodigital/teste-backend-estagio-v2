@@ -3,6 +3,7 @@ package com.app.project.mapper;
 import com.app.project.domain.Equipment;
 import com.app.project.domain.EquipmentModel;
 import com.app.project.requests.equip.EquipPostRequest;
+import com.app.project.requests.equip.EquipPutRequest;
 import com.app.project.requests.equipModel.EquipmentModelPostRequest;
 import com.app.project.requests.equipModel.EquipmentModelPutRequest;
 import org.mapstruct.Mapper;
@@ -16,4 +17,5 @@ public abstract class EquipmentMapper {
     public abstract EquipmentModel toEquipment(EquipmentModelPostRequest postRequest);
     public abstract EquipmentModel toEquipment(EquipmentModelPutRequest putRequest);
     public abstract Equipment toEquipment(EquipPostRequest postRequest);
+    public abstract Equipment toEquipment(EquipPutRequest putRequest);
 }

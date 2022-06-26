@@ -1,27 +1,25 @@
-package com.app.project.domain;
+package com.app.project.requests.equip;
 
+import com.app.project.domain.EquipmentModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "equipment")
-public class Equipment {
+public class EquipPutRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private Long id;
 
+    @NotNull
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "equipment_model_id")
+    @NotNull
     private EquipmentModel model;
 }

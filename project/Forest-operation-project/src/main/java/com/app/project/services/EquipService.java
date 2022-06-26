@@ -5,6 +5,7 @@ import com.app.project.exceptions.NotFoundException;
 import com.app.project.mapper.EquipmentMapper;
 import com.app.project.repositories.EquipRepository;
 import com.app.project.requests.equip.EquipPostRequest;
+import com.app.project.requests.equip.EquipPutRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +19,23 @@ public class EquipService {
 
     private final EquipmentMapper mapper = EquipmentMapper.INSTANCE;
 
-    public Equipment save(EquipPostRequest equipmentPostRequest) {
-        return repository.save(mapper.toEquipment(equipmentPostRequest));
-    }
-
     public List<Equipment> findAll() {
         return repository.findAll();
     }
 
-    public Equipment findById(Long id) throws NotFoundException {
+    public Equipment findByIdOrThrowNotFoundException(Long id) throws NotFoundException {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("equipment Not Found"));
+    }
+
+    public Equipment save(EquipPostRequest equipmentPostRequest) {
+        return repository.save(mapper.toEquipment(equipmentPostRequest));
+    }
+
+    public void update(EquipPutRequest putRequest) throws NotFoundException {
+        Equipment equipmentFounded = findByIdOrThrowNotFoundException(putRequest.getId());
+        Equipment equipmentToSave = mapper.toEquipment(putRequest);
+        equipmentToSave.setId(equipmentFounded.getId());
+        equipmentToSave.setModel(equipmentFounded.getModel());
+        repository.save(equipmentToSave);
     }
 }
