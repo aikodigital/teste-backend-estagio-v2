@@ -1,11 +1,10 @@
 package com.aiko.testebackendestagiov2.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -16,4 +15,8 @@ public class EquipmentState {
     private UUID id;
     private String name;
     private String color;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipmentState", cascade = CascadeType.ALL)
+    List<EquipmentStateHistory> equipmentStateHistories;
 }

@@ -24,4 +24,8 @@ public class Equipment {
     @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
     private List<EquipmentPositionHistory> equipmentPositionHistories;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
+    private List<EquipmentStateHistory> equipmentStateHistories;
+
 }
