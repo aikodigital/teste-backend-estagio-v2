@@ -44,6 +44,9 @@ class EquipmentControllerTest {
                 .thenReturn(EquipCreator.createEquipmentValid());
 
         BDDMockito.doNothing().when(service).update(ArgumentMatchers.any(EquipPutRequest.class));
+
+        BDDMockito.doNothing().when(service).delete(ArgumentMatchers.anyLong());
+
     }
 
     @Test
@@ -104,5 +107,18 @@ class EquipmentControllerTest {
 
         Assertions.assertThat(updatedEquipModel.getStatusCode())
                 .isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    @DisplayName("delete removes an equipment when successful")
+    void delete_RemovesAnEquipmentModel_WhenSuccessful() throws NotFoundException {
+        Assertions.assertThatCode(() -> controller.delete(
+                        EquipCreator.createEquipmentValid().getId()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> equipModel = controller.delete(1l);
+
+        Assertions.assertThat(equipModel).isNotNull();
+        Assertions.assertThat(equipModel.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
 }

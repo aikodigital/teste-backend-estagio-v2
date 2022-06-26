@@ -7,9 +7,9 @@ import org.mockito.ArgumentMatchers;
 public class EquipPutRequestCreator {
     public static EquipPutRequest createEquipmentPutRequestBody() {
         return EquipPutRequest.builder()
-                .id(EquipCreator.createEquipmentModelValid().getId())
+                .id(EquipCreator.createEquipmentValid().getId())
                 .name(ArgumentMatchers.anyString())
-                .model(EquipCreator.createEquipmentModelValid().getModel())
+                .model(EquipCreator.createEquipmentValid().getModel())
                 .build();
     }
 }

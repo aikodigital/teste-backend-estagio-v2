@@ -38,4 +38,9 @@ public class EquipService {
         equipmentToSave.setModel(equipmentFounded.getModel());
         repository.save(equipmentToSave);
     }
+
+    public void delete(Long id) throws NotFoundException {
+        Equipment equipment = findByIdOrThrowNotFoundException(id);
+        repository.delete(equipment);
+    }
 }

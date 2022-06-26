@@ -6,7 +6,6 @@ import com.app.project.repositories.EquipRepository;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equip.EquipPostRequestCreator;
 import com.app.project.util.equip.EquipPutRequestCreator;
-import com.app.project.util.equipModel.EquipmentModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -95,6 +94,13 @@ class EquipServiceTest {
     void update_ReturnsAnEquipment_WhenSuccessful() {
         Assertions.assertThatCode(() -> service.update(
                         EquipPutRequestCreator.createEquipmentPutRequestBody()))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("delete removes an equipment when successful")
+    void delete_RemovesAnEquipment_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.delete(1L))
                 .doesNotThrowAnyException();
     }
 }
