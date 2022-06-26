@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using TesteEstágioBackendV2.PublicarInfra.Services;
 using TesteEstágioBackendV2.src.Apply.Interfaces;
 using TesteEstágioBackendV2.src.domain.Settings;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TesteEstágioBackendV2.PublicarInfra
 {

@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using NLog.Fluent;
 
-namespace WebApi
+namespace TesteEstágioBackendV2
 {
     public class Program
     {

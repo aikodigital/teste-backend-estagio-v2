@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NLog;
 using TesteEstágioBackendV2.src.Apply.Interfaces.NLog;
+using ILogger = NLog.ILogger;
 
 namespace TesteEstágioBackendV2.PublicarInfra.Services
 {

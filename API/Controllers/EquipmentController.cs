@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using TesteEstágioBackendV2.Controllers;
 using TesteEstágioBackendV2.Controllers.Base;
 using TesteEstágioBackendV2.src.Apply.DTOs;
 using TesteEstágioBackendV2.src.Apply.Interfaces;

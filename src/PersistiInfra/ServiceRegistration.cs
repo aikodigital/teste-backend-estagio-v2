@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TesteEstágioBackendV2.src.Apply.Interfaces;
+using TesteEstágioBackendV2.src.Apply.Interfaces.Repositories;
+using TesteEstágioBackendV2.src.PersistiInfra.Contexts;
+using TesteEstágioBackendV2.src.PersistiInfra.Repositories;
 
-namespace teste-backend-estagio-v2.PersistiInfra
+namespace TesteEstágioBackendV2.PersistiInfra
 {
     public static class ServiceRegistration
     {
@@ -19,7 +22,7 @@ namespace teste-backend-estagio-v2.PersistiInfra
             else
             {
                 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-                //var connectionString = "User ID=postgres;Password=Zamba,23;Host=localhost;Port=5432;Database=Aiko;Pooling=true;";
+                //var connectionString = "User ID=postgres;Password=dodo2022,23;Host=localhost;Port=5432;Database=Aiko_Equipment;Pooling=true;";
 
                 services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString));
@@ -27,13 +30,13 @@ namespace teste-backend-estagio-v2.PersistiInfra
             #region Repositories
 
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
-            services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
-            services.AddTransient<IModeloEquipamentoRepository, ModeloEquipamentoRepository>();
-            services.AddTransient<IEstadoEquipamentoRepository, EstadoEquipamentoRepository>();
-            services.AddTransient<IGanhosHoraEstadoRepository, GanhosHoraEstadoRepository>();
+            services.AddTransient<IEquipmentRepository, EquipmentRepository>();
+            services.AddTransient<IEquipmentModelRepository, EquipmentModelRepository>();
+            services.AddTransient<IEquipmentStateRepository, EquipmentStateRepository>();
+            services.AddTransient<IEquipmentModelStateHourlyEarningsRepository, EquipmentModelStateHourlyEarningsRepository>();
 
-            services.AddTransient<IHistoricoEstadoEquipamentoRepository, HistoricoEstadoEquipamentoRepository>();
-            services.AddTransient<IHistoricoPosicaoEquipamentoRepository, HistoricoPosicaoEquipamentoRepository>();
+            services.AddTransient<IEquipmentStateHistoryRepository, EquipmentStateHistoryRepository>();
+            services.AddTransient<IEquipmentPositionHistoryRepository, EquipmentPositionHistoryRepository>();
 
             #endregion
         }
