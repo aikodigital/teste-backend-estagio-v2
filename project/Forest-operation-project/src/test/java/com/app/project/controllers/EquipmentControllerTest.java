@@ -14,10 +14,9 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 class EquipmentControllerTest {
@@ -32,7 +31,26 @@ class EquipmentControllerTest {
     void setUp() {
         BDDMockito.when(service.save(ArgumentMatchers.any(EquipPostRequest.class)))
                 .thenReturn(EquipCreator.createEquipmentModelValid());
+
+        BDDMockito.when(service.findAll())
+                .thenReturn(List.of(EquipCreator.createEquipmentModelValid()));
     }
+
+    @Test
+    @DisplayName("listAll - returns a list of equipments when successful")
+    void listAll_ReturnsAListOfEquipments_WhenSuccessful() {
+        String expectedName = EquipCreator.createEquipmentModelValid().getName();
+
+        List<Equipment> equipModels = controller.listAll().getBody();
+
+        Assertions.assertThat(equipModels)
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(1);
+
+        Assertions.assertThat(equipModels.get(0).getName()).isEqualTo(expectedName);
+    }
+
 
     @Test
     @DisplayName("save - Returns an equipment when successful")

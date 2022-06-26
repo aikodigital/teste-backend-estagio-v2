@@ -18,6 +18,8 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.AssertionErrors;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
@@ -33,6 +35,24 @@ class EquipServiceTest {
     void setup() {
         BDDMockito.when(repository.save(ArgumentMatchers.any(Equipment.class)))
                 .thenReturn(EquipCreator.createEquipmentModelValid());
+
+        BDDMockito.when(repository.findAll())
+                .thenReturn(List.of(EquipCreator.createEquipmentModelValid()));
+    }
+
+    @Test
+    @DisplayName("findAll - returns a list of equipments when successful")
+    void findAll_ReturnsAListOfEquipments_WhenSuccessful() {
+        String expectedName = EquipCreator.createEquipmentModelValid().getName();
+
+        List<Equipment> equipments = service.findAll();
+
+        Assertions.assertThat(equipments).isNotNull()
+                .isNotEmpty()
+                .hasSize(1);
+
+        Assertions.assertThat(equipments.get(0).getName())
+                .isEqualTo(expectedName);
     }
 
     @Test
