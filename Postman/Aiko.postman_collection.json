@@ -1,0 +1,721 @@
+{
+	"info": {
+		"_postman_id": "8ff15c77-4ab9-4f9f-92bb-4a25273f01d1",
+		"name": "Aiko",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17357918"
+	},
+	"item": [
+		{
+			"name": "Equipamentos",
+			"item": [
+				{
+					"name": "Listagem Equipamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/Equipment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"Equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro de Equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"equipmentModelId\": \"a3540227-2f0e-4362-9517-92f41dabbfdf\",\r\n    \"name\": \"testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/Equipment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"Equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar dados de um equipamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"equipmentModelId\": \"a3540227-2f0e-4362-9517-92f41dabbfdf\",\r\n    \"name\": \"Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/Equipment/04c75a25-18d6-4f67-8a10-b1550e715d11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"Equipment",
+								"04c75a25-18d6-4f67-8a10-b1550e715d11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um Equipamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/Equipment/04c75a25-18d6-4f67-8a10-b1550e715d11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"Equipment",
+								"04c75a25-18d6-4f67-8a10-b1550e715d11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modelo de Equipamento",
+			"item": [
+				{
+					"name": "Listagem de Modelos de Equipamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria um modelo de equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Altera dados de um modelo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModels/f06430e6-43d0-4d59-8b96-515d4d9a70d1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModels",
+								"f06430e6-43d0-4d59-8b96-515d4d9a70d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um modelo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModels/f06430e6-43d0-4d59-8b96-515d4d9a70d1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModels",
+								"f06430e6-43d0-4d59-8b96-515d4d9a70d1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estado do Equipamento",
+			"item": [
+				{
+					"name": "Altera dados de um estado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"testando\",\r\n    \"Color\" : \"#FFFFFF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStates/22676f1b-326c-425c-b50b-5992ea49680b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStates",
+								"22676f1b-326c-425c-b50b-5992ea49680b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria um estado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"teste\",\r\n    \"Color\" : \"#000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listagem dos Estados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um estado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStates/22676f1b-326c-425c-b50b-5992ea49680b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStates",
+								"22676f1b-326c-425c-b50b-5992ea49680b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ganhos",
+			"item": [
+				{
+					"name": "Lista os ganhos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModelStateHourlyEarnings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModelStateHourlyEarnings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrando ganhos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentModelId\" : \"9c3d009e-0d42-4a6e-9036-193e9bca3199\",\r\n    \"EquipmentStateId\" : \"baff9783-84e8-4e01-874b-6fd743b875ad\",\r\n    \"Value\" : 29\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModelStateHourlyEarnings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModelStateHourlyEarnings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Altera dados ganho",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentModelId\" : \"9c3d009e-0d42-4a6e-9036-193e9bca3199\",\r\n    \"EquipmentStateId\" : \"baff9783-84e8-4e01-874b-6fd743b875ad\",\r\n    \"Value\" : 26\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModelStateHourlyEarnings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModelStateHourlyEarnings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um ganho",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentModelId\" : \"9c3d009e-0d42-4a6e-9036-193e9bca3199\",\r\n    \"EquipmentStateId\" : \"baff9783-84e8-4e01-874b-6fd743b875ad\",\r\n    \"Value\" : 26\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentModelStateHourlyEarnings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentModelStateHourlyEarnings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Historico de Estado",
+			"item": [
+				{
+					"name": "Lista os historicos de estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStateHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStateHistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastra um Historico de Estado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"1354c53a-f5ec-49d4-bb02-c64e3ccd246c\",\r\n    \"EquipmentStateId\" : \"baff9783-84e8-4e01-874b-6fd743b875ad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStateHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStateHistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Altera dados de um historico de estado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"1354c53a-f5ec-49d4-bb02-c64e3ccd246c\",\r\n    \"EquipmentStateId\" : \"baff9783-84e8-4e01-874b-6fd743b875ad\",\r\n    \"Date\" : \"2022-06-26 15:13:45.522587\",\r\n    \"NovoEquipmentStateId\" : \"03b2d446-e3ba-4c82-8dc2-a5611fea6e1f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStateHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStateHistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um historico de estado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"1354c53a-f5ec-49d4-bb02-c64e3ccd246c\",\r\n    \"EquipmentStateId\" : \"03b2d446-e3ba-4c82-8dc2-a5611fea6e1f\",\r\n    \"Date\" : \"2022-06-26 15:24:04.168133\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStateHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStateHistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista ultimo estado de um Equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"fe2a2e11-bfa6-46b6-990b-fd8175946b7e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentStateHistories/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentStateHistories",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista ultima localização de um Equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"c79ef1de-92f3-4edd-bd55-553056640449\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentPositionHistories/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentPositionHistories",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Historico de posição",
+			"item": [
+				{
+					"name": "Lista o historico de posições",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentPositionHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentPositionHistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro de historico de posição",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"1354c53a-f5ec-49d4-bb02-c64e3ccd246c\",\r\n    \"Lat\" : -19.258919,\r\n    \"Lon\" : -45.95551\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentPositionHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentPositionHistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar um historico de posição",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"1354c53a-f5ec-49d4-bb02-c64e3ccd246c\",\r\n    \"Lat\" : -19.258919,\r\n    \"NovoLat\" : -17.258919,\r\n    \"Date\" : \"2022-06-26 16:54:46.672567\",\r\n    \"Lon\" : -45.95551,\r\n    \"NovoLon\" : -43.95551\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentPositionHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentPositionHistories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um historico de posição",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EquipmentId\" : \"1354c53a-f5ec-49d4-bb02-c64e3ccd246c\",\r\n    \"Lat\" : -17.258919,\r\n    \"Date\" : \"2022-06-26 17:00:48.207498\",\r\n    \"Lon\" : -43.95551\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/api/EquipmentPositionHistories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"api",
+								"EquipmentPositionHistories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
