@@ -1,10 +1,9 @@
 package com.aiko.testebackendestagiov2.controllers;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentPositionHistoryRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentPositionHistoryRequest;
 import com.aiko.testebackendestagiov2.dtos.responses.EquipmentPositionHistoryResponse;
-import com.aiko.testebackendestagiov2.entities.EquipmentPositionHistory;
 import com.aiko.testebackendestagiov2.services.Conversions.EquipmentPositionHistoryDTOConversionService;
-import com.aiko.testebackendestagiov2.services.Impl.EquipmentPositionHistoryCrudService;
+import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentPositionHistoryCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,8 @@
-package com.aiko.testebackendestagiov2.services.Impl;
+package com.aiko.testebackendestagiov2.services.ImplCrud;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentModelRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentModelRequest;
 import com.aiko.testebackendestagiov2.entities.EquipmentModel;
+import com.aiko.testebackendestagiov2.exceptions.NotFoundError;
 import com.aiko.testebackendestagiov2.repositories.EquipmentModelRepository;
 import com.aiko.testebackendestagiov2.services.ICrudService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,8 @@ public class EquipmentModelCrudService implements ICrudService<EquipmentModel, E
 
     @Override
     public EquipmentModel getById(UUID id) {
-        return equipmentModelRepository.findById(id).orElseThrow();
+        return equipmentModelRepository.findById(id)
+                .orElseThrow(() -> new NotFoundError("Don't exist Equipment Model with this id " + id));
     }
 
     @Override

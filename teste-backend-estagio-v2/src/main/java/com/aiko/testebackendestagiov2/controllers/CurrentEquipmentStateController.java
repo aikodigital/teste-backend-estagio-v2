@@ -1,6 +1,6 @@
 package com.aiko.testebackendestagiov2.controllers;
 
-import com.aiko.testebackendestagiov2.dtos.CurrentEquipmentStateResponse;
+import com.aiko.testebackendestagiov2.dtos.responses.CurrentEquipmentStateResponse;
 import com.aiko.testebackendestagiov2.services.GetCurrentEquipmentStateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

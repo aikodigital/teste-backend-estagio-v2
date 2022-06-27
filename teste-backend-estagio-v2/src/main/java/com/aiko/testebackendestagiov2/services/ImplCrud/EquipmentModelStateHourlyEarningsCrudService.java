@@ -1,9 +1,10 @@
-package com.aiko.testebackendestagiov2.services.Impl;
+package com.aiko.testebackendestagiov2.services.ImplCrud;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentModelStateHourlyEarningsRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentModelStateHourlyEarningsRequest;
 import com.aiko.testebackendestagiov2.entities.EquipmentModel;
 import com.aiko.testebackendestagiov2.entities.EquipmentModelStateHourlyEarnings;
 import com.aiko.testebackendestagiov2.entities.EquipmentState;
+import com.aiko.testebackendestagiov2.exceptions.NotFoundError;
 import com.aiko.testebackendestagiov2.repositories.EquipmentModelStateHourlyEarningsRepository;
 import com.aiko.testebackendestagiov2.services.ICrudService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,9 @@ public class EquipmentModelStateHourlyEarningsCrudService implements
 
     @Override
     public EquipmentModelStateHourlyEarnings getById(UUID id) {
-        return equipmentModelStateHourlyEarningsRepository.findById(id).orElseThrow();
+        return equipmentModelStateHourlyEarningsRepository.findById(id)
+                .orElseThrow(() ->
+                        new NotFoundError("Don't exist Equipment Model State Hourly Earnings with this id " + id));
     }
 
     @Override

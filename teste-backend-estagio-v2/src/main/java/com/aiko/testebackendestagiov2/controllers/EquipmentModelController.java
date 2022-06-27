@@ -1,9 +1,9 @@
 package com.aiko.testebackendestagiov2.controllers;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentModelRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentModelRequest;
 import com.aiko.testebackendestagiov2.dtos.responses.EquipmentModelResponse;
 import com.aiko.testebackendestagiov2.services.Conversions.EquipmentModelDtoConversioService;
-import com.aiko.testebackendestagiov2.services.Impl.EquipmentModelCrudService;
+import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentModelCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

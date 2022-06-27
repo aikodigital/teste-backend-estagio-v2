@@ -1,9 +1,10 @@
-package com.aiko.testebackendestagiov2.services.Impl;
+package com.aiko.testebackendestagiov2.services.ImplCrud;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentStateHistoryRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentStateHistoryRequest;
 import com.aiko.testebackendestagiov2.entities.Equipment;
 import com.aiko.testebackendestagiov2.entities.EquipmentState;
 import com.aiko.testebackendestagiov2.entities.EquipmentStateHistory;
+import com.aiko.testebackendestagiov2.exceptions.NotFoundError;
 import com.aiko.testebackendestagiov2.repositories.EquipmentStateHistoryRepository;
 import com.aiko.testebackendestagiov2.services.ICrudService;
 
@@ -31,7 +32,9 @@ public class EquipmentStateHistoryCrudService implements ICrudService<EquipmentS
 
     @Override
     public EquipmentStateHistory getById(UUID id) {
-        return equipmentStateHistoryRepository.findById(id).orElseThrow();
+        return equipmentStateHistoryRepository.findById(id)
+                .orElseThrow(() ->
+                        new NotFoundError("Don't exist Equipment State History with this id " + id));
     }
 
     @Override

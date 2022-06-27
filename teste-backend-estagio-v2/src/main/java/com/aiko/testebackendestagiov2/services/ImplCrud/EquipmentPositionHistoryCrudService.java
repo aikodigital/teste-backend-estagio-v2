@@ -1,8 +1,9 @@
-package com.aiko.testebackendestagiov2.services.Impl;
+package com.aiko.testebackendestagiov2.services.ImplCrud;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentPositionHistoryRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentPositionHistoryRequest;
 import com.aiko.testebackendestagiov2.entities.Equipment;
 import com.aiko.testebackendestagiov2.entities.EquipmentPositionHistory;
+import com.aiko.testebackendestagiov2.exceptions.NotFoundError;
 import com.aiko.testebackendestagiov2.repositories.EquipmentPositionHistoryRepository;
 import com.aiko.testebackendestagiov2.services.ICrudService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,9 @@ public class EquipmentPositionHistoryCrudService implements ICrudService<Equipme
 
     @Override
     public EquipmentPositionHistory getById(UUID id) {
-        return equipmentPositionHistoryRepository.findById(id).orElseThrow();
+        return equipmentPositionHistoryRepository.findById(id)
+                .orElseThrow(() ->
+                        new NotFoundError("Don't exist Equipment Position History with this id " + id));
     }
 
     @Override

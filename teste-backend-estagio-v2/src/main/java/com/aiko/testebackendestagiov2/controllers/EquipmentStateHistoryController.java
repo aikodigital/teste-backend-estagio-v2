@@ -1,10 +1,10 @@
 package com.aiko.testebackendestagiov2.controllers;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentStateHistoryRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentStateHistoryRequest;
 import com.aiko.testebackendestagiov2.dtos.responses.EquipmentStateHistoryResponse;
 import com.aiko.testebackendestagiov2.entities.EquipmentStateHistory;
 import com.aiko.testebackendestagiov2.services.Conversions.EquipmentStateHistoryDtoConversionService;
-import com.aiko.testebackendestagiov2.services.Impl.EquipmentStateHistoryCrudService;
+import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentStateHistoryCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

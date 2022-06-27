@@ -1,9 +1,9 @@
 package com.aiko.testebackendestagiov2.services;
 
-import com.aiko.testebackendestagiov2.dtos.CurrentEquipmentStateResponse;
+import com.aiko.testebackendestagiov2.dtos.responses.CurrentEquipmentStateResponse;
 import com.aiko.testebackendestagiov2.entities.Equipment;
 import com.aiko.testebackendestagiov2.entities.EquipmentStateHistory;
-import com.aiko.testebackendestagiov2.services.Impl.EquipmentCrudService;
+import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

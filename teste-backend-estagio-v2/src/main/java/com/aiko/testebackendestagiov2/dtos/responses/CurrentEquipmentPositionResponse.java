@@ -1,4 +1,4 @@
-package com.aiko.testebackendestagiov2.dtos;
+package com.aiko.testebackendestagiov2.dtos.responses;
 
 import lombok.Data;
 

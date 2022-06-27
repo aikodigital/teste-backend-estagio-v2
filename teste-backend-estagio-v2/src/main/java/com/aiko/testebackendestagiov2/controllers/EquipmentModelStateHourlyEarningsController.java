@@ -1,10 +1,10 @@
 package com.aiko.testebackendestagiov2.controllers;
 
-import com.aiko.testebackendestagiov2.dtos.EquipmentModelStateHourlyEarningsRequest;
+import com.aiko.testebackendestagiov2.dtos.requests.EquipmentModelStateHourlyEarningsRequest;
 import com.aiko.testebackendestagiov2.dtos.responses.EquipmentModelStateHourlyEarningsResponse;
 import com.aiko.testebackendestagiov2.entities.EquipmentModelStateHourlyEarnings;
 import com.aiko.testebackendestagiov2.services.Conversions.EquipmentModelStateHourlyEarningsDtoConversionService;
-import com.aiko.testebackendestagiov2.services.Impl.EquipmentModelStateHourlyEarningsCrudService;
+import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentModelStateHourlyEarningsCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
