@@ -1,0 +1,19 @@
+{
+  "FilePath": "c:\\Users\\Leudo\\Documents\\GitHub\\teste-backend-estagio-v2\\meu-teste\\teste-backend-estagio-v2.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "6.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 703
+  },
+  "RootNamespace": "teste_backend_estagio_v2",
+  "Documents": [],
+  "SerializationFormat": "0.2"
+}
