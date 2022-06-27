@@ -7,6 +7,7 @@ import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentPositionHistory
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,12 +31,12 @@ public class EquipmentPositionHistoryController {
     }
 
     @PostMapping
-    public EquipmentPositionHistoryResponse create(@RequestBody EquipmentPositionHistoryRequest request){
+    public EquipmentPositionHistoryResponse create(@Valid @RequestBody EquipmentPositionHistoryRequest request){
         return equipmentPositionHistoryDTOConversionService.toDto(equipmentPositionHistoryCrudService.create(request));
     }
 
     @PutMapping("/{id}")
-    public EquipmentPositionHistoryResponse update(@PathVariable UUID id, @RequestBody EquipmentPositionHistoryRequest request){
+    public EquipmentPositionHistoryResponse update(@PathVariable UUID id,@Valid @RequestBody EquipmentPositionHistoryRequest request){
         return equipmentPositionHistoryDTOConversionService.toDto(equipmentPositionHistoryCrudService.update(id,request));
     }
 

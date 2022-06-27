@@ -8,6 +8,7 @@ import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentModelStateHourl
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,13 +34,13 @@ public class EquipmentModelStateHourlyEarningsController {
     }
 
     @PostMapping
-    public EquipmentModelStateHourlyEarningsResponse create(@RequestBody EquipmentModelStateHourlyEarningsRequest request){
+    public EquipmentModelStateHourlyEarningsResponse create(@Valid @RequestBody EquipmentModelStateHourlyEarningsRequest request){
         EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings = equipmentModelStateHourlyEarningsCrudService.create(request);
         return equipmentModelStateHourlyEarningsDtoConversionService.toDto(equipmentModelStateHourlyEarnings);
     }
 
     @PutMapping("/{id}")
-    public EquipmentModelStateHourlyEarningsResponse update(@PathVariable UUID id, @RequestBody EquipmentModelStateHourlyEarningsRequest request){
+    public EquipmentModelStateHourlyEarningsResponse update(@PathVariable UUID id, @Valid @RequestBody EquipmentModelStateHourlyEarningsRequest request){
         EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings = equipmentModelStateHourlyEarningsCrudService.update(id, request);
         return equipmentModelStateHourlyEarningsDtoConversionService.toDto(equipmentModelStateHourlyEarnings);
     }

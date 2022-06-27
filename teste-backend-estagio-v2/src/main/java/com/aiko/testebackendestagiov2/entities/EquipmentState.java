@@ -13,7 +13,9 @@ public class EquipmentState {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String color;
 
     @JsonIgnore

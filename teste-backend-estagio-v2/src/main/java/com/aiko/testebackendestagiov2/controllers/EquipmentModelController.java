@@ -7,6 +7,7 @@ import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentModelCrudServic
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,12 +32,12 @@ public class EquipmentModelController {
     }
 
     @PostMapping
-    public EquipmentModelResponse create(@RequestBody EquipmentModelRequest request){
+    public EquipmentModelResponse create(@Valid @RequestBody EquipmentModelRequest request){
         return equipmentModelDtoConversioService.toEquipmentModelResponse(equipmentModelCrudService.create(request));
     }
 
     @PutMapping("/{id}")
-    public EquipmentModelResponse update(@PathVariable UUID id, @RequestBody EquipmentModelRequest request){
+    public EquipmentModelResponse update(@PathVariable UUID id, @Valid @RequestBody EquipmentModelRequest request){
         return equipmentModelDtoConversioService.toEquipmentModelResponse(equipmentModelCrudService.update(id,request));
     }
 

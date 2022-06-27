@@ -7,6 +7,7 @@ import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentStateCrudServic
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,12 +31,12 @@ public class EquipmentStateController {
     }
 
     @PostMapping
-    public EquipmentStateResponse create(@RequestBody EquipmentStateRequest request){
+    public EquipmentStateResponse create(@Valid @RequestBody EquipmentStateRequest request){
         return equipmentStateDtoConversionService.toDto(equipmentStateCrudService.create(request));
     }
 
     @PutMapping("/{id}")
-    public EquipmentStateResponse update(@PathVariable UUID id, @RequestBody EquipmentStateRequest request){
+    public EquipmentStateResponse update(@PathVariable UUID id,@Valid @RequestBody EquipmentStateRequest request){
         return equipmentStateDtoConversionService.toDto(equipmentStateCrudService.update(id,request));
     }
 

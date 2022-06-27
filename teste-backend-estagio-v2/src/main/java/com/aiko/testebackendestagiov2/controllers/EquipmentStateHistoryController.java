@@ -8,6 +8,7 @@ import com.aiko.testebackendestagiov2.services.ImplCrud.EquipmentStateHistoryCru
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,13 +34,13 @@ public class EquipmentStateHistoryController {
     }
 
     @PostMapping
-    public EquipmentStateHistoryResponse create(@RequestBody EquipmentStateHistoryRequest request){
+    public EquipmentStateHistoryResponse create(@Valid @RequestBody EquipmentStateHistoryRequest request){
         EquipmentStateHistory equipmentStateHistory = equipmentStateHistoryCrudService.create(request);
         return equipmentStateHistoryDtoConversionService.toDto(equipmentStateHistory);
     }
 
     @PutMapping("/{id}")
-    public EquipmentStateHistoryResponse update(@PathVariable UUID id, @RequestBody EquipmentStateHistoryRequest request){
+    public EquipmentStateHistoryResponse update(@PathVariable UUID id,@Valid @RequestBody EquipmentStateHistoryRequest request){
         EquipmentStateHistory equipmentStateHistory = equipmentStateHistoryCrudService.update(id, request);
         return equipmentStateHistoryDtoConversionService.toDto(equipmentStateHistory);
     }
