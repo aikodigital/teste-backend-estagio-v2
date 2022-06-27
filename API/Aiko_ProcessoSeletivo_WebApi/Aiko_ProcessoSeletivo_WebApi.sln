@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aiko_ProcessoSeletivo_WebApi", "Aiko_ProcessoSeletivo_WebApi.csproj", "{D6B9F732-105C-4C41-A570-5EBB92FA7358}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6B9F732-105C-4C41-A570-5EBB92FA7358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6B9F732-105C-4C41-A570-5EBB92FA7358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6B9F732-105C-4C41-A570-5EBB92FA7358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6B9F732-105C-4C41-A570-5EBB92FA7358}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED6143D4-8DA6-480D-955F-7C08027C0DF1}
+	EndGlobalSection
+EndGlobal
