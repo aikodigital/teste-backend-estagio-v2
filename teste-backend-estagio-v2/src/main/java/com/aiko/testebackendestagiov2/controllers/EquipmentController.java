@@ -1,7 +1,9 @@
 package com.aiko.testebackendestagiov2.controllers;
 
 import com.aiko.testebackendestagiov2.dtos.EquipmentRequest;
+import com.aiko.testebackendestagiov2.dtos.responses.EquipmentResponse;
 import com.aiko.testebackendestagiov2.entities.Equipment;
+import com.aiko.testebackendestagiov2.services.Conversions.EquipmentDtoConversionService;
 import com.aiko.testebackendestagiov2.services.Impl.EquipmentCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +18,28 @@ public class EquipmentController {
 
     private final EquipmentCrudService equipmentCrudService;
 
+    private final EquipmentDtoConversionService equipmentDtoConversionService;
+
     @GetMapping
-    public List<Equipment> getAll(){
-        return equipmentCrudService.getAll();
+    public List<EquipmentResponse> getAll(){
+        List<Equipment> equipmentList = equipmentCrudService.getAll();
+        return equipmentDtoConversionService.toEquipmentListResponse(equipmentList);
     }
 
     @GetMapping("/{id}")
-    public Equipment getById(@PathVariable UUID id){
-        return equipmentCrudService.getById(id);
+    public EquipmentResponse getById(@PathVariable UUID id){
+        Equipment equipment = equipmentCrudService.getById(id);
+        return equipmentDtoConversionService.toEquipmentResponse(equipment);
     }
 
     @PostMapping
-    public Equipment create(@RequestBody EquipmentRequest request){
-        return equipmentCrudService.create(request);
+    public EquipmentResponse create(@RequestBody EquipmentRequest request){
+        return equipmentDtoConversionService.toEquipmentResponse(equipmentCrudService.create(request));
     }
 
     @PutMapping("/{id}")
-    public Equipment update(@PathVariable UUID id, @RequestBody EquipmentRequest request){
-        return equipmentCrudService.update(id,request);
+    public EquipmentResponse update(@PathVariable UUID id, @RequestBody EquipmentRequest request){
+        return equipmentDtoConversionService.toEquipmentResponse(equipmentCrudService.update(id,request));
     }
 
     @DeleteMapping("/{id}")

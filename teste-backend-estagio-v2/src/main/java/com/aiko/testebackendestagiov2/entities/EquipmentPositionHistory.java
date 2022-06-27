@@ -18,10 +18,5 @@ public class EquipmentPositionHistory {
     @ManyToOne
     @JoinColumn(name = "equipment_id", referencedColumnName = "id")
     private Equipment equipment;
-//    O histórico de posições dos equipamentos.
-//
-//    equipment_id: Chave estrangeira, utilizada para referenciar de qual equipamento é essa posição.
-//    date: Data em que a posição foi registrada.
-//            lat: Latitude em WGS84.
-//            lon: Longitude em WGS84.
+
 }

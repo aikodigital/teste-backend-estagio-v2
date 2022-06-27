@@ -1,7 +1,9 @@
 package com.aiko.testebackendestagiov2.controllers;
 
 import com.aiko.testebackendestagiov2.dtos.EquipmentStateRequest;
+import com.aiko.testebackendestagiov2.dtos.responses.EquipmentStateResponse;
 import com.aiko.testebackendestagiov2.entities.EquipmentState;
+import com.aiko.testebackendestagiov2.services.Conversions.EquipmentStateDtoConversionService;
 import com.aiko.testebackendestagiov2.services.Impl.EquipmentStateCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +18,26 @@ public class EquipmentStateController {
 
     private final EquipmentStateCrudService equipmentStateCrudService;
 
+    private final EquipmentStateDtoConversionService equipmentStateDtoConversionService;
+
     @GetMapping
-    public List<EquipmentState> getAll(){
-        return equipmentStateCrudService.getAll();
+    public List<EquipmentStateResponse> getAll(){
+        return equipmentStateDtoConversionService.toDtoList(equipmentStateCrudService.getAll());
     }
 
     @GetMapping("/{id}")
-    public EquipmentState getById(@PathVariable UUID id){
-        return equipmentStateCrudService.getById(id);
+    public EquipmentStateResponse getById(@PathVariable UUID id){
+        return equipmentStateDtoConversionService.toDto(equipmentStateCrudService.getById(id));
     }
 
     @PostMapping
-    public EquipmentState create(@RequestBody EquipmentStateRequest request){
-        return equipmentStateCrudService.create(request);
+    public EquipmentStateResponse create(@RequestBody EquipmentStateRequest request){
+        return equipmentStateDtoConversionService.toDto(equipmentStateCrudService.create(request));
     }
 
     @PutMapping("/{id}")
-    public EquipmentState update(@PathVariable UUID id, @RequestBody EquipmentStateRequest request){
-        return equipmentStateCrudService.update(id,request);
+    public EquipmentStateResponse update(@PathVariable UUID id, @RequestBody EquipmentStateRequest request){
+        return equipmentStateDtoConversionService.toDto(equipmentStateCrudService.update(id,request));
     }
 
     @DeleteMapping("/{id}")

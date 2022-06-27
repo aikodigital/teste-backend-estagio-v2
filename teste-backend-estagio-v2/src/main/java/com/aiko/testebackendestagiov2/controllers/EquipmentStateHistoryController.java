@@ -1,7 +1,9 @@
 package com.aiko.testebackendestagiov2.controllers;
 
 import com.aiko.testebackendestagiov2.dtos.EquipmentStateHistoryRequest;
+import com.aiko.testebackendestagiov2.dtos.responses.EquipmentStateHistoryResponse;
 import com.aiko.testebackendestagiov2.entities.EquipmentStateHistory;
+import com.aiko.testebackendestagiov2.services.Conversions.EquipmentStateHistoryDtoConversionService;
 import com.aiko.testebackendestagiov2.services.Impl.EquipmentStateHistoryCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +18,30 @@ public class EquipmentStateHistoryController {
 
     private final EquipmentStateHistoryCrudService equipmentStateHistoryCrudService;
 
+    private final EquipmentStateHistoryDtoConversionService equipmentStateHistoryDtoConversionService;
+
     @GetMapping
-    public List<EquipmentStateHistory> getAll(){
-        return equipmentStateHistoryCrudService.getAll();
+    public List<EquipmentStateHistoryResponse> getAll(){
+        return equipmentStateHistoryDtoConversionService.toDtoList(
+                equipmentStateHistoryCrudService.getAll());
     }
 
     @GetMapping("/{id}")
-    public EquipmentStateHistory getById(@PathVariable UUID id){
-        return equipmentStateHistoryCrudService.getById(id);
+    public EquipmentStateHistoryResponse getById(@PathVariable UUID id){
+        EquipmentStateHistory equipmentStateHistory = equipmentStateHistoryCrudService.getById(id);
+        return equipmentStateHistoryDtoConversionService.toDto(equipmentStateHistory);
     }
 
     @PostMapping
-    public EquipmentStateHistory create(@RequestBody EquipmentStateHistoryRequest request){
-        return equipmentStateHistoryCrudService.create(request);
+    public EquipmentStateHistoryResponse create(@RequestBody EquipmentStateHistoryRequest request){
+        EquipmentStateHistory equipmentStateHistory = equipmentStateHistoryCrudService.create(request);
+        return equipmentStateHistoryDtoConversionService.toDto(equipmentStateHistory);
     }
 
     @PutMapping("/{id}")
-    public EquipmentStateHistory update(@PathVariable UUID id, @RequestBody EquipmentStateHistoryRequest request){
-        return equipmentStateHistoryCrudService.update(id,request);
+    public EquipmentStateHistoryResponse update(@PathVariable UUID id, @RequestBody EquipmentStateHistoryRequest request){
+        EquipmentStateHistory equipmentStateHistory = equipmentStateHistoryCrudService.update(id, request);
+        return equipmentStateHistoryDtoConversionService.toDto(equipmentStateHistory);
     }
 
     @DeleteMapping("/{id}")

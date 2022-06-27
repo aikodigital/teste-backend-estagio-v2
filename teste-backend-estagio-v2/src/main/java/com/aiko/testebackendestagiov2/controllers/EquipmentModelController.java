@@ -1,7 +1,8 @@
 package com.aiko.testebackendestagiov2.controllers;
 
 import com.aiko.testebackendestagiov2.dtos.EquipmentModelRequest;
-import com.aiko.testebackendestagiov2.entities.EquipmentModel;
+import com.aiko.testebackendestagiov2.dtos.responses.EquipmentModelResponse;
+import com.aiko.testebackendestagiov2.services.Conversions.EquipmentModelDtoConversioService;
 import com.aiko.testebackendestagiov2.services.Impl.EquipmentModelCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +17,27 @@ public class EquipmentModelController {
 
     private final EquipmentModelCrudService equipmentModelCrudService;
 
+    private final EquipmentModelDtoConversioService equipmentModelDtoConversioService;
+
     @GetMapping
-    public List<EquipmentModel> getAll(){
-        return equipmentModelCrudService.getAll();
+    public List<EquipmentModelResponse> getAll(){
+        return equipmentModelDtoConversioService.toEquipmentModelListResponse(equipmentModelCrudService.getAll());
     }
 
     @GetMapping("/{id}")
-    public EquipmentModel getById(@PathVariable UUID id){
-        return equipmentModelCrudService.getById(id);
+    public EquipmentModelResponse getById(@PathVariable UUID id){
+
+        return equipmentModelDtoConversioService.toEquipmentModelResponse(equipmentModelCrudService.getById(id));
     }
 
     @PostMapping
-    public EquipmentModel create(@RequestBody EquipmentModelRequest request){
-        return equipmentModelCrudService.create(request);
+    public EquipmentModelResponse create(@RequestBody EquipmentModelRequest request){
+        return equipmentModelDtoConversioService.toEquipmentModelResponse(equipmentModelCrudService.create(request));
     }
 
     @PutMapping("/{id}")
-    public EquipmentModel update(@PathVariable UUID id, @RequestBody EquipmentModelRequest request){
-        return equipmentModelCrudService.update(id,request);
+    public EquipmentModelResponse update(@PathVariable UUID id, @RequestBody EquipmentModelRequest request){
+        return equipmentModelDtoConversioService.toEquipmentModelResponse(equipmentModelCrudService.update(id,request));
     }
 
     @DeleteMapping("/{id}")
