@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  banco-postgres:
+    networks:
+      - api-aiko
+    container_name: banco-postgres
+    image: postgres:14.3-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  db:
+
+networks:
+  api-aiko:
+    driver: bridge
