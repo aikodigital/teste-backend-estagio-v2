@@ -8,6 +8,7 @@ import com.aiko.testebackendestagiov2.services.ICrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,7 @@ public class EquipmentPositionHistoryCrudService implements ICrudService<Equipme
         EquipmentPositionHistory equipmentPositionHistory = new EquipmentPositionHistory();
         equipmentPositionHistory.setLat(request.getLat());
         equipmentPositionHistory.setLon(request.getLon());
+        equipmentPositionHistory.setDate(new Date());
         equipmentPositionHistory.setEquipment(equipment);
         return equipmentPositionHistoryRepository.save(equipmentPositionHistory);
     }
@@ -46,6 +48,7 @@ public class EquipmentPositionHistoryCrudService implements ICrudService<Equipme
         EquipmentPositionHistory equipmentPositionHistory = this.getById(id);
         equipmentPositionHistory.setLat(request.getLat());
         equipmentPositionHistory.setLon(request.getLon());
+        equipmentPositionHistory.setDate(new Date());
         equipmentPositionHistory.setEquipment(equipment);
         return equipmentPositionHistoryRepository.save(equipmentPositionHistory);
     }
