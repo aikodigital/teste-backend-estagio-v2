@@ -1,8 +1,8 @@
 package com.estagio.aiko.equipments.api.domain.equipment.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class EquipmentModel implements Serializable {
 	private String name;
 
 	@OneToMany(mappedBy = "model")
-	private Set<Equipment> equipments;
+	private List<Equipment> equipments;
 
 	public EquipmentModel() {
 	}
@@ -56,11 +56,11 @@ public class EquipmentModel implements Serializable {
 		this.name = name;
 	}
 
-	public Set<Equipment> getEquipments() {
+	public List<Equipment> getEquipments() {
 		return equipments;
 	}
 
-	public void setEquipments(Set<Equipment> equipments) {
+	public void setEquipments(List<Equipment> equipments) {
 		this.equipments = equipments;
 	}
 
