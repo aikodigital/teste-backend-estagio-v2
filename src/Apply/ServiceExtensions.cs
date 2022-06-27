@@ -1,14 +1,16 @@
-using MediatR;
+using AutoMapper;
 using System.Reflection;
 using TesteEstágioBackendV2.src.Apply.Behaviours;
 using TesteEstágioBackendV2.src.Apply.Features.Services;
-using TesteEstágioBackendV2.src.Apply.Interfaces;
-using TesteEstágioBackendV2.src.Apply.Interfaces.Services;
 using FluentValidation;
+using System.Collections;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MediatR;
+using TesteEstágioBackendV2.src.Apply.Interfaces;
+using TesteEstágioBackendV2.src.Apply.Interfaces.Services;
 
 namespace TesteEstágioBackendV2.src.Apply
 {

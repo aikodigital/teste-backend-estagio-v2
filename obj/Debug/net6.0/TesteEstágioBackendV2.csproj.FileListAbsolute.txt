@@ -25,3 +25,13 @@ C:\projetos\AIKO\teste\TesteEstágioBackendV2\obj\Debug\net6.0\refint\TesteEstá
 C:\projetos\AIKO\teste\TesteEstágioBackendV2\obj\Debug\net6.0\TesteEstágioBackendV2.pdb
 C:\projetos\AIKO\teste\TesteEstágioBackendV2\obj\Debug\net6.0\TesteEstágioBackendV2.genruntimeconfig.cache
 C:\projetos\AIKO\teste\TesteEstágioBackendV2\obj\Debug\net6.0\ref\TesteEstágioBackendV2.dll
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.csproj.AssemblyReference.cache
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.GeneratedMSBuildEditorConfig.editorconfig
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.AssemblyInfoInputs.cache
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.AssemblyInfo.cs
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.csproj.CoreCompileInputs.cache
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.MvcApplicationPartsAssemblyInfo.cs
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.MvcApplicationPartsAssemblyInfo.cache
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.dll
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\refint\TesteEstágioBackendV2.dll
+C:\projetos\AIKO\teste\TesteEstágioBackendV2\teste-backend-estagio-v2\teste-backend-estagio-v2\obj\Debug\net6.0\TesteEstágioBackendV2.pdb
