@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Data
 public class EquipmentStateHistoryResponse {
+    private UUID id;
     private Date date;
     @JsonProperty("equipment_id")
     private UUID equipmentId;
@@ -16,6 +17,7 @@ public class EquipmentStateHistoryResponse {
     private UUID equipmentStateId;
 
     public EquipmentStateHistoryResponse(EquipmentStateHistory equipmentStateHistory) {
+        this.id = equipmentStateHistory.getId();
         this.date = equipmentStateHistory.getDate();
         this.equipmentId = equipmentStateHistory.getEquipment().getId();
         this.equipmentStateId = equipmentStateHistory.getEquipmentState().getId();

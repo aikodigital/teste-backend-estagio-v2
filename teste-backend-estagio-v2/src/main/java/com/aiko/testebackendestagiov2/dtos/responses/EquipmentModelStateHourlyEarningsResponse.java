@@ -8,6 +8,7 @@ import java.util.UUID;
 
 @Data
 public class EquipmentModelStateHourlyEarningsResponse {
+    private UUID id;
     private Float value;
 
     @JsonProperty( "equipment_model_id")
@@ -17,6 +18,7 @@ public class EquipmentModelStateHourlyEarningsResponse {
     private UUID equipmentStateID;
 
     public EquipmentModelStateHourlyEarningsResponse(EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings) {
+        this.id = equipmentModelStateHourlyEarnings.getId();
         this.value = equipmentModelStateHourlyEarnings.getValue();
         this.equipmentModelId = equipmentModelStateHourlyEarnings.getEquipmentModel().getId();
         this.equipmentStateID = equipmentModelStateHourlyEarnings.getEquipmentState().getId();

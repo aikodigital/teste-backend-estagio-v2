@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Data
 public class EquipmentPositionHistoryResponse {
+    private UUID id;
     private Float lat;
     private Float lon;
     private Date date;
@@ -16,6 +17,7 @@ public class EquipmentPositionHistoryResponse {
     private UUID equipmentId;
 
     public EquipmentPositionHistoryResponse(EquipmentPositionHistory equipmentPositionHistory) {
+        this.id = equipmentPositionHistory.getId();
         this.lat = equipmentPositionHistory.getLat();
         this.lon = equipmentPositionHistory.getLon();
         this.date = equipmentPositionHistory.getDate();
