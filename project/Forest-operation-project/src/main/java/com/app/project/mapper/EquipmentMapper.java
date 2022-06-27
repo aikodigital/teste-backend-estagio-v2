@@ -8,6 +8,7 @@ import com.app.project.requests.equip.EquipPutRequest;
 import com.app.project.requests.equipModel.EquipmentModelPostRequest;
 import com.app.project.requests.equipModel.EquipmentModelPutRequest;
 import com.app.project.requests.equipState.EquipStatePostRequest;
+import com.app.project.requests.equipState.EquipStatePutRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -21,4 +22,5 @@ public abstract class EquipmentMapper {
     public abstract Equipment toEquipment(EquipPostRequest postRequest);
     public abstract Equipment toEquipment(EquipPutRequest putRequest);
     public abstract EquipmentState toEquipment(EquipStatePostRequest postRequest);
+    public abstract EquipmentState toEquipment(EquipStatePutRequest poutRequest);
 }

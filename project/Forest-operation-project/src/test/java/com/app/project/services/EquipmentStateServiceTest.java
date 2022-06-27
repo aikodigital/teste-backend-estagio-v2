@@ -5,6 +5,7 @@ import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipStateRepository;
 import com.app.project.util.equipState.EquipStateCreator;
 import com.app.project.util.equipState.EquipStatePostRequestCreator;
+import com.app.project.util.equipState.EquipStatePutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -38,6 +39,8 @@ class EquipmentStateServiceTest {
 
         BDDMockito.when(repository.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.ofNullable(EquipStateCreator.createEquipmentStateValid()));
+
+        BDDMockito.doNothing().when(repository).delete(ArgumentMatchers.any(EquipmentState.class));
     }
 
     @Test
@@ -69,7 +72,7 @@ class EquipmentStateServiceTest {
     void findById_ReturnsAnEquipmentState_WhenSuccessful() throws NotFoundException {
         Long expectedId = EquipStateCreator.createEquipmentStateValid().getId();
 
-        EquipmentState equipment = service.findById(1L);
+        EquipmentState equipment = service.findByIdOrThrowsNotFoundException(1L);
 
         Assertions.assertThat(equipment).isNotNull();
 
@@ -84,6 +87,21 @@ class EquipmentStateServiceTest {
                 .thenReturn(Optional.empty());
 
         Assertions.assertThatExceptionOfType(NotFoundException.class)
-                .isThrownBy(() -> service.findById(1L));
+                .isThrownBy(() -> service.findByIdOrThrowsNotFoundException(1L));
+    }
+
+    @Test
+    @DisplayName("update returns an equipment state when successful")
+    void update_ReturnsAnEquipmentState_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.update(
+                        EquipStatePutRequestCreator.createEquipStatePutRequestBody()))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("delete - removes an equipment state when successful")
+    void delete_RemovesAnEquipmentState_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.delete(1L))
+                .doesNotThrowAnyException();
     }
 }
