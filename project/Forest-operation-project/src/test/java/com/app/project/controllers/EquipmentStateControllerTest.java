@@ -1,11 +1,9 @@
 package com.app.project.controllers;
 
-import com.app.project.domain.Equipment;
 import com.app.project.domain.EquipmentState;
+import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equipState.EquipStatePostRequest;
 import com.app.project.services.EquipmentStateService;
-import com.app.project.util.equip.EquipCreator;
-import com.app.project.util.equip.EquipPostRequestCreator;
 import com.app.project.util.equipState.EquipStateCreator;
 import com.app.project.util.equipState.EquipStatePostRequestCreator;
 import org.assertj.core.api.Assertions;
@@ -21,6 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 @ExtendWith(SpringExtension.class)
 class EquipmentStateControllerTest {
 
@@ -31,8 +31,14 @@ class EquipmentStateControllerTest {
     private EquipmentStateService service;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws NotFoundException {
         BDDMockito.when(service.save(ArgumentMatchers.any(EquipStatePostRequest.class)))
+                .thenReturn(EquipStateCreator.createEquipmentStateValid());
+
+        BDDMockito.when(service.findAll())
+                .thenReturn(List.of(EquipStateCreator.createEquipmentStateValid()));
+
+        BDDMockito.when(service.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(EquipStateCreator.createEquipmentStateValid());
     }
 
@@ -48,4 +54,34 @@ class EquipmentStateControllerTest {
         Assertions.assertThat(equipment.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
+    @Test
+    @DisplayName("listAll - returns a list of equipments state when successful")
+    void listAll_ReturnsAListOfEquipmentsState_WhenSuccessful() {
+        String expectedName = EquipStateCreator.createEquipmentStateValid().getName();
+
+        List<EquipmentState> equipModels = controller.findAll().getBody();
+
+        Assertions.assertThat(equipModels)
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(1);
+
+        Assertions.assertThat(equipModels.get(0).getName()).isEqualTo(expectedName);
+    }
+
+    @Test
+    @DisplayName("getById - returns an equipment state when successful")
+    void getById_ReturnsAnEquipmentState_WhenSuccessful() throws NotFoundException {
+        Long expectedId = EquipStateCreator.createEquipmentStateValid().getId();
+
+        ResponseEntity<EquipmentState> equipment = controller.getById(1L);
+
+        Assertions.assertThat(equipment).isNotNull();
+
+        Assertions.assertThat(equipment.getBody().getId()).isNotNull()
+                .isEqualTo(expectedId);
+
+        Assertions.assertThat(equipment.getStatusCode())
+                .isEqualTo(HttpStatus.OK);
+    }
 }

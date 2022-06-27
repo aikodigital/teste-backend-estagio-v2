@@ -1,6 +1,5 @@
 package com.app.project.util.equip;
 
-import com.app.project.requests.equip.EquipPostRequest;
 import com.app.project.requests.equip.EquipPutRequest;
 import org.mockito.ArgumentMatchers;
 
