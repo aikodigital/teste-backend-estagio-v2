@@ -9,6 +9,9 @@ import com.app.project.requests.EquipModelStateHourlyEarnings.EquipModelStateHou
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class EquipmentModelStateHourlyEarningsService {
@@ -33,5 +36,14 @@ public class EquipmentModelStateHourlyEarningsService {
                 .value(postRequest.getValue())
                 .build();
         return equipmentModelStateHourlyEarnings;
+    }
+
+    public List<EquipmentModelStateHourlyEarnings> findAll() {
+        return repository.findAll();
+    }
+
+    public EquipmentModelStateHourlyEarnings findByIdOrThrowsNotFoundException(UUID id) throws NotFoundException {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Equipment state model hourly earning not found"));
     }
 }
