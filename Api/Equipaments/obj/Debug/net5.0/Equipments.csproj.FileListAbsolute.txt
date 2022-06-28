@@ -1,0 +1,76 @@
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\appsettings.Development.json
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\appsettings.json
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Equipments.exe
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Equipments.deps.json
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Equipments.runtimeconfig.json
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Equipments.runtimeconfig.dev.json
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Equipments.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Equipments.pdb
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\AutoMapper.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Npgsql.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.csproj.AssemblyReference.cache
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.GeneratedMSBuildEditorConfig.editorconfig
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.AssemblyInfoInputs.cache
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.AssemblyInfo.cs
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.csproj.CoreCompileInputs.cache
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.MvcApplicationPartsAssemblyInfo.cs
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.MvcApplicationPartsAssemblyInfo.cache
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\scopedcss\bundle\Equipments.styles.css
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\staticwebassets\Equipments.StaticWebAssets.Manifest.cache
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.RazorTargetAssemblyInfo.cache
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.csproj.CopyComplete
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.dll
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\refint\Equipments.dll
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.pdb
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\Equipments.genruntimeconfig.cache
+D:\Estágio\repo\Equipaments\Equipaments\obj\Debug\net5.0\ref\Equipments.dll
+D:\Estágio\repo\Equipaments\Equipaments\bin\Debug\net5.0\FluentResults.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\appsettings.Development.json
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\appsettings.json
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Equipments.exe
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Equipments.deps.json
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Equipments.runtimeconfig.json
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Equipments.runtimeconfig.dev.json
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Equipments.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Equipments.pdb
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\AutoMapper.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\FluentResults.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Humanizer.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Npgsql.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.csproj.AssemblyReference.cache
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.GeneratedMSBuildEditorConfig.editorconfig
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.AssemblyInfoInputs.cache
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.AssemblyInfo.cs
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.csproj.CoreCompileInputs.cache
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.MvcApplicationPartsAssemblyInfo.cs
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.MvcApplicationPartsAssemblyInfo.cache
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\scopedcss\bundle\Equipments.styles.css
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\staticwebassets\Equipments.StaticWebAssets.Manifest.cache
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.RazorTargetAssemblyInfo.cache
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.csproj.CopyComplete
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\refint\Equipments.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.pdb
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.genruntimeconfig.cache
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\ref\Equipments.dll
+D:\Estágio\repo\Equipaments - Copia\Equipaments\bin\Debug\net5.0\Equipments.xml
+D:\Estágio\repo\Equipaments - Copia\Equipaments\obj\Debug\net5.0\Equipments.xml

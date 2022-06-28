@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Equipments</name>
+    </assembly>
+    <members>
+        <member name="M:Equipments.Controllers.EquipmentController.AddEquipment(Equipments.Data.Dtos.Equipment.CreateEquipmentDto)">
+            <summary>
+            Cria um Equipamento
+            </summary>
+            <param name="equipmentDto"></param>
+            <returns>Cria um Equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentController.GetEquipment(System.String)">
+            <summary>
+            Retorna um Equipamento utilizando o nome como filtro. Obs: nome vazio = todos
+            </summary>
+            <param name="equipmentName"></param>
+            <returns>Retorna um equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentController.GetEquipmentById(System.Guid)">
+            <summary>
+            Retorna um Equipamento pelo ID
+            </summary>
+            <param name="id"></param>
+            <returns>Retorna um Equipamento pelo ID</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentController.UpdateEquipment(System.Guid,Equipments.Data.Dtos.Equipment.UpdateEquipmentDto)">
+            <summary>
+            Atualiza um Equipamento pelo ID
+            </summary>
+            <param name="id"></param>
+            <param name="equipmentDto"></param>
+            <returns>Atualiza um Equipamento pelo ID</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentController.DeleteEquipment(System.Guid)">
+            <summary>
+            Deleta o Equipamento pelo ID
+            </summary>
+            <param name="id"></param>
+            <returns>Deleta o Equipamento pelo ID</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelController.AddEquipmentModel(Equipments.Data.Dtos.Equipment.CreateEquipmentModelDto)">
+            <summary>
+            Cria um modelo de equipamento
+            </summary>
+            <param name="equipmentModelDto"></param>
+            <returns>Cria um modelo de equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelController.GetEquipmentModel(System.String)">
+            <summary>
+            Retorna o modelo de equipamento
+            </summary>
+            <param name="equipmentModelName"></param>
+            <returns>Retorna o modelo de equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelController.GetEquipmentModelById(System.Guid)">
+            <summary>
+            Retorna o modelo de equipamento pelo id
+            </summary>
+            <param name="id"></param>
+            <returns>Retorna o modelo de equipamento pelo id</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelController.UpdateEquipmentModel(System.Guid,Equipments.Data.Dtos.Equipment.UpdateEquipmentModelDto)">
+            <summary>
+            Realiza a atualização do modelo de equipamento pelo id
+            </summary>
+            <param name="id"></param>
+            <param name="equipmentModelDto"></param>
+            <returns>Realiza a atualização do modelo de equipamento pelo id</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelController.DeleteEquipmentModel(System.Guid)">
+            <summary>
+            Deleta o Modelo do Equipamento
+            </summary>
+            <param name="id"></param>
+            <returns>Deleta o Modelo do Equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelStateHourlyEarningsController.AddHourlyEarnings(Equipments.Data.Dtos.Equipment_Model_State_Hourly_earnings.CreateEquipmentModelStateHourlyEarningsDto)">
+            <summary>
+            Cria o ganho por hora de um estado
+            </summary>
+            <param name="hourlyEarningsDto"></param>
+            <returns>Cria o ganho por hora de um estado</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelStateHourlyEarningsController.GetHourlyEarnings">
+            <summary>
+            Retorna o ganho por hora de um estado
+            </summary>
+            <returns>Retorna o ganho por hora de um estado</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelStateHourlyEarningsController.GetHourlyEarningsById(System.Guid,System.Guid)">
+            <summary>
+            Retorna o ganho por hora de um estado pelo id do modelo e pelo id do estado
+            </summary>
+            <param name="modelId"></param>
+            <param name="stateId"></param>
+            <returns>Retorna o ganho por hora de um estado pelo id do modelo e pelo id do estado</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelStateHourlyEarningsController.UpdateHourlyEarnings(System.Guid,System.Guid,Equipments.Data.Dtos.Equipment_Model_State_Hourly_earnings.UpdateEquipmentModelStateHourlyEarningsDto)">
+            <summary>
+            Atualiza o ganho por hora de um estado pelo id do modelo e pelo id do estado
+            </summary>
+            <param name="modelId"></param>
+            <param name="stateId"></param>
+            <param name="hourlyEarningsDto"></param>
+            <returns>Atualiza o ganho por hora de um estado pelo id do modelo e pelo id do estado</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentModelStateHourlyEarningsController.DeleteHourlyEarnings(System.Guid,System.Guid)">
+            <summary>
+            Delete o ganho por hora de um estado pelo id do modelo e pelo id do estado
+            </summary>
+            <param name="modelId"></param>
+            <param name="stateId"></param>
+            <returns>Delete o ganho por hora de um estado pelo id do modelo e pelo id do estado</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentPositionHistoryController.AddPosition(Equipments.Data.Dtos.Equipment_Position_History.CreateEquipmentPositionHistoryDto)">
+            <summary>
+            Adiciona a posição de um equipamento
+            </summary>
+            <param name="positionDto"></param>
+            <returns>Adiciona a posição de um equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentPositionHistoryController.GetPositionHistoryByEquipmentId(System.Guid)">
+            <summary>
+            Retorna a posição de um equipamento pelo ID
+            </summary>
+            <param name="equipmentId"></param>
+            <returns>Retorna a posição de um equipamento pelo ID</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentPositionHistoryController.RecuperaLastEquipment(System.Guid)">
+            <summary>
+            Retorna a ultima posição de um equipamento pelo ID do equipamento
+            </summary>
+            <param name="equipmentId"></param>
+            <returns>Retorna a ultima posição de um equipamento pelo ID do equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentPositionHistoryController.UpdatePosition(System.Guid,System.DateTime,Equipments.Data.Dtos.Equipment_Position_History.UpdateEquipmentPositionHistoryDto)">
+            <summary>
+            Atualiza a posição de um equipamento pelo ID
+            </summary>
+            <param name="equipmentId"></param>
+            <param name="date"></param>
+            <param name="positionHistoryDto"></param>
+            <returns>Atualiza a posição de um equipamento pelo ID</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentPositionHistoryController.DeleteEquipment(System.Guid,System.DateTime)">
+            <summary>
+            Deleta a posição de um equipamento pelo ID
+            </summary>
+            <param name="equipmentId"></param>
+            <param name="date"></param>
+            <returns>Deleta a posição de um equipamento pelo ID</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateController.AddEquipment(Equipments.Data.Dtos.Equipment_State.CreateEquipmentStateDto)">
+            <summary>
+            Adiciona um estado de equipamento
+            </summary>
+            <param name="equipmentStateDto"></param>
+            <returns>Adiciona um estado de equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateController.GetEquipment(System.String)">
+            <summary>
+            Retorna um estado de equipamento
+            </summary>
+            <param name="equipmentName"></param>
+            <returns>Retorna um estado de equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateController.GetEquipmentById(System.Guid)">
+            <summary>
+            Retorna um estado de equipamento pelo id
+            </summary>
+            <param name="id"></param>
+            <returns>Retorna um estado de equipamento pelo id</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateController.UpdateEquipment(System.Guid,Equipments.Data.Dtos.Equipment_State.UpdateEquipmentStateDto)">
+            <summary>
+            Atualiza um estado de equipamento pelo id
+            </summary>
+            <param name="id"></param>
+            <param name="equipmentDto"></param>
+            <returns>Atualiza um estado de equipamento pelo id</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateController.DeleteEquipment(System.Guid)">
+            <summary>
+             Remove um estado de equipamento pelo id
+            </summary>
+            <param name="id"></param>
+            <returns>Remove um estado de equipamento pelo id</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateHistoryController.AddPosition(Equipments.Data.Dtos.Equipment_State_History.CreateEquipmentStateHistoryDto)">
+            <summary>
+            Adiciona um posição de um equipamento 
+            </summary>
+            <param name="stateHistoryDto"></param>
+            <returns>Adiciona um posição de um equipamento </returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateHistoryController.GetPositionHistoryByEquipmentId(System.Guid)">
+            <summary>
+            Retorna um posição de um equipamento pelo ID do equipamento
+            </summary>
+            <param name="equipmentId"></param>
+            <returns>Retorna um posição de um equipamento pelo ID do equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateHistoryController.RecuperaLastState(System.Guid)">
+            <summary>
+            Retorna a última posição de um equipamento pelo ID do equipamento
+            </summary>
+            <param name="equipmentId"></param>
+            <returns>Retorna a última posição de um equipamento pelo ID do equipamento</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateHistoryController.UpdatePosition(System.Guid,System.DateTime,Equipments.Data.Dtos.Equipment_State_History.UpdateEquipmentStateHistoryDto)">
+            <summary>
+            Atualiza a posição de um equipamento pelo ID do equipamento e pela Data cadastrada
+            </summary>
+            <param name="equipmentId"></param>
+            <param name="date"></param>
+            <param name="stateHistoryDto"></param>
+            <returns>Atualiza a posição de um equipamento pelo ID do equipamento e pela Data cadastrada</returns>
+        </member>
+        <member name="M:Equipments.Controllers.EquipmentStateHistoryController.DeleteEquipment(System.Guid,System.DateTime)">
+            <summary>
+            Remove a posição de um equipamento pelo ID do equipamento e pela Data cadastrada
+            </summary>
+            <param name="equipmentId"></param>
+            <param name="date"></param>
+            <returns>Remove a posição de um equipamento pelo ID do equipamento e pela Data cadastrada</returns>
+        </member>
+    </members>
+</doc>
