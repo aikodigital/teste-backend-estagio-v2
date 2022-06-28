@@ -22,6 +22,8 @@ import com.estagio.aiko.equipments.api.infrastructure.converter.ConverterService
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.hourlyEarnings.EquipmentModelStateHourlyEarningsRequest;
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.hourlyEarnings.EquipmentModelStateHourlyEarningsResponse;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/equipment-model-state-hourly-earnings")
 public class EquipmentModelStateHourlyEarningsController {
@@ -36,7 +38,8 @@ public class EquipmentModelStateHourlyEarningsController {
 		this.converterService = converterService;
 	}
 
-	@PostMapping()
+	@ApiOperation("Create a new equipment model state hourly earnings")
+	@PostMapping
 	public ResponseEntity<EquipmentModelStateHourlyEarningsResponse> add(
 			@Valid @RequestBody EquipmentModelStateHourlyEarningsRequest equipmentModelStateHourlyEarningsRequest) {
 		EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings = converterService
@@ -49,6 +52,7 @@ public class EquipmentModelStateHourlyEarningsController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentModelStateHourlyEarningsResponse);
 	}
 
+	@ApiOperation("Update an existing equipment model state hourly earnings")
 	@PutMapping("/{id}")
 	public ResponseEntity<EquipmentModelStateHourlyEarningsResponse> update(@PathVariable UUID id,
 			@Valid @RequestBody EquipmentModelStateHourlyEarningsRequest equipmentModelStateHourlyEarningsRequest) {
@@ -62,7 +66,9 @@ public class EquipmentModelStateHourlyEarningsController {
 		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
 	}
 
-	@GetMapping()
+
+	@ApiOperation("Return all equipment model state hourly earnings")
+	@GetMapping
 	public ResponseEntity<List<EquipmentModelStateHourlyEarningsResponse>> getAll() {
 		List<EquipmentModelStateHourlyEarnings> equipmentsModelStateHourlyEarnings = equipmentModelStateHourlyEarningsService
 				.findAll();
@@ -72,6 +78,7 @@ public class EquipmentModelStateHourlyEarningsController {
 		return new ResponseEntity<>(equipmentsModelStateHourlyEarningsResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Find equipment model state hourly earnings by ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<EquipmentModelStateHourlyEarningsResponse> getById(@PathVariable UUID id) {
 		EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings = equipmentModelStateHourlyEarningsService
@@ -82,6 +89,7 @@ public class EquipmentModelStateHourlyEarningsController {
 		return new ResponseEntity<>(equipmentModelStateHourlyEarningsResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Delete equipment model state hourly earnings by ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable UUID id) {
 		equipmentModelStateHourlyEarningsService.delete(id);

@@ -22,6 +22,8 @@ import com.estagio.aiko.equipments.api.infrastructure.converter.ConverterService
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.state.EquipmentStateRequest;
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.state.EquipmentStateResponse;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/equipment-state")
 public class EquipmentStateController {
@@ -35,7 +37,8 @@ public class EquipmentStateController {
 		this.converterService = converterService;
 	}
 
-	@PostMapping()
+	@ApiOperation("Create a new equipment state")
+	@PostMapping
 	public ResponseEntity<EquipmentStateResponse> add(@Valid @RequestBody EquipmentStateRequest equipmentStateRequest) {
 		EquipmentState equipmentState = converterService.convert(equipmentStateRequest, EquipmentState.class);
 		EquipmentState savedEquipmentState = equipmentStateService.create(equipmentState);
@@ -45,6 +48,7 @@ public class EquipmentStateController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentStateResponse);
 	}
 
+	@ApiOperation("Update an existing equipment state")
 	@PutMapping("/{id}")
 	public ResponseEntity<EquipmentStateResponse> update(@PathVariable UUID id,
 			@Valid @RequestBody EquipmentStateRequest equipmentStateRequest) {
@@ -56,7 +60,8 @@ public class EquipmentStateController {
 		return new ResponseEntity<>(equipmentStateResponse, HttpStatus.OK);
 	}
 
-	@GetMapping()
+	@ApiOperation("Return all equipment states")
+	@GetMapping
 	public ResponseEntity<List<EquipmentStateResponse>> getAll() {
 		List<EquipmentState> equipmentStates = equipmentStateService.findAll();
 		List<EquipmentStateResponse> equipmentStatesResponse = converterService.convert(equipmentStates,
@@ -65,6 +70,7 @@ public class EquipmentStateController {
 		return new ResponseEntity<>(equipmentStatesResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Find equipment state by ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<EquipmentStateResponse> getById(@PathVariable UUID id) {
 		EquipmentState equipmentState = equipmentStateService.findById(id);
@@ -74,6 +80,7 @@ public class EquipmentStateController {
 		return new ResponseEntity<>(equipmentStateResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Delete equipment state by ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable UUID id) {
 		equipmentStateService.delete(id);

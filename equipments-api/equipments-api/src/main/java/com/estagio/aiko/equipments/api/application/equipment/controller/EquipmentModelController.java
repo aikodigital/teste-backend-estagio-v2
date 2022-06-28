@@ -22,6 +22,8 @@ import com.estagio.aiko.equipments.api.infrastructure.converter.ConverterService
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.model.EquipmentModelRequest;
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.model.EquipmentModelResponse;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/equipment-model")
 public class EquipmentModelController {
@@ -35,7 +37,8 @@ public class EquipmentModelController {
 		this.converterService = converterService;
 	}
 
-	@PostMapping()
+	@ApiOperation("Create a new equipment model")
+	@PostMapping
 	public ResponseEntity<EquipmentModelResponse> add(@Valid @RequestBody EquipmentModelRequest equipmentModelRequest) {
 		EquipmentModel equipmentModel = converterService.convert(equipmentModelRequest, EquipmentModel.class);
 		EquipmentModel savedEquipmentModel = equipmentModelService.create(equipmentModel);
@@ -45,6 +48,7 @@ public class EquipmentModelController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentModelResponse);
 	}
 
+	@ApiOperation("update an existing equipment model")
 	@PutMapping("/{id}")
 	public ResponseEntity<EquipmentModelResponse> update(@PathVariable UUID id,
 			@Valid @RequestBody EquipmentModelRequest equipmentModelRequest) {
@@ -56,7 +60,8 @@ public class EquipmentModelController {
 		return new ResponseEntity<>(equipmentModelResponse, HttpStatus.OK);
 	}
 
-	@GetMapping()
+	@ApiOperation("Return all equipment models")
+	@GetMapping
 	public ResponseEntity<List<EquipmentModelResponse>> getAll() {
 		List<EquipmentModel> equipmentModels = equipmentModelService.findAll();
 		List<EquipmentModelResponse> equipmentModelsResponse = converterService.convert(equipmentModels,
@@ -65,6 +70,7 @@ public class EquipmentModelController {
 		return new ResponseEntity<>(equipmentModelsResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Find equipment model by ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<EquipmentModelResponse> getById(@PathVariable UUID id) {
 		EquipmentModel equipmentModel = equipmentModelService.findById(id);
@@ -74,6 +80,7 @@ public class EquipmentModelController {
 		return new ResponseEntity<>(equipmentModelResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Delete equipment model by ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable UUID id) {
 		equipmentModelService.delete(id);

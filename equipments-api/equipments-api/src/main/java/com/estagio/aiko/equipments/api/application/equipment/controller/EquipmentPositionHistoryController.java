@@ -22,6 +22,8 @@ import com.estagio.aiko.equipments.api.infrastructure.converter.ConverterService
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.positionHistory.EquipmentPositionHistoryRequest;
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.positionHistory.EquipmentPositionHistoryResponse;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/equipment-position-history")
 public class EquipmentPositionHistoryController {
@@ -35,7 +37,8 @@ public class EquipmentPositionHistoryController {
 		this.converterService = converterService;
 	}
 
-	@PostMapping()
+	@ApiOperation("Create a new equipment position history")
+	@PostMapping
 	public ResponseEntity<EquipmentPositionHistoryResponse> add(
 			@Valid @RequestBody EquipmentPositionHistoryRequest equipmentPositionHistoryRequest) {
 		EquipmentPositionHistory equipmentPositionHistory = converterService.convert(equipmentPositionHistoryRequest,
@@ -48,6 +51,7 @@ public class EquipmentPositionHistoryController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentPositionHistoryResponse);
 	}
 
+	@ApiOperation("Update an existing equipment position history")
 	@PutMapping("/{id}")
 	public ResponseEntity<EquipmentPositionHistoryResponse> update(@PathVariable UUID id,
 			@Valid @RequestBody EquipmentPositionHistoryRequest equipmentPositionHistoryRequest) {
@@ -61,7 +65,8 @@ public class EquipmentPositionHistoryController {
 		return new ResponseEntity<>(equipmentPositionHistoryResponse, HttpStatus.OK);
 	}
 
-	@GetMapping()
+	@ApiOperation("Return all equipment position history")
+	@GetMapping
 	public ResponseEntity<List<EquipmentPositionHistoryResponse>> getAll() {
 		List<EquipmentPositionHistory> equipmentsPositionHistory = equipmentPositionHistoryService.findAll();
 		List<EquipmentPositionHistoryResponse> equipmentsPositionHistoryResponse = converterService
@@ -70,6 +75,7 @@ public class EquipmentPositionHistoryController {
 		return new ResponseEntity<>(equipmentsPositionHistoryResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Find position history by ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<EquipmentPositionHistoryResponse> getById(@PathVariable UUID id) {
 		EquipmentPositionHistory equipmentPositionHistory = equipmentPositionHistoryService.findById(id);
@@ -79,6 +85,7 @@ public class EquipmentPositionHistoryController {
 		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Delete position history by ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable UUID id) {
 		equipmentPositionHistoryService.delete(id);

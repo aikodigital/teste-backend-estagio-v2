@@ -22,6 +22,9 @@ import com.estagio.aiko.equipments.api.infrastructure.converter.ConverterService
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.equipment.EquipmentRequest;
 import com.estagio.aiko.equipments.api.presentation.equipment.dto.equipment.EquipmentResponse;
 
+import io.swagger.annotations.ApiOperation;
+
+
 @RestController
 @RequestMapping("/equipment")
 public class EquipmentController {
@@ -34,7 +37,8 @@ public class EquipmentController {
 		this.converterService = converterService;
 	}
 
-	@PostMapping()
+	@ApiOperation("Create a new equipment")
+	@PostMapping
 	public ResponseEntity<EquipmentResponse> add(@Valid @RequestBody EquipmentRequest equipmentRequest) {
 		Equipment equipment = converterService.convert(equipmentRequest, Equipment.class);
 		Equipment savedEquipment = equipmentService.create(equipment);
@@ -43,6 +47,7 @@ public class EquipmentController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentResponse);
 	}
 
+	@ApiOperation("Update an existing equipment")
 	@PutMapping("/{id}")
 	public ResponseEntity<EquipmentResponse> update(@PathVariable UUID id,
 			@Valid @RequestBody EquipmentRequest equipmentRequest) {
@@ -53,7 +58,8 @@ public class EquipmentController {
 		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
 	}
 
-	@GetMapping()
+	@ApiOperation("Return all equipments")
+	@GetMapping
 	public ResponseEntity<List<EquipmentResponse>> getAll() {
 		List<Equipment> equipments = equipmentService.findAll();
 		List<EquipmentResponse> equipmentsResponse = converterService.convert(equipments, EquipmentResponse.class);
@@ -61,6 +67,7 @@ public class EquipmentController {
 		return new ResponseEntity<>(equipmentsResponse, HttpStatus.OK);
 	}
 
+	@ApiOperation("Find equipment by ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<EquipmentResponse> getById(@PathVariable UUID id) {
 		Equipment equipment = equipmentService.findById(id);
@@ -68,7 +75,8 @@ public class EquipmentController {
 
 		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
 	}
-
+	
+	@ApiOperation("Delete equipment by ID")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable UUID id) {
 		equipmentService.delete(id);
