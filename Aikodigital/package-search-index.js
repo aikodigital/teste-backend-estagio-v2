@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"br.com.Aikodigital"},{"l":"br.com.controller"},{"l":"br.com.DTO"},{"l":"br.com.model"},{"l":"br.com.repository"}]
