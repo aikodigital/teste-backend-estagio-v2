@@ -1,12 +1,12 @@
 package com.app.project.services;
 
-import com.app.project.domain.EquipmentState;
 import com.app.project.domain.EquipmentStateHistory;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipStateHistoryRepository;
-import com.app.project.requests.equipStateHistory.EquipStateHistoryPutRequest;
-import com.app.project.util.equipState.EquipStatePutRequestCreator;
+import com.app.project.util.equip.EquipCreator;
+import com.app.project.util.equipState.EquipStateCreator;
 import com.app.project.util.equipStateHistory.EquipStateHistoryCreator;
+import com.app.project.util.equipStateHistory.EquipStateHistoryPostRequestCreator;
 import com.app.project.util.equipStateHistory.EquipStateHistoryPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,8 +35,14 @@ class EquipmentStateHistoryServiceTest {
     @Mock
     private EquipStateHistoryRepository repository;
 
+    @Mock
+    private EquipmentService equipmentService;
+
+    @Mock
+    private EquipmentStateService equipStateService;
+
     @BeforeEach()
-    void setUp() {
+    void setUp() throws NotFoundException {
         BDDMockito.when(repository.findAll())
                 .thenReturn(List.of(EquipStateHistoryCreator.createEquipStateHistoryValid()));
 
@@ -45,9 +51,16 @@ class EquipmentStateHistoryServiceTest {
 
         BDDMockito.doNothing().when(repository).delete(ArgumentMatchers.any(EquipmentStateHistory.class));
 
+        // EquipmentService
+        BDDMockito.when(equipmentService.findByIdOrThrowNotFoundException(ArgumentMatchers.any(UUID.class)))
+                .thenReturn(EquipCreator.createEquipmentValid());
+
+        // EquipmentStateService
+        BDDMockito.when(equipStateService.findByIdOrThrowsNotFoundException(ArgumentMatchers.any(UUID.class)))
+                .thenReturn(EquipStateCreator.createEquipmentStateValid());
 // TODO: check the reason's nullPointerException
-//        BDDMockito.when(repository.save(ArgumentMatchers.any(EquipmentStateHistory.class)))
-//                .thenReturn(EquipStateHistoryCreator.createEquipStateHistoryValid());
+        BDDMockito.when(repository.save(ArgumentMatchers.any(EquipmentStateHistory.class)))
+                .thenReturn(EquipStateHistoryCreator.createEquipStateHistoryValid());
     }
 
     @Test
@@ -105,21 +118,20 @@ class EquipmentStateHistoryServiceTest {
                 .doesNotThrowAnyException();
     }
 
-// TODO: check the reason's nullPointerException
-//    @Test
-//    @DisplayName("save - returns equipment state history when successful")
-//    void save_ReturnsEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
-//        EquipmentStateHistory equipmentStateHistory = service.save(
-//                EquipStateHistoryPostRequestCreator.createEquipStateHistoryPostRequestServiceCreator());
-//        Assertions.assertThat(equipmentStateHistory).isNotNull();
-//    }
+    // TODO: check the reason's nullPointerException
+    @Test
+    @DisplayName("save - returns equipment state history when successful")
+    void save_ReturnsEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
+        EquipmentStateHistory equipmentStateHistory = service.save(
+                EquipStateHistoryPostRequestCreator.createEquipStateHistoryPostRequestCreator());
+        Assertions.assertThat(equipmentStateHistory).isNotNull();
+    }
 
-// TODO: check the reason's nullPointerException
-//    @Test
-//    @DisplayName("update returns an equipment state history when successful")
-//    void update_ReturnsAnEquipmentStateHistory_WhenSuccessful() {
-//        Assertions.assertThatCode(() -> service.update(
-//                EquipStateHistoryPutRequestCreator.createEquipStateHistoryPutRequestCreator()))
-//                .doesNotThrowAnyException();
-//    }
+    @Test
+    @DisplayName("update returns an equipment state history when successful")
+    void update_ReturnsAnEquipmentStateHistory_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.update(
+                EquipStateHistoryPutRequestCreator.createEquipStateHistoryPutRequestCreator()))
+                .doesNotThrowAnyException();
+    }
 }
