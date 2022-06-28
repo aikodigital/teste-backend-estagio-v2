@@ -2,7 +2,8 @@ package com.app.project.controllers;
 
 import com.app.project.domain.EquipmentModelStateHourlyEarnings;
 import com.app.project.exceptions.NotFoundException;
-import com.app.project.requests.EquipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequest;
+import com.app.project.requests.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequest;
+import com.app.project.requests.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPutRequest;
 import com.app.project.services.EquipmentModelStateHourlyEarningsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,5 +33,17 @@ public class EquipmentModelStateHourlyEarningsController {
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentModelStateHourlyEarnings> getById(@PathVariable UUID id) throws NotFoundException {
         return new ResponseEntity<>(service.findByIdOrThrowsNotFoundException(id), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> put(@RequestBody EquipModelStateHourlyEarningsPutRequest putRequest) throws NotFoundException {
+        service.update(putRequest);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id) throws NotFoundException {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

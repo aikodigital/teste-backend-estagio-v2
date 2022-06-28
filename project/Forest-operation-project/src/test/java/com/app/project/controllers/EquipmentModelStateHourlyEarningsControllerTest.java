@@ -2,11 +2,13 @@ package com.app.project.controllers;
 
 import com.app.project.domain.EquipmentModelStateHourlyEarnings;
 import com.app.project.exceptions.NotFoundException;
-import com.app.project.requests.EquipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequest;
+import com.app.project.requests.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequest;
+import com.app.project.requests.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPutRequest;
 import com.app.project.services.EquipmentModelStateHourlyEarningsService;
 import com.app.project.util.equipModel.EquipmentModelCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequestCreator;
+import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPutRequestCreator;
 import com.app.project.util.equipState.EquipStateCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,6 +47,9 @@ class EquipmentModelStateHourlyEarningsControllerTest {
 
         BDDMockito.when(service.findByIdOrThrowsNotFoundException(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipModelStateHourlyEarningsCreator.createEquipmentModelStateHourlyEarningsValid());
+
+        BDDMockito.doNothing().when(service).update(
+                ArgumentMatchers.any(EquipModelStateHourlyEarningsPutRequest.class));
     }
 
     @Test
@@ -92,5 +97,38 @@ class EquipmentModelStateHourlyEarningsControllerTest {
                 .isEqualTo(EquipModelStateHourlyEarningsCreator.createEquipmentModelStateHourlyEarningsValid());
 
         Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    }
+
+    @Test
+    @DisplayName("put updates an equipment model state hourly earnings when successful")
+    void put_UpdatesAnEquipmentModelStateHourlyEarnings_WhenSuccessful() throws NotFoundException {
+
+        Assertions.assertThatCode(() -> controller.put(
+                        EquipModelStateHourlyEarningsPutRequestCreator
+                                .createEquipModelStateHourlyEarningsPostRequestCreator()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> updatedEquip = controller.put(
+                EquipModelStateHourlyEarningsPutRequestCreator
+                        .createEquipModelStateHourlyEarningsPostRequestCreator());
+
+        Assertions.assertThat(updatedEquip).isNotNull();
+
+        Assertions.assertThat(updatedEquip.getStatusCode())
+                .isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    @DisplayName("delete removes an equipment model state hourly earnings when successful")
+    void delete_RemovesAnEquipmentModelStateHourlyEarnings_WhenSuccessful() throws NotFoundException {
+        Assertions.assertThatCode(() -> controller.delete(
+                        EquipModelStateHourlyEarningsCreator
+                                .createEquipmentModelStateHourlyEarningsValid().getId()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> equip = controller.delete(UUID_VALID);
+
+        Assertions.assertThat(equip).isNotNull();
+        Assertions.assertThat(equip.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
 }

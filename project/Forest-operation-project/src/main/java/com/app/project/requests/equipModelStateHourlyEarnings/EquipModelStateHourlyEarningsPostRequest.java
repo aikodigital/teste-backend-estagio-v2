@@ -1,4 +1,4 @@
-package com.app.project.requests.EquipModelStateHourlyEarnings;
+package com.app.project.requests.equipModelStateHourlyEarnings;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

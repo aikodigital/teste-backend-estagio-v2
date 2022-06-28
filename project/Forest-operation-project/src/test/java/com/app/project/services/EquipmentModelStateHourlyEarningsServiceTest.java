@@ -6,6 +6,7 @@ import com.app.project.repositories.EquipModelStateHourlyEarningsRepository;
 import com.app.project.util.equipModel.EquipmentModelCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequestCreator;
+import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPutRequestCreator;
 import com.app.project.util.equipState.EquipStateCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -114,4 +115,19 @@ class EquipmentModelStateHourlyEarningsServiceTest {
         Assertions.assertThat(entityToSave).isNotNull();
     }
 
+    @Test
+    @DisplayName("update returns an equipment model state hourly earnings when successful")
+    void update_ReturnsAnEquipmentModelStateHourlyEarnings_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.update(
+                        EquipModelStateHourlyEarningsPutRequestCreator.
+                                createEquipModelStateHourlyEarningsPostRequestCreator()))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("delete - removes an equipment model state hourly earnings when successful")
+    void delete_RemovesAnEquipmentModelStateHourlyEarnings_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.delete(UUID_VALID))
+                .doesNotThrowAnyException();
+    }
 }

@@ -1,6 +1,6 @@
 package com.app.project.util.equipModelStateHourlyEarnings;
 
-import com.app.project.requests.EquipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequest;
+import com.app.project.requests.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequest;
 
 public class EquipModelStateHourlyEarningsPostRequestCreator {
 
