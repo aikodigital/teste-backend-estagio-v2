@@ -1,11 +1,13 @@
 package com.app.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -24,4 +26,8 @@ public class EquipmentState {
     private String name;
 
     private String color;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipmentState")
+    List<EquipmentStateHistory> equipmentStateHistories;
 }

@@ -3,9 +3,6 @@ package com.app.project.services;
 import com.app.project.domain.EquipmentState;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipStateRepository;
-import com.app.project.requests.equip.EquipPutRequest;
-import com.app.project.requests.equipState.EquipStatePutRequest;
-import com.app.project.util.equip.EquipPutRequestCreator;
 import com.app.project.util.equipState.EquipStateCreator;
 import com.app.project.util.equipState.EquipStatePostRequestCreator;
 import com.app.project.util.equipState.EquipStatePutRequestCreator;
@@ -33,7 +30,7 @@ class EquipmentStateServiceTest {
     @Mock
     private EquipStateRepository repository;
 
-     final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
+    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
 
     @BeforeEach
     void setUp() {

@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class EquipService {
+public class EquipmentService {
 
     private final EquipRepository repository;
 

@@ -4,7 +4,7 @@ import com.app.project.domain.Equipment;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equip.EquipPostRequest;
 import com.app.project.requests.equip.EquipPutRequest;
-import com.app.project.services.EquipService;
+import com.app.project.services.EquipmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EquipmentController {
 
-    private final EquipService service;
+    private final EquipmentService service;
 
     @GetMapping
     public ResponseEntity<List<Equipment>> listAll() {

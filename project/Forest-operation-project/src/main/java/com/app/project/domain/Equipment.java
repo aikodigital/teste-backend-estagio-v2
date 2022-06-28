@@ -1,11 +1,13 @@
 package com.app.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -26,4 +28,8 @@ public class Equipment {
     @ManyToOne
     @JoinColumn(name = "equipment_model_id")
     private EquipmentModel model;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipment")
+    private List<EquipmentStateHistory> equipmentStateHistories;
 }

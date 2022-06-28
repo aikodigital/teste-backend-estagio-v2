@@ -27,7 +27,7 @@ class EquipServiceTest {
     final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
 
     @InjectMocks
-    private EquipService service;
+    private EquipmentService service;
 
     @Mock
     private EquipRepository repository;

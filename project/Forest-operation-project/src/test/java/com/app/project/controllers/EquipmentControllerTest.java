@@ -4,7 +4,7 @@ import com.app.project.domain.Equipment;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equip.EquipPostRequest;
 import com.app.project.requests.equip.EquipPutRequest;
-import com.app.project.services.EquipService;
+import com.app.project.services.EquipmentService;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equip.EquipPostRequestCreator;
 import com.app.project.util.equip.EquipPutRequestCreator;
@@ -33,7 +33,7 @@ class EquipmentControllerTest {
     private EquipmentController controller;
 
     @Mock
-    private EquipService service;
+    private EquipmentService service;
 
     @BeforeEach
     void setUp() throws NotFoundException {
