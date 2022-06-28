@@ -58,7 +58,7 @@ class EquipmentStateHistoryServiceTest {
         // EquipmentStateService
         BDDMockito.when(equipStateService.findByIdOrThrowsNotFoundException(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipStateCreator.createEquipmentStateValid());
-// TODO: check the reason's nullPointerException
+
         BDDMockito.when(repository.save(ArgumentMatchers.any(EquipmentStateHistory.class)))
                 .thenReturn(EquipStateHistoryCreator.createEquipStateHistoryValid());
     }
@@ -118,7 +118,6 @@ class EquipmentStateHistoryServiceTest {
                 .doesNotThrowAnyException();
     }
 
-    // TODO: check the reason's nullPointerException
     @Test
     @DisplayName("save - returns equipment state history when successful")
     void save_ReturnsEquipmentStateHistory_WhenSuccessful() throws NotFoundException {

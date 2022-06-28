@@ -17,10 +17,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 class EquipmentPositionHistoryServiceTest {
+
+    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
+    final static UUID UUID_INVALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0826");
 
     @InjectMocks
     private EquipmentPositionHistoryService service;
@@ -37,10 +42,58 @@ class EquipmentPositionHistoryServiceTest {
         BDDMockito.when(equipmentService.findByIdOrThrowNotFoundException(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipCreator.createEquipmentValid());
 
+        BDDMockito.when(repository.findAll())
+                .thenReturn(List.of(EquipPositionHistoryCreator.createEquipPositionHistoryValid()));
+
+        BDDMockito.when(repository.findById(ArgumentMatchers.any(UUID.class)))
+                .thenReturn(Optional.ofNullable(EquipPositionHistoryCreator.createEquipPositionHistoryValid()));
+
         // EquipmentPositionHistoryRepositoryMock
         BDDMockito.when(repository.save(ArgumentMatchers.any(EquipmentPositionHistory.class)))
                 .thenReturn(EquipPositionHistoryCreator.createEquipPositionHistoryValid());
     }
+
+    @Test
+    @DisplayName("findAll - returns a list of equipment position histories when successful")
+    void findAll_ReturnsAListOfEquipmentPositionHistories_WhenSuccessful() {
+        UUID expectedEquipmentId = EquipCreator.createEquipmentValid().getId();
+
+        List<EquipmentPositionHistory> equipmentPositionHistory = service.findAll();
+
+        Assertions.assertThat(equipmentPositionHistory).isNotNull()
+                .isNotEmpty()
+                .hasSize(1);
+
+        Assertions.assertThat(equipmentPositionHistory.get(0).getEquipment().getId())
+                .isEqualTo(expectedEquipmentId);
+
+        Assertions.assertThat(equipmentPositionHistory.get(0).getEquipment().getId())
+                .isEqualTo(expectedEquipmentId);
+    }
+
+    @Test
+    @DisplayName("findById - returns an equipment state history when successful")
+    void findById_ReturnsAnEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
+        UUID expectedEquipmentId = EquipCreator
+                .createEquipmentValid().getId();
+
+        EquipmentPositionHistory equipmentPositionHistory = service.findById(UUID_VALID);
+
+        Assertions.assertThat(equipmentPositionHistory).isNotNull();
+
+        Assertions.assertThat(equipmentPositionHistory.getEquipment().getId()).isEqualTo(expectedEquipmentId);
+    }
+
+    @Test
+    @DisplayName("findById - throws an exception when equipment position history is not found")
+    void findById_ThrowsAnException_WhenEquipmentPositionHistoryNotFound() throws NotFoundException {
+        BDDMockito.when(repository.findById(UUID_INVALID))
+                .thenReturn(Optional.empty());
+
+        Assertions.assertThatExceptionOfType(NotFoundException.class)
+                .isThrownBy(() -> service.findById(UUID_INVALID));
+    }
+
     @Test
     @DisplayName("save - returns equipment position history when successful")
     void save_ReturnsEquipmentPositionHistory_WhenSuccessful() throws NotFoundException {
