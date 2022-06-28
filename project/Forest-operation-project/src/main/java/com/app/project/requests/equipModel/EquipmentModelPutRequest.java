@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +16,8 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class EquipmentModelPutRequest {
 
-    private Long id;
+    @NotNull
+    private UUID id;
 
     @NotBlank
     @Column(nullable = false)

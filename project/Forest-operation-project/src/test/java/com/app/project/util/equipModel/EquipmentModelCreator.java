@@ -2,6 +2,8 @@ package com.app.project.util.equipModel;
 
 import com.app.project.domain.EquipmentModel;
 
+import java.util.UUID;
+
 public class EquipmentModelCreator {
 
     public static EquipmentModel createEquipmentModelToBeSaved() {
@@ -12,7 +14,7 @@ public class EquipmentModelCreator {
 
     public static EquipmentModel createEquipmentModelValid() {
         return EquipmentModel.builder()
-                .id(1L)
+                .id(UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825"))
                 .name("130G")
                 .build();
     }

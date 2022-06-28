@@ -6,8 +6,8 @@ public class EquipStatePutRequestCreator {
 
     public static EquipStatePutRequest createEquipStatePutRequestBody() {
         return EquipStatePutRequest.builder()
-                .id(1L)
-                .name("maintenance")
+                .id(EquipStateCreator.createEquipmentStateValid().getId())
+                .name(EquipStateCreator.createEquipmentStateValid().getName())
                 .color("Blue")
                 .build();
     }

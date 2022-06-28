@@ -19,9 +19,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 class EquipServiceTest {
+
+    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
 
     @InjectMocks
     private EquipService service;
@@ -37,7 +40,7 @@ class EquipServiceTest {
         BDDMockito.when(repository.findAll())
                 .thenReturn(List.of(EquipCreator.createEquipmentValid()));
 
-        BDDMockito.when(repository.findById(ArgumentMatchers.anyLong()))
+        BDDMockito.when(repository.findById(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(Optional.ofNullable(EquipCreator.createEquipmentValid()));
     }
 
@@ -59,9 +62,9 @@ class EquipServiceTest {
     @Test
     @DisplayName("findById - returns an equipment when successful")
     void findById_ReturnsAnEquipment_WhenSuccessful() throws NotFoundException {
-        Long expectedId = EquipCreator.createEquipmentValid().getId();
+        UUID expectedId = EquipCreator.createEquipmentValid().getId();
 
-        Equipment equipment = service.findByIdOrThrowNotFoundException(1L);
+        Equipment equipment = service.findByIdOrThrowNotFoundException(UUID_VALID);
 
         Assertions.assertThat(equipment).isNotNull();
 
@@ -72,11 +75,11 @@ class EquipServiceTest {
     @Test
     @DisplayName("getById - throws an exception when equipment is not found")
     void findById_ThrowsAnException_WhenEquipmentNotFound() throws NotFoundException {
-        BDDMockito.when(repository.findById(ArgumentMatchers.anyLong()))
+        BDDMockito.when(repository.findById(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(Optional.empty());
 
         Assertions.assertThatExceptionOfType(NotFoundException.class)
-                .isThrownBy(() -> service.findByIdOrThrowNotFoundException(1L));
+                .isThrownBy(() -> service.findByIdOrThrowNotFoundException(UUID_VALID));
     }
 
     @Test
@@ -100,7 +103,7 @@ class EquipServiceTest {
     @Test
     @DisplayName("delete removes an equipment when successful")
     void delete_RemovesAnEquipment_WhenSuccessful() {
-        Assertions.assertThatCode(() -> service.delete(1L))
+        Assertions.assertThatCode(() -> service.delete(UUID_VALID))
                 .doesNotThrowAnyException();
     }
 }

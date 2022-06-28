@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class EquipStatePutRequest {
 
     @NotNull
-    private Long id;
+    private UUID id;
 
     @NotBlank
     private String name;

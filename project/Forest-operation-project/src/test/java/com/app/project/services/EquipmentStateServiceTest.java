@@ -3,6 +3,9 @@ package com.app.project.services;
 import com.app.project.domain.EquipmentState;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipStateRepository;
+import com.app.project.requests.equip.EquipPutRequest;
+import com.app.project.requests.equipState.EquipStatePutRequest;
+import com.app.project.util.equip.EquipPutRequestCreator;
 import com.app.project.util.equipState.EquipStateCreator;
 import com.app.project.util.equipState.EquipStatePostRequestCreator;
 import com.app.project.util.equipState.EquipStatePutRequestCreator;
@@ -19,6 +22,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 class EquipmentStateServiceTest {
@@ -29,6 +33,8 @@ class EquipmentStateServiceTest {
     @Mock
     private EquipStateRepository repository;
 
+     final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
+
     @BeforeEach
     void setUp() {
         BDDMockito.when(repository.save(ArgumentMatchers.any(EquipmentState.class)))
@@ -37,7 +43,7 @@ class EquipmentStateServiceTest {
         BDDMockito.when(repository.findAll())
                 .thenReturn(List.of(EquipStateCreator.createEquipmentStateValid()));
 
-        BDDMockito.when(repository.findById(ArgumentMatchers.anyLong()))
+        BDDMockito.when(repository.findById(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(Optional.ofNullable(EquipStateCreator.createEquipmentStateValid()));
 
         BDDMockito.doNothing().when(repository).delete(ArgumentMatchers.any(EquipmentState.class));
@@ -70,9 +76,10 @@ class EquipmentStateServiceTest {
     @Test
     @DisplayName("findById - returns an equipment state when successful")
     void findById_ReturnsAnEquipmentState_WhenSuccessful() throws NotFoundException {
-        Long expectedId = EquipStateCreator.createEquipmentStateValid().getId();
+        UUID expectedId = EquipStateCreator.createEquipmentStateValid().getId();
 
-        EquipmentState equipment = service.findByIdOrThrowsNotFoundException(1L);
+        EquipmentState equipment = service
+                .findByIdOrThrowsNotFoundException(UUID_VALID);
 
         Assertions.assertThat(equipment).isNotNull();
 
@@ -83,16 +90,16 @@ class EquipmentStateServiceTest {
     @Test
     @DisplayName("findById - throws an exception when equipment state is not found")
     void findById_ThrowsAnException_WhenEquipmentStateNotFound() throws NotFoundException {
-        BDDMockito.when(repository.findById(ArgumentMatchers.anyLong()))
+        BDDMockito.when(repository.findById(UUID_VALID))
                 .thenReturn(Optional.empty());
 
         Assertions.assertThatExceptionOfType(NotFoundException.class)
-                .isThrownBy(() -> service.findByIdOrThrowsNotFoundException(1L));
+                .isThrownBy(() -> service.findByIdOrThrowsNotFoundException(UUID_VALID));
     }
 
     @Test
     @DisplayName("update returns an equipment state when successful")
-    void update_ReturnsAnEquipmentState_WhenSuccessful() {
+    void update_ReturnsAnEquipmentState_WhenSuccessful() throws NotFoundException {
         Assertions.assertThatCode(() -> service.update(
                         EquipStatePutRequestCreator.createEquipStatePutRequestBody()))
                 .doesNotThrowAnyException();
@@ -101,7 +108,7 @@ class EquipmentStateServiceTest {
     @Test
     @DisplayName("delete - removes an equipment state when successful")
     void delete_RemovesAnEquipmentState_WhenSuccessful() {
-        Assertions.assertThatCode(() -> service.delete(1L))
+        Assertions.assertThatCode(() -> service.delete(UUID_VALID))
                 .doesNotThrowAnyException();
     }
 }

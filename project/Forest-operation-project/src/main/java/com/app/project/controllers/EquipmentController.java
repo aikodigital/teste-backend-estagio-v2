@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/equipments")
@@ -26,7 +27,7 @@ public class EquipmentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Equipment> getById(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<Equipment> getById(@PathVariable UUID id) throws NotFoundException {
         return new ResponseEntity<>(service.findByIdOrThrowNotFoundException(id), HttpStatus.OK);
     }
 
@@ -42,7 +43,7 @@ public class EquipmentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<Void> delete(@PathVariable UUID id) throws NotFoundException {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

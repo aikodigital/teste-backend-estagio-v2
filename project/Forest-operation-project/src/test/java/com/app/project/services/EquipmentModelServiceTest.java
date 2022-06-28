@@ -7,6 +7,7 @@ import com.app.project.util.equipModel.EquipmentModelCreator;
 import com.app.project.util.equipModel.EquipmentModelPostRequestCreator;
 import com.app.project.util.equipModel.EquipmentModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
+import org.hibernate.id.UUIDGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,9 +20,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 class EquipmentModelServiceTest {
+
+    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
 
     @InjectMocks
     private EquipmentModelService modelService;
@@ -37,7 +41,7 @@ class EquipmentModelServiceTest {
         BDDMockito.when(modelRepositoryMock.findAll())
                 .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
 
-        BDDMockito.when(modelRepositoryMock.findById(ArgumentMatchers.anyLong()))
+        BDDMockito.when(modelRepositoryMock.findById(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(Optional.ofNullable(EquipmentModelCreator.createEquipmentModelValid()));
 
         BDDMockito.doNothing().when(modelRepositoryMock).delete(ArgumentMatchers.any(EquipmentModel.class));
@@ -72,9 +76,10 @@ class EquipmentModelServiceTest {
     @Test
     @DisplayName("findById returns an equipment model when successful")
     void findById_ReturnsAnEquipmentModel_WhenSuccessful() throws NotFoundException {
-        Long expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
 
-        EquipmentModel equipmentModel = modelService.findByIdOrThrowNotFoundException(1L);
+        EquipmentModel equipmentModel = modelService
+                .findByIdOrThrowNotFoundException(UUID_VALID);
 
         Assertions.assertThat(equipmentModel).isNotNull();
 
@@ -93,7 +98,8 @@ class EquipmentModelServiceTest {
     @Test
     @DisplayName("delete removes an equipment model when successful")
     void delete_RemovesAnEquipmentModel_WhenSuccessful() {
-        Assertions.assertThatCode(() -> modelService.delete(1L))
+        Assertions.assertThatCode(() -> modelService
+                        .delete(UUID_VALID))
                 .doesNotThrowAnyException();
     }
 }

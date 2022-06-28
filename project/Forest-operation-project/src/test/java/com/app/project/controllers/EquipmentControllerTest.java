@@ -22,9 +22,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 class EquipmentControllerTest {
+
+    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
 
     @InjectMocks
     private EquipmentController controller;
@@ -40,12 +43,12 @@ class EquipmentControllerTest {
         BDDMockito.when(service.findAll())
                 .thenReturn(List.of(EquipCreator.createEquipmentValid()));
 
-        BDDMockito.when(service.findByIdOrThrowNotFoundException(ArgumentMatchers.anyLong()))
+        BDDMockito.when(service.findByIdOrThrowNotFoundException(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipCreator.createEquipmentValid());
 
         BDDMockito.doNothing().when(service).update(ArgumentMatchers.any(EquipPutRequest.class));
 
-        BDDMockito.doNothing().when(service).delete(ArgumentMatchers.anyLong());
+        BDDMockito.doNothing().when(service).delete(ArgumentMatchers.any(UUID.class));
 
     }
 
@@ -67,9 +70,9 @@ class EquipmentControllerTest {
     @Test
     @DisplayName("getById - returns an equipment when successful")
     void findById_ReturnsAnEquipment_WhenSuccessful() throws NotFoundException {
-        Long expectedId = EquipCreator.createEquipmentValid().getId();
+        UUID expectedId = EquipCreator.createEquipmentValid().getId();
 
-        ResponseEntity<Equipment> equipment = controller.getById(1L);
+        ResponseEntity<Equipment> equipment = controller.getById(UUID_VALID);
 
         Assertions.assertThat(equipment).isNotNull();
 
@@ -116,7 +119,7 @@ class EquipmentControllerTest {
                         EquipCreator.createEquipmentValid().getId()))
                 .doesNotThrowAnyException();
 
-        ResponseEntity<Void> equipModel = controller.delete(1l);
+        ResponseEntity<Void> equipModel = controller.delete(UUID_VALID);
 
         Assertions.assertThat(equipModel).isNotNull();
         Assertions.assertThat(equipModel.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

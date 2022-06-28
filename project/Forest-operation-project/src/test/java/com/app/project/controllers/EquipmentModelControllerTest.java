@@ -22,9 +22,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 class EquipmentModelControllerTest {
+
+    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
 
     @InjectMocks
     private EquipmentModelController modelController;
@@ -40,12 +43,12 @@ class EquipmentModelControllerTest {
         BDDMockito.when(modelService.findAll())
                 .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
 
-        BDDMockito.when(modelService.findByIdOrThrowNotFoundException(ArgumentMatchers.anyLong()))
+        BDDMockito.when(modelService.findByIdOrThrowNotFoundException(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
 
         BDDMockito.doNothing().when(modelService).update(ArgumentMatchers.any(EquipmentModelPutRequest.class));
 
-        BDDMockito.doNothing().when(modelService).delete(ArgumentMatchers.anyLong());
+        BDDMockito.doNothing().when(modelService).delete(ArgumentMatchers.any(UUID.class));
     }
 
     @Test
@@ -67,9 +70,9 @@ class EquipmentModelControllerTest {
     @Test
     @DisplayName("findById returns an equipment model when successful")
     void findById_ReturnsAnEquipmentModel_WhenSuccessful() throws NotFoundException {
-        Long expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
 
-        EquipmentModel equipmentModel = modelController.getById(1L).getBody();
+        EquipmentModel equipmentModel = modelController.getById(UUID_VALID).getBody();
 
         Assertions.assertThat(equipmentModel).isNotNull();
 
@@ -113,7 +116,7 @@ class EquipmentModelControllerTest {
                 EquipmentModelCreator.createEquipmentModelValid().getId()))
                 .doesNotThrowAnyException();
 
-        ResponseEntity<Void> equipModel = modelController.delete(1l);
+        ResponseEntity<Void> equipModel = modelController.delete(UUID_VALID);
 
         Assertions.assertThat(equipModel).isNotNull();
         Assertions.assertThat(equipModel.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

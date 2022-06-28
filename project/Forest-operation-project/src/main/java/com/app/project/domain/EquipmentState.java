@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +18,8 @@ public class EquipmentState {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id", updatable = false, unique = true, nullable = false)
+    private UUID id;
 
     private String name;
 

@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class EquipService {
         return repository.findAll();
     }
 
-    public Equipment findByIdOrThrowNotFoundException(Long id) throws NotFoundException {
+    public Equipment findByIdOrThrowNotFoundException(UUID id) throws NotFoundException {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("equipment Not Found"));
     }
 
@@ -39,7 +40,7 @@ public class EquipService {
         repository.save(equipmentToSave);
     }
 
-    public void delete(Long id) throws NotFoundException {
+    public void delete(UUID id) throws NotFoundException {
         Equipment equipment = findByIdOrThrowNotFoundException(id);
         repository.delete(equipment);
     }

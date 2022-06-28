@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class EquipmentModelService {
         return modelRepository.findAll();
     }
 
-    public EquipmentModel findByIdOrThrowNotFoundException(Long id) throws NotFoundException {
+    public EquipmentModel findByIdOrThrowNotFoundException(UUID id) throws NotFoundException {
         EquipmentModel equipmentModel = modelRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("equipment model not found"));
         return equipmentModel;
@@ -40,7 +41,7 @@ public class EquipmentModelService {
         modelRepository.save(equipModel);
     }
 
-    public void delete(Long id) throws NotFoundException {
+    public void delete(UUID id) throws NotFoundException {
         EquipmentModel equipToDelete = findByIdOrThrowNotFoundException(id);
         modelRepository.delete(equipToDelete);
     }

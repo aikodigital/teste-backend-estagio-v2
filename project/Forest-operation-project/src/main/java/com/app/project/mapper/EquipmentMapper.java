@@ -18,9 +18,14 @@ public abstract class EquipmentMapper {
     public static final EquipmentMapper INSTANCE = Mappers.getMapper(EquipmentMapper.class);
 
     public abstract EquipmentModel toEquipment(EquipmentModelPostRequest postRequest);
+
     public abstract EquipmentModel toEquipment(EquipmentModelPutRequest putRequest);
+
     public abstract Equipment toEquipment(EquipPostRequest postRequest);
+
     public abstract Equipment toEquipment(EquipPutRequest putRequest);
+
     public abstract EquipmentState toEquipment(EquipStatePostRequest postRequest);
+
     public abstract EquipmentState toEquipment(EquipStatePutRequest poutRequest);
 }
