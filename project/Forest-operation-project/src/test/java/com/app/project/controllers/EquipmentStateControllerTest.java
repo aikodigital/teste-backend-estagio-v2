@@ -51,20 +51,6 @@ class EquipmentStateControllerTest {
     }
 
     @Test
-    @DisplayName("save - Returns an equipment state when successful")
-    void save_ReturnsAnEquipmentState_WhenSuccessful() throws NotFoundException {
-        ResponseEntity<EquipmentState> equipment = controller.post(
-                EquipStatePostRequestCreator.createEquipStatePostRequestBody());
-
-        Assertions.assertThat(equipment.getBody()).isNotNull()
-                .isEqualTo(EquipStateCreator.createEquipmentStateValid());
-
-        Assertions.assertThat(equipment.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-
-        BDDMockito.doNothing().when(service).delete(ArgumentMatchers.any(UUID.class));
-    }
-
-    @Test
     @DisplayName("listAll - returns a list of equipments state when successful")
     void listAll_ReturnsAListOfEquipmentsState_WhenSuccessful() {
         String expectedName = EquipStateCreator.createEquipmentStateValid().getName();
@@ -93,6 +79,20 @@ class EquipmentStateControllerTest {
 
         Assertions.assertThat(equipment.getStatusCode())
                 .isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    @DisplayName("save - Returns an equipment state when successful")
+    void save_ReturnsAnEquipmentState_WhenSuccessful() throws NotFoundException {
+        ResponseEntity<EquipmentState> equipment = controller.post(
+                EquipStatePostRequestCreator.createEquipStatePostRequestBody());
+
+        Assertions.assertThat(equipment.getBody()).isNotNull()
+                .isEqualTo(EquipStateCreator.createEquipmentStateValid());
+
+        Assertions.assertThat(equipment.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+        BDDMockito.doNothing().when(service).delete(ArgumentMatchers.any(UUID.class));
     }
 
     @Test

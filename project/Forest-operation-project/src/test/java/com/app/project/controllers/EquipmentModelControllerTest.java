@@ -5,9 +5,9 @@ import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equipModel.EquipmentModelPostRequest;
 import com.app.project.requests.equipModel.EquipmentModelPutRequest;
 import com.app.project.services.EquipmentModelService;
-import com.app.project.util.equipModel.EquipmentModelCreator;
-import com.app.project.util.equipModel.EquipmentModelPostRequestCreator;
-import com.app.project.util.equipModel.EquipmentModelPutRequestCreator;
+import com.app.project.util.equipModel.EquipModelCreator;
+import com.app.project.util.equipModel.EquipModelPostRequestCreator;
+import com.app.project.util.equipModel.EquipModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -38,13 +38,13 @@ class EquipmentModelControllerTest {
     @BeforeEach
     void setUp() throws NotFoundException {
         BDDMockito.when(modelService.save(ArgumentMatchers.any(EquipmentModelPostRequest.class)))
-                .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
+                .thenReturn(EquipModelCreator.createEquipmentModelValid());
 
         BDDMockito.when(modelService.findAll())
-                .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
+                .thenReturn(List.of(EquipModelCreator.createEquipmentModelValid()));
 
         BDDMockito.when(modelService.findByIdOrThrowsNotFoundException(ArgumentMatchers.any(UUID.class)))
-                .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
+                .thenReturn(EquipModelCreator.createEquipmentModelValid());
 
         BDDMockito.doNothing().when(modelService).update(ArgumentMatchers.any(EquipmentModelPutRequest.class));
 
@@ -54,7 +54,7 @@ class EquipmentModelControllerTest {
     @Test
     @DisplayName("listAll returns a list of equipment models when successful")
     void listAll_ReturnsAListOfEquipmentModels_WhenSuccessful() {
-        String expectedName = EquipmentModelCreator.createEquipmentModelValid().getName();
+        String expectedName = EquipModelCreator.createEquipmentModelValid().getName();
 
         List<EquipmentModel> equipModels = modelController.listAll().getBody();
 
@@ -70,7 +70,7 @@ class EquipmentModelControllerTest {
     @Test
     @DisplayName("findById returns an equipment model when successful")
     void findById_ReturnsAnEquipmentModel_WhenSuccessful() throws NotFoundException {
-        UUID expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedId = EquipModelCreator.createEquipmentModelValid().getId();
 
         EquipmentModel equipmentModel = modelController.getById(UUID_VALID).getBody();
 
@@ -85,11 +85,11 @@ class EquipmentModelControllerTest {
     void post_ReturnsAnEquipmentModel_WhenSuccessful() {
 
         EquipmentModel post = modelController.post(
-                EquipmentModelPostRequestCreator.createEquipmentModelPostRequestBody()).getBody();
+                EquipModelPostRequestCreator.createEquipmentModelPostRequestBody()).getBody();
 
         Assertions.assertThat(post)
                 .isNotNull()
-                .isEqualTo(EquipmentModelCreator.createEquipmentModelValid());
+                .isEqualTo(EquipModelCreator.createEquipmentModelValid());
     }
 
     @Test
@@ -97,11 +97,11 @@ class EquipmentModelControllerTest {
     void put_UpdatesAnEquipmentModel_WhenSuccessful() throws NotFoundException {
 
         Assertions.assertThatCode(() -> modelController.put(
-                        EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
+                        EquipModelPutRequestCreator.createEquipmentModelPutRequestBody()))
                 .doesNotThrowAnyException();
 
         ResponseEntity<Void> updatedEquipModel = modelController.put(
-                EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody());
+                EquipModelPutRequestCreator.createEquipmentModelPutRequestBody());
 
         Assertions.assertThat(updatedEquipModel).isNotNull();
 
@@ -113,7 +113,7 @@ class EquipmentModelControllerTest {
     @DisplayName("delete removes an equipment model when successful")
     void delete_RemovesAnEquipmentModelWhenSuccessful() throws NotFoundException {
         Assertions.assertThatCode(() -> modelController.delete(
-                        EquipmentModelCreator.createEquipmentModelValid().getId()))
+                        EquipModelCreator.createEquipmentModelValid().getId()))
                 .doesNotThrowAnyException();
 
         ResponseEntity<Void> equipModel = modelController.delete(UUID_VALID);

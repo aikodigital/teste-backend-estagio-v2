@@ -5,7 +5,6 @@ import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equipPositionHistory.EquipPositionHistoryPostRequest;
 import com.app.project.requests.equipPositionHistory.EquipPositionHistoryPutRequest;
 import com.app.project.services.EquipmentPositionHistoryService;
-import com.app.project.services.EquipmentService;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equipPositionHistory.EquipPositionHistoryCreator;
 import com.app.project.util.equipPositionHistory.EquipPositionHistoryPostRequestCreator;
@@ -36,9 +35,6 @@ class EquipmentPositionHistoryControllerTest {
 
     @Mock
     private EquipmentPositionHistoryService service;
-
-    @Mock
-    private EquipmentService equipService;
 
     @BeforeEach
     void setUp() throws NotFoundException {

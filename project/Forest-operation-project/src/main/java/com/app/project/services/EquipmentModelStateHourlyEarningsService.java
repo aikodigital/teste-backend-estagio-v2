@@ -39,6 +39,7 @@ public class EquipmentModelStateHourlyEarningsService {
     public void update(EquipModelStateHourlyEarningsPutRequest putRequest) throws NotFoundException {
         repository.save(toRelateEntitiesInfos(putRequest));
     }
+
     public void delete(UUID id) throws NotFoundException {
         EquipmentModelStateHourlyEarnings entityFounded = findByIdOrThrowsNotFoundException(id);
         repository.delete(entityFounded);

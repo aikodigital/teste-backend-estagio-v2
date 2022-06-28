@@ -3,11 +3,8 @@ package com.app.project.util.equipStateHistory;
 import com.app.project.domain.EquipmentStateHistory;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equipState.EquipStateCreator;
-import org.checkerframework.checker.units.qual.Time;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 public class EquipStateHistoryCreator {

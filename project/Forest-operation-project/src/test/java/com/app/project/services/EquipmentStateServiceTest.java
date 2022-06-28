@@ -49,15 +49,6 @@ class EquipmentStateServiceTest {
     }
 
     @Test
-    @DisplayName("save - returns an equipment state when successful")
-    void save_ReturnsAnEquipmentState_WhenSuccessful() {
-        EquipmentState equipment = service.save(EquipStatePostRequestCreator.createEquipStatePostRequestBody());
-
-        Assertions.assertThat(equipment).isNotNull()
-                .isEqualTo(EquipStateCreator.createEquipmentStateValid());
-    }
-
-    @Test
     @DisplayName("findAll - returns a list of equipment state when successful")
     void findAll_ReturnsAListOfEquipmentState_WhenSuccessful() {
         String expectedName = EquipStateCreator.createEquipmentStateValid().getName();
@@ -94,6 +85,15 @@ class EquipmentStateServiceTest {
 
         Assertions.assertThatExceptionOfType(NotFoundException.class)
                 .isThrownBy(() -> service.findByIdOrThrowsNotFoundException(UUID_INVALID));
+    }
+
+    @Test
+    @DisplayName("save - returns an equipment state when successful")
+    void save_ReturnsAnEquipmentState_WhenSuccessful() {
+        EquipmentState equipment = service.save(EquipStatePostRequestCreator.createEquipStatePostRequestBody());
+
+        Assertions.assertThat(equipment).isNotNull()
+                .isEqualTo(EquipStateCreator.createEquipmentStateValid());
     }
 
     @Test

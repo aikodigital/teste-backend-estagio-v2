@@ -21,11 +21,6 @@ public class EquipmentStateController {
 
     private final EquipmentStateService service;
 
-    @PostMapping
-    public ResponseEntity<EquipmentState> post(@RequestBody @Valid EquipStatePostRequest postRequest) {
-        return new ResponseEntity<>(service.save(postRequest), HttpStatus.CREATED);
-    }
-
     @GetMapping
     public ResponseEntity<List<EquipmentState>> findAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
@@ -34,6 +29,11 @@ public class EquipmentStateController {
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentState> getById(@PathVariable UUID id) throws NotFoundException {
         return new ResponseEntity<>(service.findByIdOrThrowsNotFoundException(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<EquipmentState> post(@RequestBody @Valid EquipStatePostRequest postRequest) {
+        return new ResponseEntity<>(service.save(postRequest), HttpStatus.CREATED);
     }
 
     @PutMapping

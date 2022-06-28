@@ -19,12 +19,6 @@ import java.util.UUID;
 public class EquipmentModelStateHourlyEarningsController {
     private final EquipmentModelStateHourlyEarningsService service;
 
-    @PostMapping
-    public ResponseEntity<EquipmentModelStateHourlyEarnings> post(
-            @RequestBody EquipModelStateHourlyEarningsPostRequest postRequest) throws NotFoundException {
-        return new ResponseEntity<>(service.save(postRequest), HttpStatus.CREATED);
-    }
-
     @GetMapping
     public ResponseEntity<List<EquipmentModelStateHourlyEarnings>> listAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
@@ -33,6 +27,12 @@ public class EquipmentModelStateHourlyEarningsController {
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentModelStateHourlyEarnings> getById(@PathVariable UUID id) throws NotFoundException {
         return new ResponseEntity<>(service.findByIdOrThrowsNotFoundException(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<EquipmentModelStateHourlyEarnings> post(
+            @RequestBody EquipModelStateHourlyEarningsPostRequest postRequest) throws NotFoundException {
+        return new ResponseEntity<>(service.save(postRequest), HttpStatus.CREATED);
     }
 
     @PutMapping

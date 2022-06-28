@@ -4,7 +4,7 @@ import com.app.project.domain.EquipmentModel;
 
 import java.util.UUID;
 
-public class EquipmentModelCreator {
+public class EquipModelCreator {
 
     public static EquipmentModel createEquipmentModelToBeSaved() {
         return EquipmentModel.builder()

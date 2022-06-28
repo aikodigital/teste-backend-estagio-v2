@@ -3,7 +3,7 @@ package com.app.project.services;
 import com.app.project.domain.EquipmentModelStateHourlyEarnings;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipModelStateHourlyEarningsRepository;
-import com.app.project.util.equipModel.EquipmentModelCreator;
+import com.app.project.util.equipModel.EquipModelCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequestCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPutRequestCreator;
@@ -49,7 +49,7 @@ class EquipmentModelStateHourlyEarningsServiceTest {
 
         // stateServiceMock
         BDDMockito.when(modelServiceMock.findByIdOrThrowsNotFoundException(ArgumentMatchers.any(UUID.class)))
-                .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
+                .thenReturn(EquipModelCreator.createEquipmentModelValid());
 
         BDDMockito.when(repositoryMock.save(ArgumentMatchers.any(EquipmentModelStateHourlyEarnings.class)))
                 .thenReturn(EquipModelStateHourlyEarningsCreator.createEquipmentModelStateHourlyEarningsValid());
@@ -65,7 +65,7 @@ class EquipmentModelStateHourlyEarningsServiceTest {
     @DisplayName("findAll - returns a list of equipment model state hourly earnings when successful")
     void findAll_ReturnsAListOfEquipmentModelStateHourlyEarnings_WhenSuccessful() {
         UUID expectedIdEquipState = EquipStateCreator.createEquipmentStateValid().getId();
-        UUID expectedIdEquipModel = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedIdEquipModel = EquipModelCreator.createEquipmentModelValid().getId();
 
         List<EquipmentModelStateHourlyEarnings> entity = service.findAll();
 
@@ -83,7 +83,7 @@ class EquipmentModelStateHourlyEarningsServiceTest {
     @DisplayName("findById - returns an equipment model state hourly earning when successful")
     void findById_ReturnsAnEquipmentModelStateHourlyEarnings_WhenSuccessful() throws NotFoundException {
         UUID expectedStateId = EquipStateCreator.createEquipmentStateValid().getId();
-        UUID expectedModelId = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedModelId = EquipModelCreator.createEquipmentModelValid().getId();
 
         EquipmentModelStateHourlyEarnings entity = service
                 .findByIdOrThrowsNotFoundException(UUID_VALID);

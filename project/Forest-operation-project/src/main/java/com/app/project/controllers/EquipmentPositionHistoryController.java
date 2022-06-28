@@ -20,11 +20,6 @@ public class EquipmentPositionHistoryController {
 
     private final EquipmentPositionHistoryService service;
 
-    @PostMapping
-    public ResponseEntity<EquipmentPositionHistory> post(@RequestBody EquipPositionHistoryPostRequest postRequest) throws NotFoundException {
-        return new ResponseEntity<>(service.save(postRequest), HttpStatus.CREATED);
-    }
-
     @GetMapping
     public ResponseEntity<List<EquipmentPositionHistory>> listAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
@@ -33,6 +28,11 @@ public class EquipmentPositionHistoryController {
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentPositionHistory> getById(@PathVariable UUID id) throws NotFoundException {
         return new ResponseEntity<>(service.findByIdOrThrowsNotFoundException(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<EquipmentPositionHistory> post(@RequestBody EquipPositionHistoryPostRequest postRequest) throws NotFoundException {
+        return new ResponseEntity<>(service.save(postRequest), HttpStatus.CREATED);
     }
 
     @PutMapping

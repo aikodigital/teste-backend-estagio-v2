@@ -5,7 +5,7 @@ import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequest;
 import com.app.project.requests.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPutRequest;
 import com.app.project.services.EquipmentModelStateHourlyEarningsService;
-import com.app.project.util.equipModel.EquipmentModelCreator;
+import com.app.project.util.equipModel.EquipModelCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPostRequestCreator;
 import com.app.project.util.equipModelStateHourlyEarnings.EquipModelStateHourlyEarningsPutRequestCreator;
@@ -56,7 +56,7 @@ class EquipmentModelStateHourlyEarningsControllerTest {
     @DisplayName("listAll - returns a list of equipment model state hourly earnings when successful")
     void listAll_ReturnsAListOfEquipmentModelStateHourlyEarnings_WhenSuccessful() {
         UUID expectedStateId = EquipStateCreator.createEquipmentStateValid().getId();
-        UUID expectedModelId = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedModelId = EquipModelCreator.createEquipmentModelValid().getId();
 
         List<EquipmentModelStateHourlyEarnings> entity = controller.listAll().getBody();
 
@@ -73,7 +73,7 @@ class EquipmentModelStateHourlyEarningsControllerTest {
     @DisplayName("getById - returns an equipment model state hourly earnings when successful")
     void getById_ReturnsAnEquipmentModelStateHourlyEarnings_WhenSuccessful() throws NotFoundException {
         UUID expectedStateId = EquipStateCreator.createEquipmentStateValid().getId();
-        UUID expectedModelId = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedModelId = EquipModelCreator.createEquipmentModelValid().getId();
 
         EquipmentModelStateHourlyEarnings entity = controller.getById(UUID_VALID).getBody();
 

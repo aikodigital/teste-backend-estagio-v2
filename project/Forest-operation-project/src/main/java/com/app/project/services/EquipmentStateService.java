@@ -18,12 +18,8 @@ public class EquipmentStateService {
 
     private final EquipStateRepository repository;
 
+
     private final EquipmentMapper mapper = EquipmentMapper.INSTANCE;
-
-
-    public EquipmentState save(EquipStatePostRequest postRequest) {
-        return repository.save(mapper.toEquipment(postRequest));
-    }
 
     public List<EquipmentState> findAll() {
         return repository.findAll();
@@ -32,6 +28,10 @@ public class EquipmentStateService {
     public EquipmentState findByIdOrThrowsNotFoundException(UUID id) throws NotFoundException {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Equipment state not found"));
+    }
+
+    public EquipmentState save(EquipStatePostRequest postRequest) {
+        return repository.save(mapper.toEquipment(postRequest));
     }
 
     public void update(EquipStatePutRequest putRequest) throws NotFoundException {

@@ -3,9 +3,9 @@ package com.app.project.services;
 import com.app.project.domain.EquipmentModel;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipModelRepository;
-import com.app.project.util.equipModel.EquipmentModelCreator;
-import com.app.project.util.equipModel.EquipmentModelPostRequestCreator;
-import com.app.project.util.equipModel.EquipmentModelPutRequestCreator;
+import com.app.project.util.equipModel.EquipModelCreator;
+import com.app.project.util.equipModel.EquipModelPostRequestCreator;
+import com.app.project.util.equipModel.EquipModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,31 +35,21 @@ class EquipmentModelServiceTest {
     @BeforeEach
     void setUp() {
         BDDMockito.when(modelRepositoryMock.save(ArgumentMatchers.any(EquipmentModel.class)))
-                .thenReturn(EquipmentModelCreator.createEquipmentModelToBeSaved());
+                .thenReturn(EquipModelCreator.createEquipmentModelToBeSaved());
 
         BDDMockito.when(modelRepositoryMock.findAll())
-                .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
+                .thenReturn(List.of(EquipModelCreator.createEquipmentModelValid()));
 
         BDDMockito.when(modelRepositoryMock.findById(ArgumentMatchers.any(UUID.class)))
-                .thenReturn(Optional.ofNullable(EquipmentModelCreator.createEquipmentModelValid()));
+                .thenReturn(Optional.ofNullable(EquipModelCreator.createEquipmentModelValid()));
 
         BDDMockito.doNothing().when(modelRepositoryMock).delete(ArgumentMatchers.any(EquipmentModel.class));
     }
 
     @Test
-    @DisplayName("save returns an equipmentModel when successful")
-    void saveReturnsAnEquipmentModel_WhenSuccessful() {
-        EquipmentModel equipmentModel = modelService.save(
-                EquipmentModelPostRequestCreator.createEquipmentModelPostRequestBody());
-
-        Assertions.assertThat(equipmentModel).isNotNull()
-                .isEqualTo(EquipmentModelCreator.createEquipmentModelToBeSaved());
-    }
-
-    @Test
     @DisplayName("findAll returns a list of equipment models")
     void findAll_ReturnsAListOfEquipmentModels_WhenSuccessful() {
-        String expectedName = EquipmentModelCreator.createEquipmentModelValid().getName();
+        String expectedName = EquipModelCreator.createEquipmentModelValid().getName();
 
         List<EquipmentModel> equipModels = modelService.findAll();
 
@@ -75,7 +65,7 @@ class EquipmentModelServiceTest {
     @Test
     @DisplayName("findById returns an equipment model when successful")
     void findById_ReturnsAnEquipmentModel_WhenSuccessful() throws NotFoundException {
-        UUID expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
+        UUID expectedId = EquipModelCreator.createEquipmentModelValid().getId();
 
         EquipmentModel equipmentModel = modelService
                 .findByIdOrThrowsNotFoundException(UUID_VALID);
@@ -87,10 +77,20 @@ class EquipmentModelServiceTest {
     }
 
     @Test
+    @DisplayName("save returns an equipmentModel when successful")
+    void saveReturnsAnEquipmentModel_WhenSuccessful() {
+        EquipmentModel equipmentModel = modelService.save(
+                EquipModelPostRequestCreator.createEquipmentModelPostRequestBody());
+
+        Assertions.assertThat(equipmentModel).isNotNull()
+                .isEqualTo(EquipModelCreator.createEquipmentModelToBeSaved());
+    }
+
+    @Test
     @DisplayName("update - updates an equipment model when successful")
     void update_UpdateAnEquipmentModel_WhenSuccessful() {
         Assertions.assertThatCode(() -> modelService.update(
-                        EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
+                        EquipModelPutRequestCreator.createEquipmentModelPutRequestBody()))
                 .doesNotThrowAnyException();
     }
 
