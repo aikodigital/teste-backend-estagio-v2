@@ -25,6 +25,7 @@ import java.util.UUID;
 class EquipServiceTest {
 
     final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
+    final static UUID UUID_INVALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0826");
 
     @InjectMocks
     private EquipmentService service;
@@ -75,11 +76,11 @@ class EquipServiceTest {
     @Test
     @DisplayName("getById - throws an exception when equipment is not found")
     void findById_ThrowsAnException_WhenEquipmentNotFound() throws NotFoundException {
-        BDDMockito.when(repository.findById(ArgumentMatchers.any(UUID.class)))
+        BDDMockito.when(repository.findById(UUID_INVALID))
                 .thenReturn(Optional.empty());
 
         Assertions.assertThatExceptionOfType(NotFoundException.class)
-                .isThrownBy(() -> service.findByIdOrThrowNotFoundException(UUID_VALID));
+                .isThrownBy(() -> service.findByIdOrThrowNotFoundException(UUID_INVALID));
     }
 
     @Test

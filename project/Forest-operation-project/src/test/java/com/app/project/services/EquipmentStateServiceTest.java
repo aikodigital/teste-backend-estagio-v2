@@ -24,13 +24,15 @@ import java.util.UUID;
 @ExtendWith(SpringExtension.class)
 class EquipmentStateServiceTest {
 
+    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
+    final static UUID UUID_INVALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0826");
+
     @InjectMocks
     private EquipmentStateService service;
 
     @Mock
     private EquipStateRepository repository;
 
-    final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
 
     @BeforeEach
     void setUp() {
@@ -87,11 +89,11 @@ class EquipmentStateServiceTest {
     @Test
     @DisplayName("findById - throws an exception when equipment state is not found")
     void findById_ThrowsAnException_WhenEquipmentStateNotFound() throws NotFoundException {
-        BDDMockito.when(repository.findById(UUID_VALID))
+        BDDMockito.when(repository.findById(UUID_INVALID))
                 .thenReturn(Optional.empty());
 
         Assertions.assertThatExceptionOfType(NotFoundException.class)
-                .isThrownBy(() -> service.findByIdOrThrowsNotFoundException(UUID_VALID));
+                .isThrownBy(() -> service.findByIdOrThrowsNotFoundException(UUID_INVALID));
     }
 
     @Test

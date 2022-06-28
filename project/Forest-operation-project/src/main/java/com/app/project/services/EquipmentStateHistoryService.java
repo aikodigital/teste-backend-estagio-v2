@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +40,14 @@ public class EquipmentStateHistoryService {
                 .equipmentState(equipState)
                 .build();
         return equipmentStateHistory;
+    }
+
+    public List<EquipmentStateHistory> findAll() {
+        return repository.findAll();
+    }
+
+    public EquipmentStateHistory findById(UUID id) throws NotFoundException {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Equipment state history not found"));
     }
 }

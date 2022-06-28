@@ -18,19 +18,4 @@ public class EquipStateHistoryPostRequestCreator {
                 .equipmentStateId(EquipStateCreator.createEquipmentStateValid().getId())
                 .build();
     }
-
-    public static EquipStateHistoryPostRequest createEquipStateHistoryPostRequestServiceCreator() throws NotFoundException {
-        return toRelateEntitiesInfos(
-                EquipStateHistoryPostRequestCreator.createEquipStateHistoryPostRequestCreator());
-    }
-    private static EquipStateHistoryPostRequest toRelateEntitiesInfos(EquipStateHistoryPostRequest postRequest) throws NotFoundException {
-        Equipment equip = EquipCreator.createEquipmentValid();
-        EquipmentState equipState = EquipStateCreator.createEquipmentStateValid();
-
-        EquipStateHistoryPostRequest equipToSave = EquipStateHistoryPostRequest.builder()
-                .equipmentId(equip.getId())
-                .equipmentStateId(equipState.getId())
-                .build();
-        return equipToSave;
-    }
 }
