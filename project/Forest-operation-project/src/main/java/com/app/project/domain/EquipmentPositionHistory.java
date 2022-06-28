@@ -29,7 +29,7 @@ public class EquipmentPositionHistory {
 
     private LocalDateTime date;
 
-    private Float lat;
+    private BigDecimal lat;
 
-    private Float lon;
+    private BigDecimal lon;
 }

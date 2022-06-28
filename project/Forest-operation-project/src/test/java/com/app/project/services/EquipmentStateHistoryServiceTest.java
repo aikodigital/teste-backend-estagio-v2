@@ -112,13 +112,6 @@ class EquipmentStateHistoryServiceTest {
     }
 
     @Test
-    @DisplayName("delete - removes an equipment state history when successful")
-    void delete_RemovesAnEquipmentStateHistory_WhenSuccessful() {
-        Assertions.assertThatCode(() -> service.delete(UUID_VALID))
-                .doesNotThrowAnyException();
-    }
-
-    @Test
     @DisplayName("save - returns equipment state history when successful")
     void save_ReturnsEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
         EquipmentStateHistory equipmentStateHistory = service.save(
@@ -130,7 +123,14 @@ class EquipmentStateHistoryServiceTest {
     @DisplayName("update returns an equipment state history when successful")
     void update_ReturnsAnEquipmentStateHistory_WhenSuccessful() {
         Assertions.assertThatCode(() -> service.update(
-                EquipStateHistoryPutRequestCreator.createEquipStateHistoryPutRequestCreator()))
+                        EquipStateHistoryPutRequestCreator.createEquipStateHistoryPutRequestCreator()))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("delete - removes an equipment state history when successful")
+    void delete_RemovesAnEquipmentStateHistory_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.delete(UUID_VALID))
                 .doesNotThrowAnyException();
     }
 }

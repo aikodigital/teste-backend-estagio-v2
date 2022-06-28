@@ -1,6 +1,5 @@
 package com.app.project.requests.equipPositionHistory;
 
-import com.app.project.domain.Equipment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,16 +14,17 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EquipPositionHistoryPostRequest {
+public class EquipPositionHistoryPutRequest {
 
     @NotNull
+    private UUID id;
+
+    @NotBlank
     private UUID equipment;
 
     @NotBlank
-    @NotNull
     private BigDecimal lat;
 
     @NotBlank
-    @NotNull
     private BigDecimal lon;
 }

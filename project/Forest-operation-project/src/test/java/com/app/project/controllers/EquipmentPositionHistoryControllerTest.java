@@ -3,11 +3,13 @@ package com.app.project.controllers;
 import com.app.project.domain.EquipmentPositionHistory;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equipPositionHistory.EquipPositionHistoryPostRequest;
+import com.app.project.requests.equipPositionHistory.EquipPositionHistoryPutRequest;
 import com.app.project.services.EquipmentPositionHistoryService;
 import com.app.project.services.EquipmentService;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equipPositionHistory.EquipPositionHistoryCreator;
 import com.app.project.util.equipPositionHistory.EquipPositionHistoryPostRequestCreator;
+import com.app.project.util.equipPositionHistory.EquipPositionHistoryPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,13 +46,13 @@ class EquipmentPositionHistoryControllerTest {
         BDDMockito.when(service.findAll())
                 .thenReturn(List.of(EquipPositionHistoryCreator.createEquipPositionHistoryValid()));
 
-        BDDMockito.when(service.findById(ArgumentMatchers.any(UUID.class)))
+        BDDMockito.when(service.findByIdOrThrowsNotFoundException(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipPositionHistoryCreator.createEquipPositionHistoryValid());
 
         BDDMockito.when(service.save(ArgumentMatchers.any(EquipPositionHistoryPostRequest.class)))
                 .thenReturn(EquipPositionHistoryCreator.createEquipPositionHistoryValid());
 
-
+        BDDMockito.doNothing().when(service).update(ArgumentMatchers.any(EquipPositionHistoryPutRequest.class));
     }
 
     @Test
@@ -92,5 +94,35 @@ class EquipmentPositionHistoryControllerTest {
 
         Assertions.assertThat(equipment).isNotNull()
                 .isEqualTo(EquipPositionHistoryCreator.createEquipPositionHistoryValid());
+    }
+
+    @Test
+    @DisplayName("put updates an equipment position history when successful")
+    void put_UpdatesAnEquipmentPositionHistory_WhenSuccessful() throws NotFoundException {
+
+        Assertions.assertThatCode(() -> controller.put(
+                        EquipPositionHistoryPutRequestCreator.createEquipPositionHistoryPutRequestCreator()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> updatedEquip = controller.put(
+                EquipPositionHistoryPutRequestCreator.createEquipPositionHistoryPutRequestCreator());
+
+        Assertions.assertThat(updatedEquip).isNotNull();
+
+        Assertions.assertThat(updatedEquip.getStatusCode())
+                .isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    @DisplayName("delete removes an equipment position history when successful")
+    void delete_RemovesAnEquipmentPositionHistory_WhenSuccessful() throws NotFoundException {
+        Assertions.assertThatCode(() -> controller.delete(
+                        EquipPositionHistoryCreator.createEquipPositionHistoryValid().getId()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> equip = controller.delete(UUID_VALID);
+
+        Assertions.assertThat(equip).isNotNull();
+        Assertions.assertThat(equip.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
 }

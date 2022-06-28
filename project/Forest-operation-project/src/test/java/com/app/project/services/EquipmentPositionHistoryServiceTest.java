@@ -6,6 +6,7 @@ import com.app.project.repositories.EquipPositionHistoryRepository;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equipPositionHistory.EquipPositionHistoryCreator;
 import com.app.project.util.equipPositionHistory.EquipPositionHistoryPostRequestCreator;
+import com.app.project.util.equipPositionHistory.EquipPositionHistoryPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -77,7 +78,7 @@ class EquipmentPositionHistoryServiceTest {
         UUID expectedEquipmentId = EquipCreator
                 .createEquipmentValid().getId();
 
-        EquipmentPositionHistory equipmentPositionHistory = service.findById(UUID_VALID);
+        EquipmentPositionHistory equipmentPositionHistory = service.findByIdOrThrowsNotFoundException(UUID_VALID);
 
         Assertions.assertThat(equipmentPositionHistory).isNotNull();
 
@@ -91,7 +92,7 @@ class EquipmentPositionHistoryServiceTest {
                 .thenReturn(Optional.empty());
 
         Assertions.assertThatExceptionOfType(NotFoundException.class)
-                .isThrownBy(() -> service.findById(UUID_INVALID));
+                .isThrownBy(() -> service.findByIdOrThrowsNotFoundException(UUID_INVALID));
     }
 
     @Test
@@ -100,5 +101,20 @@ class EquipmentPositionHistoryServiceTest {
         EquipmentPositionHistory equipmentStateHistory = service.save(
                 EquipPositionHistoryPostRequestCreator.createEquipPositionHistoryPostRequestCreator());
         Assertions.assertThat(equipmentStateHistory).isNotNull();
+    }
+
+    @Test
+    @DisplayName("update returns an equipment position history when successful")
+    void update_ReturnsAnEquipmentPositionHistory_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.update(
+                        EquipPositionHistoryPutRequestCreator.createEquipPositionHistoryPutRequestCreator()))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("delete - removes an equipment position history when successful")
+    void delete_RemovesAnEquipmentPositionHistory_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.delete(UUID_VALID))
+                .doesNotThrowAnyException();
     }
 }
