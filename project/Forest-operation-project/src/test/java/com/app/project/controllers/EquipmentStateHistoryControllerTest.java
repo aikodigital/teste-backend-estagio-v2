@@ -3,11 +3,13 @@ package com.app.project.controllers;
 import com.app.project.domain.EquipmentStateHistory;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.requests.equipStateHistory.EquipStateHistoryPostRequest;
+import com.app.project.requests.equipStateHistory.EquipStateHistoryPutRequest;
 import com.app.project.services.EquipmentStateHistoryService;
 import com.app.project.util.equip.EquipCreator;
 import com.app.project.util.equipState.EquipStateCreator;
 import com.app.project.util.equipStateHistory.EquipStateHistoryCreator;
 import com.app.project.util.equipStateHistory.EquipStateHistoryPostRequestCreator;
+import com.app.project.util.equipStateHistory.EquipStateHistoryPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +19,8 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -26,7 +30,6 @@ import java.util.UUID;
 class EquipmentStateHistoryControllerTest {
 
     final static UUID UUID_VALID = UUID.fromString("2c616b33-c9f1-4300-a97d-e429ec0c0825");
-
 
     @InjectMocks
     private EquipmentStateHistoryController controller;
@@ -44,6 +47,8 @@ class EquipmentStateHistoryControllerTest {
 
         BDDMockito.when(service.findById(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipStateHistoryCreator.createEquipStateHistoryValid());
+
+        BDDMockito.doNothing().when(service).update(ArgumentMatchers.any(EquipStateHistoryPutRequest.class));
     }
 
     @Test
@@ -90,4 +95,33 @@ class EquipmentStateHistoryControllerTest {
                 .isEqualTo(EquipStateHistoryCreator.createEquipStateHistoryValid());
     }
 
+    @Test
+    @DisplayName("put updates an equipment state history when successful")
+    void put_UpdatesAnEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
+
+        Assertions.assertThatCode(() -> controller.put(
+                        EquipStateHistoryPutRequestCreator.createEquipStateHistoryPutRequestCreator()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> updatedEquip = controller.put(
+                EquipStateHistoryPutRequestCreator.createEquipStateHistoryPutRequestCreator());
+
+        Assertions.assertThat(updatedEquip).isNotNull();
+
+        Assertions.assertThat(updatedEquip.getStatusCode())
+                .isEqualTo(HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    @DisplayName("delete removes an equipment state history when successful")
+    void delete_RemovesAnEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
+        Assertions.assertThatCode(() -> controller.delete(
+                        EquipStateHistoryCreator.createEquipStateHistoryValid().getId()))
+                .doesNotThrowAnyException();
+
+        ResponseEntity<Void> equip = controller.delete(UUID_VALID);
+
+        Assertions.assertThat(equip).isNotNull();
+        Assertions.assertThat(equip.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+    }
 }

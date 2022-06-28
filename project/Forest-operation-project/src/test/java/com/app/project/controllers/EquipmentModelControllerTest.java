@@ -59,9 +59,9 @@ class EquipmentModelControllerTest {
         List<EquipmentModel> equipModels = modelController.listAll().getBody();
 
         Assertions.assertThat(equipModels)
-                        .isNotNull()
-                        .isNotEmpty()
-                        .hasSize(1);
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(1);
 
         Assertions.assertThat(equipModels.get(0).getName()).isEqualTo(expectedName);
 
@@ -97,7 +97,7 @@ class EquipmentModelControllerTest {
     void put_UpdatesAnEquipmentModel_WhenSuccessful() throws NotFoundException {
 
         Assertions.assertThatCode(() -> modelController.put(
-                EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
+                        EquipmentModelPutRequestCreator.createEquipmentModelPutRequestBody()))
                 .doesNotThrowAnyException();
 
         ResponseEntity<Void> updatedEquipModel = modelController.put(
@@ -113,7 +113,7 @@ class EquipmentModelControllerTest {
     @DisplayName("delete removes an equipment model when successful")
     void delete_RemovesAnEquipmentModelWhenSuccessful() throws NotFoundException {
         Assertions.assertThatCode(() -> modelController.delete(
-                EquipmentModelCreator.createEquipmentModelValid().getId()))
+                        EquipmentModelCreator.createEquipmentModelValid().getId()))
                 .doesNotThrowAnyException();
 
         ResponseEntity<Void> equipModel = modelController.delete(UUID_VALID);

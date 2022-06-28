@@ -1,9 +1,13 @@
 package com.app.project.services;
 
+import com.app.project.domain.EquipmentState;
 import com.app.project.domain.EquipmentStateHistory;
 import com.app.project.exceptions.NotFoundException;
 import com.app.project.repositories.EquipStateHistoryRepository;
+import com.app.project.requests.equipStateHistory.EquipStateHistoryPutRequest;
+import com.app.project.util.equipState.EquipStatePutRequestCreator;
 import com.app.project.util.equipStateHistory.EquipStateHistoryCreator;
+import com.app.project.util.equipStateHistory.EquipStateHistoryPutRequestCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -33,26 +37,18 @@ class EquipmentStateHistoryServiceTest {
 
     @BeforeEach()
     void setUp() {
-        // TODO: check the reason's nullPointerException
-//        BDDMockito.when(repository.save(ArgumentMatchers.any(EquipmentStateHistory.class)))
-//                .thenReturn(EquipStateHistoryCreator.createEquipStateHistoryValid());
-
         BDDMockito.when(repository.findAll())
                 .thenReturn(List.of(EquipStateHistoryCreator.createEquipStateHistoryValid()));
 
         BDDMockito.when(repository.findById(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(Optional.ofNullable(EquipStateHistoryCreator.createEquipStateHistoryValid()));
-    }
 
-    // TODO: check the reason's nullPointerException
-//    @Test
-//    @DisplayName("save - returns equipment state history when successful")
-//    void save_ReturnsEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
-//        EquipmentStateHistory equipmentStateHistory = service.save(
-//                EquipStateHistoryPostRequestCreator.createEquipStateHistoryPostRequestServiceCreator());
-//
-//        Assertions.assertThat(equipmentStateHistory).isNotNull();
-//    }
+        BDDMockito.doNothing().when(repository).delete(ArgumentMatchers.any(EquipmentStateHistory.class));
+
+// TODO: check the reason's nullPointerException
+//        BDDMockito.when(repository.save(ArgumentMatchers.any(EquipmentStateHistory.class)))
+//                .thenReturn(EquipStateHistoryCreator.createEquipStateHistoryValid());
+    }
 
     @Test
     @DisplayName("findAll - returns a list of equipment states histories when successful")
@@ -101,4 +97,29 @@ class EquipmentStateHistoryServiceTest {
         Assertions.assertThatExceptionOfType(NotFoundException.class)
                 .isThrownBy(() -> service.findById(UUID_INVALID));
     }
+
+    @Test
+    @DisplayName("delete - removes an equipment state history when successful")
+    void delete_RemovesAnEquipmentStateHistory_WhenSuccessful() {
+        Assertions.assertThatCode(() -> service.delete(UUID_VALID))
+                .doesNotThrowAnyException();
+    }
+
+// TODO: check the reason's nullPointerException
+//    @Test
+//    @DisplayName("save - returns equipment state history when successful")
+//    void save_ReturnsEquipmentStateHistory_WhenSuccessful() throws NotFoundException {
+//        EquipmentStateHistory equipmentStateHistory = service.save(
+//                EquipStateHistoryPostRequestCreator.createEquipStateHistoryPostRequestServiceCreator());
+//        Assertions.assertThat(equipmentStateHistory).isNotNull();
+//    }
+
+// TODO: check the reason's nullPointerException
+//    @Test
+//    @DisplayName("update returns an equipment state history when successful")
+//    void update_ReturnsAnEquipmentStateHistory_WhenSuccessful() {
+//        Assertions.assertThatCode(() -> service.update(
+//                EquipStateHistoryPutRequestCreator.createEquipStateHistoryPutRequestCreator()))
+//                .doesNotThrowAnyException();
+//    }
 }

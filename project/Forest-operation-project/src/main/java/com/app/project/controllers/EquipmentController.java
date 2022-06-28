@@ -8,9 +8,9 @@ import com.app.project.services.EquipmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,7 +32,7 @@ public class EquipmentController {
     }
 
     @PostMapping
-    public ResponseEntity<Equipment> save(@RequestBody @Validated EquipPostRequest equipment) {
+    public ResponseEntity<Equipment> save(@RequestBody @Valid EquipPostRequest equipment) {
         return new ResponseEntity<>(service.save(equipment), HttpStatus.CREATED);
     }
 
