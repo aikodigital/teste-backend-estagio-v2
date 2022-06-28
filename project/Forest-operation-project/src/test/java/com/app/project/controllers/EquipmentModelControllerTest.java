@@ -43,7 +43,7 @@ class EquipmentModelControllerTest {
         BDDMockito.when(modelService.findAll())
                 .thenReturn(List.of(EquipmentModelCreator.createEquipmentModelValid()));
 
-        BDDMockito.when(modelService.findByIdOrThrowNotFoundException(ArgumentMatchers.any(UUID.class)))
+        BDDMockito.when(modelService.findByIdOrThrowsNotFoundException(ArgumentMatchers.any(UUID.class)))
                 .thenReturn(EquipmentModelCreator.createEquipmentModelValid());
 
         BDDMockito.doNothing().when(modelService).update(ArgumentMatchers.any(EquipmentModelPutRequest.class));

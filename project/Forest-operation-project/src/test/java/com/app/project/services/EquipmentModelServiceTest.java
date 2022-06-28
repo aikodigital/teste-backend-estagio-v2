@@ -7,7 +7,6 @@ import com.app.project.util.equipModel.EquipmentModelCreator;
 import com.app.project.util.equipModel.EquipmentModelPostRequestCreator;
 import com.app.project.util.equipModel.EquipmentModelPutRequestCreator;
 import org.assertj.core.api.Assertions;
-import org.hibernate.id.UUIDGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -79,7 +78,7 @@ class EquipmentModelServiceTest {
         UUID expectedId = EquipmentModelCreator.createEquipmentModelValid().getId();
 
         EquipmentModel equipmentModel = modelService
-                .findByIdOrThrowNotFoundException(UUID_VALID);
+                .findByIdOrThrowsNotFoundException(UUID_VALID);
 
         Assertions.assertThat(equipmentModel).isNotNull();
 

@@ -29,4 +29,8 @@ public class EquipmentModel {
     @JsonIgnore
     @OneToMany(mappedBy = "model")
     private List<Equipment> equipments = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipmentModel")
+    List<EquipmentModelStateHourlyEarnings> equipmentModelStateHourlyEarnings;
 }

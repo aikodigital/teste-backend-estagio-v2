@@ -30,4 +30,8 @@ public class EquipmentState {
     @JsonIgnore
     @OneToMany(mappedBy = "equipmentState")
     List<EquipmentStateHistory> equipmentStateHistories;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipmentState")
+    List<EquipmentModelStateHourlyEarnings> equipmentModelStateHourlyEarnings;
 }

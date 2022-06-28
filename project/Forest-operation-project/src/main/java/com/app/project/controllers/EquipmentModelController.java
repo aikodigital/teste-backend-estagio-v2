@@ -28,7 +28,7 @@ public class EquipmentModelController {
 
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentModel> getById(@PathVariable UUID id) throws NotFoundException {
-        return new ResponseEntity<>(service.findByIdOrThrowNotFoundException(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.findByIdOrThrowsNotFoundException(id), HttpStatus.OK);
     }
 
     @PostMapping

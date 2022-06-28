@@ -24,7 +24,7 @@ public class EquipmentModelService {
         return modelRepository.findAll();
     }
 
-    public EquipmentModel findByIdOrThrowNotFoundException(UUID id) throws NotFoundException {
+    public EquipmentModel findByIdOrThrowsNotFoundException(UUID id) throws NotFoundException {
         EquipmentModel equipmentModel = modelRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("equipment model not found"));
         return equipmentModel;
@@ -35,14 +35,14 @@ public class EquipmentModelService {
     }
 
     public void update(EquipmentModelPutRequest putRequest) throws NotFoundException {
-        EquipmentModel savedEquipModel = findByIdOrThrowNotFoundException(putRequest.getId());
+        EquipmentModel savedEquipModel = findByIdOrThrowsNotFoundException(putRequest.getId());
         EquipmentModel equipModel = mapper.toEquipment(putRequest);
         equipModel.setId(savedEquipModel.getId());
         modelRepository.save(equipModel);
     }
 
     public void delete(UUID id) throws NotFoundException {
-        EquipmentModel equipToDelete = findByIdOrThrowNotFoundException(id);
+        EquipmentModel equipToDelete = findByIdOrThrowsNotFoundException(id);
         modelRepository.delete(equipToDelete);
     }
 }
