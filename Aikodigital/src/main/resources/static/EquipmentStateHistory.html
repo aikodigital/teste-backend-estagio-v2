@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Histórico de Estados</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+</head>
+<body>
+
+	<div class="container">
+
+		<table class="table" id="tableStateHistory" style="margin-top: 50px;">
+			<thead>
+				<tr>
+					<th scope="col">ID Equipamento</th>
+					<th scope="col">Data</th>
+					<th scope="col">ID Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+
+	<script type="text/javascript">
+
+	$(document).ready(
+		
+			function equipmentStateHistory(){
+			
+				$.ajax({
+						method: "GET",
+						
+						url:"equipmentStateHistory/listAll",
+						async: false,
+						success: function(response){
+						 
+						$('#tableStateHistory > tbody > tr').remove();
+						
+						for(var i = 0; i < response.length;i++){
+						$('#tableStateHistory > tbody').append('<tr><td>' +response[i].equipmentId+'</td><td>' +response[i].date+'</td><td>'+response[i].equipmentStateId+'</td></tr>');
+						
+						}
+							
+						}
+						
+				}).fail(function(xhr, status, errorThrown){
+					alert("Erro ao carregar histórico de estados" + xhr.responseText);
+				});
+			}
+		);
+
+</script>
+</body>
+</html>
