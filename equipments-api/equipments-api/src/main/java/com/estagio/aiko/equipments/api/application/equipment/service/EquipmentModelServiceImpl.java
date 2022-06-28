@@ -15,7 +15,7 @@ import com.estagio.aiko.equipments.api.infrastructure.persistence.repository.equ
 public class EquipmentModelServiceImpl implements EquipmentModelService {
 
 	private final EquipmentModelRepository equipmentModelRepository;
-	
+
 	public EquipmentModelServiceImpl(EquipmentModelRepository equipmentModelRepository) {
 		this.equipmentModelRepository = equipmentModelRepository;
 	}
@@ -26,27 +26,29 @@ public class EquipmentModelServiceImpl implements EquipmentModelService {
 	}
 
 	@Override
+	public EquipmentModel update(UUID id, EquipmentModel object) {
+		EquipmentModel savedEquipmentModel = equipmentModelRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException());
+		BeanUtils.copyProperties(object, savedEquipmentModel, "id");
+
+		return equipmentModelRepository.save(savedEquipmentModel);
+	}
+
+	@Override
 	public List<EquipmentModel> findAll() {
 		return equipmentModelRepository.findAll();
 	}
 
 	@Override
-	
+
 	public EquipmentModel findById(UUID id) {
 		return equipmentModelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 	}
 
 	@Override
-	public EquipmentModel update(UUID id, EquipmentModel object) {
-		EquipmentModel savedEquipmentModel = equipmentModelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		BeanUtils.copyProperties(object, savedEquipmentModel, "id");
-		
-		return equipmentModelRepository.save(savedEquipmentModel);
-	}
-
-	@Override
 	public void delete(UUID id) {
-		EquipmentModel equipmentModel = equipmentModelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
+		EquipmentModel equipmentModel = equipmentModelRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException());
 		equipmentModelRepository.delete(equipmentModel);
 	}
 

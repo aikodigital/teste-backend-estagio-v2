@@ -26,7 +26,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
-public abstract class BaseExceptionHandler extends ResponseEntityExceptionHandler {
+public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@Autowired
 	private MessageSource messageSource;
@@ -106,16 +106,16 @@ public abstract class BaseExceptionHandler extends ResponseEntityExceptionHandle
 
 		return handleExceptionInternal(exception, responseBody, new HttpHeaders(), status, request);
 	}
-	
+
 	@ExceptionHandler({ MethodArgumentTypeMismatchException.class })
-	public ResponseEntity<Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception,
-			WebRequest request) {
-		
+	public ResponseEntity<Object> handleMethodArgumentTypeMismatchException(
+			MethodArgumentTypeMismatchException exception, WebRequest request) {
+
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		String message = makeSourceMessage("illegal.argument");
 		String cause = exception.getCause() != null ? exception.getCause().toString() : exception.toString();
 		List<ErrorMessage> responseBody = makeResponseBody(message, cause, status);
-		
+
 		return handleExceptionInternal(exception, responseBody, new HttpHeaders(), status, request);
 	}
 

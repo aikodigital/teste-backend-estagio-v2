@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.estagio.aiko.equipments.api.domain.equipment.model.Equipment;
+import com.estagio.aiko.equipments.api.domain.equipment.model.EquipmentModelStateHourlyEarnings;
 import com.estagio.aiko.equipments.api.domain.equipment.service.EquipmentModelStateHourlyEarningsService;
 import com.estagio.aiko.equipments.api.infrastructure.converter.ConverterServiceImpl;
-import com.estagio.aiko.equipments.api.presentation.equipment.dto.equipment.EquipmentRequest;
-import com.estagio.aiko.equipments.api.presentation.equipment.dto.equipment.EquipmentResponse;
+import com.estagio.aiko.equipments.api.presentation.equipment.dto.hourlyEarnings.EquipmentModelStateHourlyEarningsRequest;
+import com.estagio.aiko.equipments.api.presentation.equipment.dto.hourlyEarnings.EquipmentModelStateHourlyEarningsResponse;
 
 @RestController
 @RequestMapping("/equipment-model-state-hourly-earnings")
 public class EquipmentModelStateHourlyEarningsController {
-	
+
 	private final EquipmentModelStateHourlyEarningsService equipmentModelStateHourlyEarningsService;
 	private final ConverterServiceImpl converterService;
 
@@ -36,51 +36,57 @@ public class EquipmentModelStateHourlyEarningsController {
 		this.converterService = converterService;
 	}
 
-	
 	@PostMapping()
-	public ResponseEntity<EquipmentResponse> add(@Valid @RequestBody EquipmentRequest equipmentRequest) {
-		Equipment equipment = converterService.convert(equipmentRequest, Equipment.class);
-		Equipment savedEquipment = equipmentService.create(equipment);
-		EquipmentResponse equipmentResponse = converterService.convert(savedEquipment,
-				EquipmentResponse.class);
+	public ResponseEntity<EquipmentModelStateHourlyEarningsResponse> add(
+			@Valid @RequestBody EquipmentModelStateHourlyEarningsRequest equipmentModelStateHourlyEarningsRequest) {
+		EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings = converterService
+				.convert(equipmentModelStateHourlyEarningsRequest, EquipmentModelStateHourlyEarnings.class);
+		EquipmentModelStateHourlyEarnings savedEquipmentModelStateHourlyEarnings = equipmentModelStateHourlyEarningsService
+				.create(equipmentModelStateHourlyEarnings);
+		EquipmentModelStateHourlyEarningsResponse equipmentModelStateHourlyEarningsResponse = converterService
+				.convert(savedEquipmentModelStateHourlyEarnings, EquipmentModelStateHourlyEarningsResponse.class);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentResponse);
+		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentModelStateHourlyEarningsResponse);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<EquipmentResponse> update(@PathVariable UUID id,
-			@Valid @RequestBody EquipmentRequest equipmentRequest) {
-		Equipment equipment = converterService.convert(equipmentRequest, Equipment.class);
-		Equipment savedEquipment = equipmentService.update(id, equipment);
-		EquipmentResponse equipmentResponse = converterService.convert(savedEquipment,
-				EquipmentResponse.class);
+	public ResponseEntity<EquipmentModelStateHourlyEarningsResponse> update(@PathVariable UUID id,
+			@Valid @RequestBody EquipmentModelStateHourlyEarningsRequest equipmentModelStateHourlyEarningsRequest) {
+		EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings = converterService
+				.convert(equipmentModelStateHourlyEarningsRequest, EquipmentModelStateHourlyEarnings.class);
+		EquipmentModelStateHourlyEarnings savedEquipmentModelStateHourlyEarnings = equipmentModelStateHourlyEarningsService
+				.update(id, equipmentModelStateHourlyEarnings);
+		EquipmentModelStateHourlyEarningsResponse equipmentResponse = converterService
+				.convert(savedEquipmentModelStateHourlyEarnings, EquipmentModelStateHourlyEarningsResponse.class);
 
 		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
 	}
-	
+
 	@GetMapping()
-	public ResponseEntity<List<EquipmentResponse>> getAll() {
-		List<Equipment> equipments = equipmentService.findAll();
-		List<EquipmentResponse> equipmentsResponse = converterService.convert(equipments,
-				EquipmentResponse.class);
+	public ResponseEntity<List<EquipmentModelStateHourlyEarningsResponse>> getAll() {
+		List<EquipmentModelStateHourlyEarnings> equipmentsModelStateHourlyEarnings = equipmentModelStateHourlyEarningsService
+				.findAll();
+		List<EquipmentModelStateHourlyEarningsResponse> equipmentsModelStateHourlyEarningsResponse = converterService
+				.convert(equipmentsModelStateHourlyEarnings, EquipmentModelStateHourlyEarningsResponse.class);
 
-		return new ResponseEntity<>(equipmentsResponse, HttpStatus.OK);
+		return new ResponseEntity<>(equipmentsModelStateHourlyEarningsResponse, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<EquipmentResponse> getById(@PathVariable UUID id) {
-		Equipment equipment = equipmentService.findById(id);
-		EquipmentResponse equipmentResponse = converterService.convert(equipment,
-				EquipmentResponse.class);
+	public ResponseEntity<EquipmentModelStateHourlyEarningsResponse> getById(@PathVariable UUID id) {
+		EquipmentModelStateHourlyEarnings equipmentModelStateHourlyEarnings = equipmentModelStateHourlyEarningsService
+				.findById(id);
+		EquipmentModelStateHourlyEarningsResponse equipmentModelStateHourlyEarningsResponse = converterService
+				.convert(equipmentModelStateHourlyEarnings, EquipmentModelStateHourlyEarningsResponse.class);
 
-		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
+		return new ResponseEntity<>(equipmentModelStateHourlyEarningsResponse, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable UUID id) {
-		equipmentService.delete(id);
+		equipmentModelStateHourlyEarningsService.delete(id);
 
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 }

@@ -29,10 +29,7 @@ public class EquipmentController {
 	private final EquipmentService equipmentService;
 	private final ConverterServiceImpl converterService;
 
-	public EquipmentController(
-			EquipmentService equipmentService,
-			ConverterServiceImpl converterService
-			) {
+	public EquipmentController(EquipmentService equipmentService, ConverterServiceImpl converterService) {
 		this.equipmentService = equipmentService;
 		this.converterService = converterService;
 	}
@@ -41,8 +38,7 @@ public class EquipmentController {
 	public ResponseEntity<EquipmentResponse> add(@Valid @RequestBody EquipmentRequest equipmentRequest) {
 		Equipment equipment = converterService.convert(equipmentRequest, Equipment.class);
 		Equipment savedEquipment = equipmentService.create(equipment);
-		EquipmentResponse equipmentResponse = converterService.convert(savedEquipment,
-				EquipmentResponse.class);
+		EquipmentResponse equipmentResponse = converterService.convert(savedEquipment, EquipmentResponse.class);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(equipmentResponse);
 	}
@@ -52,35 +48,32 @@ public class EquipmentController {
 			@Valid @RequestBody EquipmentRequest equipmentRequest) {
 		Equipment equipment = converterService.convert(equipmentRequest, Equipment.class);
 		Equipment savedEquipment = equipmentService.update(id, equipment);
-		EquipmentResponse equipmentResponse = converterService.convert(savedEquipment,
-				EquipmentResponse.class);
+		EquipmentResponse equipmentResponse = converterService.convert(savedEquipment, EquipmentResponse.class);
 
 		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
 	}
-	
+
 	@GetMapping()
 	public ResponseEntity<List<EquipmentResponse>> getAll() {
 		List<Equipment> equipments = equipmentService.findAll();
-		List<EquipmentResponse> equipmentsResponse = converterService.convert(equipments,
-				EquipmentResponse.class);
+		List<EquipmentResponse> equipmentsResponse = converterService.convert(equipments, EquipmentResponse.class);
 
 		return new ResponseEntity<>(equipmentsResponse, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<EquipmentResponse> getById(@PathVariable UUID id) {
 		Equipment equipment = equipmentService.findById(id);
-		EquipmentResponse equipmentResponse = converterService.convert(equipment,
-				EquipmentResponse.class);
+		EquipmentResponse equipmentResponse = converterService.convert(equipment, EquipmentResponse.class);
 
 		return new ResponseEntity<>(equipmentResponse, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable UUID id) {
 		equipmentService.delete(id);
 
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 }

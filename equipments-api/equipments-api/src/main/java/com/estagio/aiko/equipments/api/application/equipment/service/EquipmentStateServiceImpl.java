@@ -15,7 +15,7 @@ import com.estagio.aiko.equipments.api.infrastructure.persistence.repository.equ
 public class EquipmentStateServiceImpl implements EquipmentStateService {
 
 	private final EquipmentStateRepository equipmentStateRepository;
-	
+
 	public EquipmentStateServiceImpl(EquipmentStateRepository equipmentStateRepository) {
 		this.equipmentStateRepository = equipmentStateRepository;
 	}
@@ -23,6 +23,15 @@ public class EquipmentStateServiceImpl implements EquipmentStateService {
 	@Override
 	public EquipmentState create(EquipmentState object) {
 		return equipmentStateRepository.save(object);
+	}
+
+	@Override
+	public EquipmentState update(UUID id, EquipmentState object) {
+		EquipmentState savedEquipmentState = equipmentStateRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException());
+		BeanUtils.copyProperties(object, savedEquipmentState, "id");
+
+		return equipmentStateRepository.save(savedEquipmentState);
 	}
 
 	@Override
@@ -36,16 +45,9 @@ public class EquipmentStateServiceImpl implements EquipmentStateService {
 	}
 
 	@Override
-	public EquipmentState update(UUID id, EquipmentState object) {
-		EquipmentState savedEquipmentState = equipmentStateRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		BeanUtils.copyProperties(object, savedEquipmentState, "id");
-		
-		return equipmentStateRepository.save(savedEquipmentState);
-	}
-
-	@Override
 	public void delete(UUID id) {
-		EquipmentState equipmentState = equipmentStateRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
+		EquipmentState equipmentState = equipmentStateRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException());
 		equipmentStateRepository.delete(equipmentState);
 	}
 
