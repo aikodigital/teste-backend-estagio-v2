@@ -19,6 +19,9 @@
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<maven-compiler-plugin.lombok.version>1.18.24</maven-compiler-plugin.lombok.version>
+		<springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
+		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+		<springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -64,6 +67,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc-openapi-ui.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
