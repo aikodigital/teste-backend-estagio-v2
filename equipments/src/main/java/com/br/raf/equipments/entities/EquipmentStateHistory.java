@@ -1,16 +1,17 @@
 package com.br.raf.equipments.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 @Entity
 @NoArgsConstructor
@@ -48,16 +49,6 @@ public class EquipmentStateHistory  {
         return "equipmentId = " + equipmentId + ", date = " + date + ", Equipment state id"+ equipmentStateId;
     }
 
-    /*public static void main(String[] args) {
-        Set<EquipmentStateHistory> set = new HashSet<>();
-        LocalDateTime ldt = LocalDateTime.now();
-        var id = UUID.randomUUID();
-        var equipmentStateId = UUID.randomUUID();
-        var equipmentStateHistory = new EquipmentStateHistory(id,ldt,equipmentStateId);
-        set.add(equipmentStateHistory);
-        set.add(equipmentStateHistory);
-        set.forEach(System.out::println);
-    }*/
 
 }
 
