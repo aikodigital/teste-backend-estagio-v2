@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,11 +25,6 @@ public class EquipmentPositionHistoryController {
     public ResponseEntity<Set<EquipmentPositionHistory>> getAll(){
         return new ResponseEntity<>(equipmentPositionHistoryService.getAll(), HttpStatus.OK);
     }
-
-    /*@GetMapping("/{date}")
-    public Optional<EquipmentPositionHistory> findByDate(@PathVariable(value = "date")@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime dateTime){
-        return Optional.ofNullable(equipmentPositionHistoryService.findByDate(dateTime));
-    }*/
 
     @GetMapping("/{id}")
     public ResponseEntity<List<EquipmentPositionHistory>> findById(@PathVariable(value = "id") UUID id){

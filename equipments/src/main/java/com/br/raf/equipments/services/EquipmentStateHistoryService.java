@@ -2,7 +2,6 @@ package com.br.raf.equipments.services;
 
 import com.br.raf.equipments.entities.EquipmentStateHistory;
 import com.br.raf.equipments.repositories.EquipmentStateHistoryRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
