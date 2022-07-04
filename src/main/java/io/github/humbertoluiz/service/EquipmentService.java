@@ -3,10 +3,8 @@ package io.github.humbertoluiz.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import io.github.humbertoluiz.domain.entity.Equipment;
 import io.github.humbertoluiz.dto.EquipmentDTO;
-
 
 public interface EquipmentService {
 
@@ -18,7 +16,6 @@ public interface EquipmentService {
 
 	void delete(UUID equipmentId);
 
-	void update(UUID equipmentId, Equipment equipment);
-
+	Optional<Equipment> update(UUID equipmentId, Equipment equipment);
 
 }

@@ -3,9 +3,7 @@ package io.github.humbertoluiz.rest.Controller;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,8 +45,9 @@ public class EquipmentPositionHistoryController {
 	}
 
 	@PutMapping("/{equipmentPositionHistoryId}")
-	public void update(@PathVariable UUID equipmentPositionHistoryId) {
-		equipmentPositionHistoryService.update(equipmentPositionHistoryId);
+	@ResponseStatus(HttpStatus.CREATED)
+	public void update(@RequestBody @Valid EquipmentPositionHistory equipmentPositionHistory, @PathVariable UUID equipmentPositionHistoryId) {
+		equipmentPositionHistoryService.update(equipmentPositionHistoryId, equipmentPositionHistory);
 	}
 
 	@GetMapping

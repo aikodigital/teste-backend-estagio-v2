@@ -3,7 +3,6 @@ package io.github.humbertoluiz.service.Impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -11,11 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
 import io.github.humbertoluiz.domain.entity.EquipmentState;
 import io.github.humbertoluiz.domain.repository.EquipmentStateRepository;
 import io.github.humbertoluiz.dto.EquipmentStateDTO;
-import io.github.humbertoluiz.exception.EquipmentModelException;
 import io.github.humbertoluiz.exception.EquipmentStateException;
 import io.github.humbertoluiz.service.EquipmentStateService;
 
@@ -60,15 +57,19 @@ public class EquipmentStateServiceImpl implements EquipmentStateService{
 	
 	@Override
 	@Transactional
-	public void update(UUID equipmentStateId) {
-		equipmentStateRepository.findById(equipmentStateId)
-		.map( equipmentState -> {			
-			return equipmentStateRepository.save(equipmentState);
-		}).orElseThrow( () -> new EquipmentModelException(equipmentStateId));
-		
+	public Optional<EquipmentState> update(UUID equipmentStateId, EquipmentState equipmentState) {
+		Optional<EquipmentState> equipmentStateData = Optional.ofNullable(
+			equipmentStateRepository.findById(equipmentStateId)
+			.orElseThrow(() -> new EquipmentStateException()));
+		EquipmentState equipmentStateNew = equipmentStateData.get();
+		equipmentStateNew.setName(equipmentState.getName());
+		equipmentStateNew.setColor(equipmentState.getColor());
+		equipmentStateRepository.save(equipmentStateNew);
+		return Optional.ofNullable(equipmentStateNew);
 	}
 	
 	@Override
+	@Transactional
 	public void delete(UUID equipmentStateId) {
 		// Deletar Cliente por ID.
 		equipmentStateRepository

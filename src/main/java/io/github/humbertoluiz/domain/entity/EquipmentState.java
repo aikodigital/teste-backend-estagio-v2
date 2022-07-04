@@ -2,12 +2,14 @@ package io.github.humbertoluiz.domain.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,16 +18,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
-@Builder
-@NoArgsConstructor
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "equipment_state")
 public class EquipmentState implements Serializable {
@@ -33,7 +28,6 @@ public class EquipmentState implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 
@@ -46,19 +40,78 @@ public class EquipmentState implements Serializable {
 	private String color;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="equipmentState", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="equipmentState", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EquipmentStateHistory> equipmentStateHistory = new HashSet<>();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="equipmentState", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="equipmentState", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EquipmentModelStateHourlyEarnings> equipmentModelStateHourlyEarnings = new HashSet<>();
 	
-	@Builder
+	public EquipmentState() {}
+	
 	public EquipmentState(String name, String color) {
 		this.name = name;
 		this.color = color;
 	}
-	
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Set<EquipmentStateHistory> getEquipmentStateHistory() {
+		return equipmentStateHistory;
+	}
+
+	public void setEquipmentStateHistory(Set<EquipmentStateHistory> equipmentStateHistory) {
+		this.equipmentStateHistory = equipmentStateHistory;
+	}
+
+	public Set<EquipmentModelStateHourlyEarnings> getEquipmentModelStateHourlyEarnings() {
+		return equipmentModelStateHourlyEarnings;
+	}
+
+	public void setEquipmentModelStateHourlyEarnings(
+			Set<EquipmentModelStateHourlyEarnings> equipmentModelStateHourlyEarnings) {
+		this.equipmentModelStateHourlyEarnings = equipmentModelStateHourlyEarnings;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EquipmentState other = (EquipmentState) obj;
+		return Objects.equals(id, other.id);
+	}
+
 }
 
 

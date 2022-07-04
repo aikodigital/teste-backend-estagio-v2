@@ -10,11 +10,11 @@ public interface EquipmentStateHistoryService {
 
 	EquipmentStateHistory save( EquipmentStateHistoryDTO equipmentStateHistoryDTO );
 	
-	void update( UUID equipmentStateHistoryId );
-	
 	List<EquipmentStateHistory> getByFilter(EquipmentStateHistory filter);
 
 	Optional<EquipmentStateHistory> getById(UUID equipmentStateHistoryId);
 
 	void delete(UUID EquipmentModelStateHourlyEarningsId);
+
+	Optional<EquipmentStateHistory> update(UUID equipmentStateHistoryId, EquipmentStateHistory equipmentStateHistory);
 }

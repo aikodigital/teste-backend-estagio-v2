@@ -75,15 +75,18 @@ public class EquipmentStateHistoryServiceImpl implements EquipmentStateHistorySe
 
 	@Override
 	@Transactional
-	public void update(UUID equipmentStateHistoryId) {
-		equipmentStateHistoryRepository.findById(equipmentStateHistoryId)
-		.map( equipmentStateHistory -> {
-			return equipmentStateHistoryRepository.save(equipmentStateHistory);
-		}).orElseThrow( () -> new EquipmentStateHistoryException());
-		
+	public Optional<EquipmentStateHistory> update(UUID equipmentStateHistoryId, EquipmentStateHistory equipmentStateHistory) {
+		Optional<EquipmentStateHistory> equipmentStateHistoryData = Optional.ofNullable(
+				equipmentStateHistoryRepository.findById(equipmentStateHistoryId)
+			.orElseThrow(() -> new EquipmentStateHistoryException()));
+		EquipmentStateHistory equipmentStateHistoryNew = equipmentStateHistoryData.get();
+		equipmentStateHistoryNew.setDate(equipmentStateHistory.getDate());
+		equipmentStateHistoryRepository.save(equipmentStateHistoryNew);
+		return Optional.ofNullable(equipmentStateHistoryNew);
 	}
 
 	@Override
+	@Transactional
 	public void delete(UUID equipmentStateHistoryId) {
 		// Deletar Cliente por ID.
 		equipmentStateHistoryRepository

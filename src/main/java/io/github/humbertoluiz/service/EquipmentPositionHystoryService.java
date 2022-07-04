@@ -9,12 +9,13 @@ import io.github.humbertoluiz.dto.EquipmentPositionHistoryDTO;
 public interface EquipmentPositionHystoryService {
 
 	EquipmentPositionHistory save( EquipmentPositionHistoryDTO equipmentPositionHistoryDTO );
-	
-	void update( UUID equipmentPositionHistoryId );
-	
+
 	List<EquipmentPositionHistory> getByFilter(EquipmentPositionHistory filter);
 
 	Optional<EquipmentPositionHistory> getById(UUID equipmentPositionHistoryId);
 
 	void delete(UUID equipmentPositionHistoryId);
+
+	Optional<EquipmentPositionHistory> update(UUID equipmentPositionHistoryId,
+			EquipmentPositionHistory equipmentPositionHistory);
 }

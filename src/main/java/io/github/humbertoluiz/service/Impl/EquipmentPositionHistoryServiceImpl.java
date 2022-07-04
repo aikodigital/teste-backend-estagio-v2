@@ -65,15 +65,20 @@ public class EquipmentPositionHistoryServiceImpl implements EquipmentPositionHys
 
 	@Override
 	@Transactional
-	public void update(UUID equipmentPositionHistoryId) {
-		equipmentPositionHistoryRepository.findById(equipmentPositionHistoryId)
-		.map( equipmentPositionHistory -> {
-			return equipmentPositionHistoryRepository.save(equipmentPositionHistory);
-		}).orElseThrow( () -> new EquipmentPositionHistoryException());
-		
+	public Optional<EquipmentPositionHistory> update(UUID equipmentPositionHistoryId, EquipmentPositionHistory equipmentPositionHistory) {
+		Optional<EquipmentPositionHistory> equipmentPositionHistoryData = Optional.ofNullable(
+				equipmentPositionHistoryRepository.findById(equipmentPositionHistoryId)
+			.orElseThrow(() -> new EquipmentPositionHistoryException()));
+		EquipmentPositionHistory equipmentPositionHistoryNew = equipmentPositionHistoryData.get();
+		equipmentPositionHistoryNew.setDate(equipmentPositionHistory.getDate());
+		equipmentPositionHistoryNew.setLat(equipmentPositionHistory.getLat());
+		equipmentPositionHistoryNew.setLon(equipmentPositionHistory.getLon());
+		equipmentPositionHistoryRepository.save(equipmentPositionHistoryNew);
+		return Optional.ofNullable(equipmentPositionHistoryNew);
 	}
 
 	@Override
+	@Transactional
 	public void delete(UUID equipmentPositionHistoryId) {
 		// Deletar Cliente por ID.
 		equipmentPositionHistoryRepository

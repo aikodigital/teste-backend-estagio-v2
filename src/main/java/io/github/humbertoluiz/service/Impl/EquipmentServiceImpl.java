@@ -17,6 +17,7 @@ import io.github.humbertoluiz.domain.entity.EquipmentModel;
 import io.github.humbertoluiz.domain.repository.EquipmentModelRepository;
 import io.github.humbertoluiz.domain.repository.EquipmentRepository;
 import io.github.humbertoluiz.dto.EquipmentDTO;
+import io.github.humbertoluiz.exception.EquipmentException;
 import io.github.humbertoluiz.exception.RegraNegocioException;
 import io.github.humbertoluiz.service.EquipmentService;
 
@@ -51,6 +52,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return Optional.ofNullable(equipment.get());
 	}
     
+	@Override
 	public List<Equipment> getByFilter(Equipment filter) {
 		ExampleMatcher matcher = ExampleMatcher
 				.matching()
@@ -59,25 +61,27 @@ public class EquipmentServiceImpl implements EquipmentService {
 		Example<Equipment> example = Example.of(filter, matcher);
 		return equipmentRepository.findAll(example);
 	}
-
+	
 	@Override
-	public void update(UUID equipmentId, Equipment equipment) {
-		// Buscar Cliente por ID, caso exista:
-		equipmentRepository.findById(equipmentId)
-		.map(equipmentExistente -> {
-			equipment.setId(equipmentExistente.getId());			
-			equipmentRepository.save(equipmentExistente);
-			return Void.TYPE;
-		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Equipment não encontrado"));
+	@Transactional
+	public Optional<Equipment> update(UUID equipmentId, Equipment equipment) {
+		Optional<Equipment> equipmentData = Optional.ofNullable(
+			equipmentRepository.findById(equipmentId)
+			.orElseThrow(() -> new EquipmentException()));
+		Equipment equipmentNew = equipmentData.get();
+		equipmentNew.setName(equipment.getName());
+		equipmentRepository.save(equipmentNew);
+		return Optional.ofNullable(equipmentNew);
 	}
 	
 	@Override
+	@Transactional
 	public void delete(UUID equipmentId) {
 		// Deletar Cliente por ID.
 		equipmentRepository
 		.findById(equipmentId)
 		.map( equipment -> {
-			equipmentRepository.deleteById(equipmentId);
+			equipmentRepository.delete(equipment);
 			return Void.TYPE;
 		}).orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Equipment não encontrado"));
 	}

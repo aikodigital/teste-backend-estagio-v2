@@ -24,56 +24,51 @@ public class EquipmentModelServiceImpl implements EquipmentModelService {
 	@Autowired
 	private EquipmentModelRepository equipmentModelRepository;
 
-    @Override
-    @Transactional
-    public EquipmentModel save( EquipmentModelDTO equipmentModelDTO ) {
-    	EquipmentModel equipmentModel = new EquipmentModel();
-    	equipmentModel.setName(equipmentModelDTO.getName());
-    	equipmentModelRepository.save(equipmentModel);
-        return equipmentModel;
-    }
+	@Override
+	@Transactional
+	public EquipmentModel save(EquipmentModelDTO equipmentModelDTO) {
+		EquipmentModel equipmentModel = new EquipmentModel();
+		equipmentModel.setName(equipmentModelDTO.getName());
+		equipmentModelRepository.save(equipmentModel);
+		return equipmentModel;
+	}
 
 	@Override
 	public Optional<EquipmentModel> getById(UUID equipmentModelId) {
 		// Buscar Cliente por ID.
-		Optional<EquipmentModel> equipmentModel = Optional.ofNullable(equipmentModelRepository.findById(equipmentModelId)
-			.orElseThrow(() ->
-			new ResponseStatusException(HttpStatus.NOT_FOUND, "EquipmentModel não encontrado")));
+		Optional<EquipmentModel> equipmentModel = Optional
+				.ofNullable(equipmentModelRepository.findById(equipmentModelId).orElseThrow(
+						() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "EquipmentModel não encontrado")));
 		return Optional.ofNullable(equipmentModel.get());
 	}
-	
-	public EquipmentModel findOrFail(UUID equipmentModelId) {
-		return equipmentModelRepository.findById(equipmentModelId)
-			.orElseThrow(() -> new EquipmentModelException(equipmentModelId));
-	}
-	
+
+	@Override
 	public List<EquipmentModel> getByFilter(EquipmentModel filter) {
-		ExampleMatcher matcher = ExampleMatcher
-				.matching()
-				.withIgnoreCase()
-				.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+		ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase()
+			.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 		Example<EquipmentModel> example = Example.of(filter, matcher);
 		return equipmentModelRepository.findAll(example);
 	}
-	
+
 	@Override
 	@Transactional
-	public void update(UUID equipmentModelId) {
-		equipmentModelRepository.findById(equipmentModelId)
-		.map( equipmentModel -> {			
-			return equipmentModelRepository.save(equipmentModel);
-		}).orElseThrow( () -> new EquipmentModelException(equipmentModelId));
-		
+	public Optional<EquipmentModel> update(UUID equipmentModelId, EquipmentModel equipmentModel) {
+		Optional<EquipmentModel> equipmentModelData = Optional.ofNullable(
+			equipmentModelRepository.findById(equipmentModelId)
+			.orElseThrow(() -> new EquipmentModelException()));
+		EquipmentModel equipmentModelNew = equipmentModelData.get();
+		equipmentModelNew.setName(equipmentModel.getName());
+		equipmentModelRepository.save(equipmentModelNew);
+		return Optional.ofNullable(equipmentModelNew);
 	}
-	
+
 	@Override
+	@Transactional
 	public void delete(UUID equipmentModelId) {
 		// Deletar Cliente por ID.
-		equipmentModelRepository
-		.findById(equipmentModelId)
-		.map( equipmentModel -> {
-			equipmentModelRepository.deleteById(equipmentModelId);
+		equipmentModelRepository.findById(equipmentModelId).map(equipmentModel -> {
+			equipmentModelRepository.delete(equipmentModel);
 			return Void.TYPE;
-		}).orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Equipment não encontrado"));
+		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Equipment não encontrado"));
 	}
 }
